@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/05/06 15:51:33 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/05/07 00:36:46 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,10 @@ MAKEFLAGS += --no-print-directory
 NAME = so_long
 #NAME_BNS = so_long_bonus
 #PRINTF = ./external/DPRINTF
-MLX = ./MLX42
+MLX = ./mlx_linux
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror 
-CPPFLAGS = -I./include
+CPPFLAGS = -I /usr/include -Imlx_linux -O3
 
 # Définitions de chemin
 
@@ -107,7 +107,7 @@ $(NAME): $(OBJ)
 	@sleep 2
 	@$(MAKE) $(MAKEFLAGS) -C $(MLX)
 	@echo "Starting project $(MAGENTA)ZELDA_LTM$(CYAN)..."
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ) -o $(NAME)
+	@$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/include -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 	@sleep 2
 	@echo "Done !$(BLANC)"
