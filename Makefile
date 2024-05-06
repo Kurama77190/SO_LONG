@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/05/06 02:56:53 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/05/06 15:51:33 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,14 @@ NAME = so_long
 MLX = ./MLX42
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror 
-#CPPFLAGS = -I./include
+CPPFLAGS = -I./include
 
 # Définitions de chemin
 
-#LIB = src/Mandatory/lib/
+LIB = src/Mandatory/lib/
 #PIPEX = src/Mandatory/so_long/
-#SECURITY = src/Mandatory/security/
+SECURITY = src/Mandatory/security/
+GARBAGE = $(SECURITY)garbage_collector/
 
 #LIB_B = src/Bonus/lib/
 #PIPEX_B = src/Bonus/so_long/
@@ -37,7 +38,9 @@ BUILD = builder/
 # Définitions des fichiers sources et objets
 
 #=================================================__SRC__OF__PROJECT__=============================================================================
-SRC = src/Mandatory/main.c
+SRC = src/Mandatory/main.c \
+	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c $(LIB)ft_strlen.c $(LIB)ft_only_space.c \
+	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c 
 #SRC_BNS = #
 # Crée le dossier BUILD si nécessaire
 $(shell mkdir -p $(BUILD))
