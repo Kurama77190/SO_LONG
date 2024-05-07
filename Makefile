@@ -20,12 +20,12 @@ NAME = so_long
 MLX = ./mlx_linux
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror 
-CPPFLAGS = -I /usr/include -Imlx_linux -O3
+CPPFLAGS = -I./include -I/usr/include -I$(MLX) -O3 -c
 
 # Définitions de chemin
 
 LIB = src/Mandatory/lib/
-#PIPEX = src/Mandatory/so_long/
+SOLONG = src/Mandatory/so_long/
 SECURITY = src/Mandatory/security/
 GARBAGE = $(SECURITY)garbage_collector/
 
@@ -49,7 +49,8 @@ OBJ = $(SRC:%.c=$(BUILD)%.o)
 #OBJ_BNS = $(SRC_BNS:%.c=$(BUILD)%.o)
 #==================================================================================================================================================
 
-
+HEADER = ./include/so_long_h
+DEP = $(OBJ:.o=.d)
 
 # Règles des couleurs
 
@@ -62,6 +63,15 @@ MAGENTA = \033[0;35m
 BLANC = \033[0;37m
 
 all:	$(NAME)
+
+test:
+	echo src $(SRC)
+	echo 
+	echo 
+	echo obj $(OBJ)
+	echo
+	echo
+	echo dep $(DEP)
 
 $(NAME): $(OBJ)
 
@@ -102,12 +112,14 @@ $(NAME): $(OBJ)
 		echo -n "#"; \
 	done
 	@echo "] 100 %"
+	@echo "Checking include directory:"
+	@ls -la ./include
 
 	@echo "$(CYAN)Starting external projects $(MAGENTA)PRINTF$(CYAN) and $(MAGENTA)MLX42$(CYAN) compilations..."
 	@sleep 2
 	@$(MAKE) $(MAKEFLAGS) -C $(MLX)
 	@echo "Starting project $(MAGENTA)ZELDA_LTM$(CYAN)..."
-	@$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/include -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	$(CC) $(OBJ) -L$(MLX) -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 	@sleep 2
 	@echo "Done !$(BLANC)"
@@ -115,25 +127,18 @@ $(NAME): $(OBJ)
 #=============================================================================================
 
 
-%.o:%.c   
+%.o:%.c
+	echo toto
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(BUILD)%.o: %.c
 	@mkdir -p $(@D)
-	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ -MMD -MP
 
 
- # Règle pour créer l'exécutable pipex_BNS
+ # Règle pour créer l'exécutable so_long_BNS
 
-bonus: $(NAME_BNS)
-
-$(NAME_BNS): $(OBJ_BNS)
-	@echo "$(CYAN)Starting compilation of bonus part..."
-	@$(MAKE) $(MAKEFLAGS) -C $(PRINTF)
-	@echo "$(MAGENTA)Compiling $(NAME_BNS)..."
-	@$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJ_BNS) -L$(PRINTF) -lftprintf -o $(NAME_BNS)
-	@echo "$(GREEN)Compilation complete: $(NAME_BNS)$(NC)"
-
+bonus:
 
 
 clean: # Règles pour nettoyer les fichiers objets
@@ -153,5 +158,6 @@ fclean: clean # Règles pour nettoyer les fichiers objets et l'exécutable
 
 re: fclean all # Règle pour recompiler
 
-
 .PHONY: all clean fclean re bonus # Pour éviter les conflits avec des fichiers du même nom
+
+-include $(DEP)

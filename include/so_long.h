@@ -25,6 +25,8 @@
 # include <X11/Xlib.h>
 # include <X11/Xutil.h>
 
+#define toto 2
+
 typedef struct s_game
 {
 	void					*mlx;
