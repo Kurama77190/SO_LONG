@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/05/07 00:36:46 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/05/08 01:45:34 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ NAME = so_long
 MLX = ./mlx_linux
 CC = cc
 CFLAGS = -g -Wall -Wextra -Werror 
-CPPFLAGS = -I./include -I/usr/include -I$(MLX) -O3 -c
-
+CPPFLAGS = -I./include -I/usr/include -I$(MLX) -c
+#MLXFLAG = -lmlx -lXext -lX11
 # Définitions de chemin
 
 LIB = src/Mandatory/lib/
@@ -41,7 +41,7 @@ BUILD = builder/
 SRC = src/Mandatory/main.c \
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c $(LIB)ft_strlen.c $(LIB)ft_only_space.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c 
-#SRC_BNS = #
+SRC_BNS = src/Mandatory/main_test.c
 # Crée le dossier BUILD si nécessaire
 $(shell mkdir -p $(BUILD))
 
@@ -140,6 +140,9 @@ $(BUILD)%.o: %.c
 
 bonus:
 
+teste:
+
+	cd mlx_linux && ./configure && cd .. && $(CC) $(CFLAGS) $(SRC_BNS) -L$(MLX) -lmlx -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
 
 clean: # Règles pour nettoyer les fichiers objets
 
@@ -158,6 +161,6 @@ fclean: clean # Règles pour nettoyer les fichiers objets et l'exécutable
 
 re: fclean all # Règle pour recompiler
 
-.PHONY: all clean fclean re bonus # Pour éviter les conflits avec des fichiers du même nom
+.PHONY: all clean fclean re bonus teste # Pour éviter les conflits avec des fichiers du même nom
 
 -include $(DEP)
