@@ -33,29 +33,18 @@ typedef struct s_data
 	int		endian;
 }			t_data;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
 int	main(void)
 {
 	void	*mlx;
 	void	*mlx_win;
 	t_data	img;
+	int		height;
+	int		width;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "THE LEGEND OF ZELDA: A LINK TO MLX");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	my_mlx_pixel_put(&img, 10, 10, 0x00FF0000);
+	mlx_win = mlx_new_window(mlx, 1600, 800, "THE LEGEND OF ZELDA: A LINK TO MLX");
+	img.img = mlx_new_image(mlx, 1600, 800);
+	img.img = mlx_xpm_file_to_image(mlx, "src/Mandatory/img/zelda.xpm", &height, &width);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
