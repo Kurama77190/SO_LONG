@@ -76,6 +76,7 @@ typedef struct s_game_object
 
 typedef struct s_garbage_collector
 {
+	char						*name;
 	void						*alloc;
 	void						**allocs;
 	struct s_garbage_collector	*next;
@@ -95,10 +96,10 @@ typedef struct s_game_data
 void		ft_free(void *ptr);
 void		free_split(char **strs);
 void		ft_free_all(t_garbage **lst);
-void		*ft_calloc(size_t count, size_t size, t_garbage *data);
+void		*ft_calloc(size_t count, size_t size, t_garbage *data, char *name);
 void		ft_lstadd_back_garbage(t_garbage **alst, t_garbage *new);
-char		**ft_split(char const *s, char c, t_garbage **data);
-t_garbage	*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split);
+char		**ft_split(char const *s, char c, t_garbage **data, char *name);
+t_garbage	*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name);
 bool		ft_only_space(char *str);
 
 

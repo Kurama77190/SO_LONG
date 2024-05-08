@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-t_garbage	*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split)
+t_garbage	*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name)
 {
 	t_garbage	*new;
 
@@ -23,8 +23,11 @@ t_garbage	*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split)
 		perror("allocation for garbage collector from new_node failed\n");
 		exit(2);
 	}
+	new->name = NULL;
 	new->alloc = NULL;
 	new->allocs = NULL;
+	if (name)
+		new->name = name;
 	if (content)
 		new->alloc = content;
 	if (split)

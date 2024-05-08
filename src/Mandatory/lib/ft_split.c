@@ -18,7 +18,7 @@ static int	ft_lenmot(char *str, char c);
 static char	**ft_malloc_error(char **tab);
 static bool	ft_ajoutdesmots(char **tab, char *str, int i, char c);
 
-char	**ft_split(char const *s, char c, t_garbage **data)
+char	**ft_split(char const *s, char c, t_garbage **data, char *name)
 {
 	char	*str;
 	char	**tab;
@@ -38,7 +38,7 @@ char	**ft_split(char const *s, char c, t_garbage **data)
 		ft_malloc_error(tab);
 		return (NULL);
 	}
-	ft_lstadd_back_garbage(data, ft_lstnew_garbage(data, NULL, (void **)tab));
+	ft_lstadd_back_garbage(data, ft_lstnew_garbage(data, NULL, (void **)tab, name));
 	return (tab);
 }
 

@@ -17,7 +17,7 @@ static size_t		ft_securite(size_t count, size_t size);
 
 
 
-void	*ft_calloc(size_t count, size_t size, t_garbage *data)
+void	*ft_calloc(size_t count, size_t size, t_garbage *data, char *name)
 {
 	unsigned char	*tab;
 	t_garbage		*current;
@@ -27,7 +27,7 @@ void	*ft_calloc(size_t count, size_t size, t_garbage *data)
 	if (!tab)
 		return (NULL);
 	else
-		ft_lstadd_back_garbage(&current, ft_lstnew_garbage(&data, tab, NULL));
+		ft_lstadd_back_garbage(&current, ft_lstnew_garbage(&data, tab, NULL, name));
 	ft_memset(tab, 0, ft_securite(count, size));
 	return (tab);
 }

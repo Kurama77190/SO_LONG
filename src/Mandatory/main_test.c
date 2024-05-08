@@ -50,7 +50,6 @@ int	main(void)
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
 }
-mlx_
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
