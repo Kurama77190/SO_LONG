@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 01:37:51 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/08 02:20:27 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/09 23:03:48 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,24 @@
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include <string.h>
 
 typedef struct s_data
 {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
+    void    *mlx_ptr;
+    void    *win_ptr;
+    void    *img_ptr;
+    int     img_width;
+    int     img_height;
+} t_data;
 
-int	main(void)
+int main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
-	int		height;
-	int		width;
+	t_data	data;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1600, 800, "THE LEGEND OF ZELDA: A LINK TO MLX");
-	img.img = mlx_new_image(mlx, 1600, 800);
-	img.img = mlx_xpm_file_to_image(mlx, "src/Mandatory/img/zelda.xpm", &height, &width);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	data.mlx_ptr = mlx_init();
+	data.img_ptr = mlx_xpm_file_to_image(data.mlx_ptr, "src/Mandatory/img/zelda.xpm", &data.img_width, &data.img_height);
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.img_width, data.img_height, "The Legend Of Zelda: A link to MLX");
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img_ptr, 0, 0);
+	mlx_loop(data.mlx_ptr);
 }
