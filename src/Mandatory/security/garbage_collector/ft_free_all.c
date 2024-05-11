@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 05:28:32 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/06 07:17:17 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/11 10:52:01 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	ft_lstdelone_garbage(t_garbage *lst)
 		ft_free((char *)lst->alloc);
 	if (lst->allocs != NULL)
 		free_split((char **)lst->allocs);
+	if (lst->animations != NULL)
+		free_split(lst->animations);
 	ft_free(lst);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/06 20:25:56 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/11 10:42:58 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,72 +25,84 @@
 # include <X11/Xlib.h>
 # include <X11/Xutil.h>
 
-#define toto 2
+#define DIRECTION_UP 99
+#define DIRECTION_DOWN 98
+#define DIRECTION_LEFT 97
+#define DIRECTION_RIGHT 96
+#define DIRECTION_UP_LEFT 95
+#define DIRECTION_UP_RIGHT 94
+#define DIRECTION_DOWN_LEFT 93
+#define DIRECTION_DOWN_RIGHT 92
 
-typedef struct s_game
-{
-	void					*mlx;
-	void					*win;
-}							t_game;
+
+#define KEY_ESC 91
+#define KEY_W 90
+#define KEY_A 89
+#define KEY_S 88
+#define KEY_D 87
+#define KEY_SPACE 86
+#define KEY_LEFT 85
+#define KEY_RIGHT 84
+#define KEY_DOWN 83
+#define KEY_UP 82
+#define KEY_Q 81
+#define KEY_E 80
 
 typedef struct s_img
 {
-	void					*img;
-	char					*addr;
-	int						bits_per_pixel;
-	int						line_length;
-	int						endian;
-}							t_img;
+	void	*img_ptr;
+	char	*addr;
+	int		bpp;
+	int		line_length;
+	int		endian;
+	int		width;
+	int		height;
+}			t_img;
 
-typedef struct s_map
+typedef struct s_frame
 {
-	char					**map;
-	int						width;
-	int						height;
-}							t_map;
+	t_img			img;            // Structure pour stocker l'image de la frame
+	struct s_frame *next; 			// Pointeur vers la prochaine frame
+}					t_frame;
 
-typedef struct s_player
+typedef struct s_animation
 {
-	int						x;
-	int						y;
-}							t_player;
-
-typedef struct s_collectible
-{
-	int						x;
-	int						y;
-}							t_collectible;
-
-typedef struct s_exit
-{
-	int						x;
-	int						y;
-}							t_exit;
-
-typedef struct s_game_object
-{
-	t_player				player;
-	t_collectible			*collectibles;
-	t_exit					exit;
-}							t_game_object;
+	t_frame	*frames;   // Pointeur vers la première frame
+	t_frame	*current;  // Frame actuellement affichée
+	int		frame_count;   // Nombre total de frames
+	int		current_index; // Index de la frame actuelle
+}			t_animation;
 
 typedef struct s_garbage_collector
 {
 	char						*name;
 	void						*alloc;
 	void						**allocs;
+	t_frame						**animations;
 	struct s_garbage_collector	*next;
 }							t_garbage;
 
-typedef struct s_game_data
+typedef struct s_data
 {
-	int						return_value;
-	t_game					game;
-	t_img					img;
-	t_map					map;
-	t_game_object			game_object;
-	t_garbage				*memory_data;
-}							t_game_data;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		bg_img;   // Structure pour l'image de fond
+	t_img		char_img; // Structure pour l'image du personnage
+	t_animation char_anim[10]; // Structure pour l'animation du personnage
+	t_animation char_attack[5]; // Structure pour l'animation de l'attaque du personnage
+	t_img		heart_img; // Structure pour l'image du coeur
+	t_img		enemy_img; // Structure pour l'image de l'ennemi
+	t_animation enemy_anim; // Structure pour l'animation de l'ennemi
+	t_img		sword_img; // Structure pour l'image de l'épée
+	t_animation sword_anim; // Structure pour l'animation de l'épée
+	int			direction;
+	int			pos_char_x;
+	int			pos_char_y;
+	int			pos_enemy_x;
+	int			pos_enemy_y;
+	t_garbage	*memory_manager;
+}				t_data;
+
 
 
 void		ft_free(void *ptr);

@@ -8,6 +8,8 @@
         "array": "c",
         "string": "c",
         "string_view": "c",
-        "mlx.h": "c"
+        "mlx.h": "c",
+        "stdint.h": "c",
+        "string.h": "c"
     }
 }
