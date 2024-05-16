@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 01:37:51 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/11 10:29:53 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:08:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,73 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+// #include "so_long.h"
+
 #include <mlx.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define DIRECTION_UP 99
+#define DIRECTION_DOWN 98
+#define DIRECTION_LEFT 97
+#define DIRECTION_RIGHT 96
+#define DIRECTION_UP_LEFT 95
+#define DIRECTION_UP_RIGHT 94
+#define DIRECTION_DOWN_LEFT 93
+#define DIRECTION_DOWN_RIGHT 92
+
+
+#define KEY_ESC 91
+#define KEY_W 90
+#define KEY_A 89
+#define KEY_S 88
+#define KEY_D 87
+#define KEY_SPACE 86
+#define KEY_LEFT 85
+#define KEY_RIGHT 84
+#define KEY_DOWN 83
+#define KEY_UP 82
+#define KEY_Q 81
+#define KEY_E 80
+
+
+# include <mlx.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <fcntl.h>
+# include <string.h>
+# include <stdbool.h>
+# include <errno.h>
+# include <X11/X.h>
+# include <X11/Xlib.h>
+# include <X11/Xutil.h>
+
+#define DIRECTION_UP 99
+#define DIRECTION_DOWN 98
+#define DIRECTION_LEFT 97
+#define DIRECTION_RIGHT 96
+#define DIRECTION_UP_LEFT 95
+#define DIRECTION_UP_RIGHT 94
+#define DIRECTION_DOWN_LEFT 93
+#define DIRECTION_DOWN_RIGHT 92
+
+
+#define KEY_ESC 91
+#define KEY_W 90
+#define KEY_A 89
+#define KEY_S 88
+#define KEY_D 87
+#define KEY_SPACE 86
+#define KEY_LEFT 85
+#define KEY_RIGHT 84
+#define KEY_DOWN 83
+#define KEY_UP 82
+#define KEY_Q 81
+#define KEY_E 80
 
 #define DIRECTION_UP 99
 #define DIRECTION_DOWN 98
@@ -64,37 +126,63 @@ typedef struct s_img
 
 typedef struct s_frame
 {
-	t_img			img;            // Structure pour stocker l'image de la frame
-	struct s_frame *next; 			// Pointeur vers la prochaine frame
+	t_img			*img;            // Structure pour stocker l'image de la frame
+	struct s_frame 	*next; 			// Pointeur vers la prochaine frame
 }					t_frame;
 
 typedef struct s_animation
 {
-	t_frame	*frames;   // Pointeur vers la première frame
-	t_frame	*current;  // Frame actuellement affichée
-	int		frame_count;   // Nombre total de frames
-	int		current_index; // Index de la frame actuelle
-}			t_animation;
+	t_frame		*frames;   // Pointeur vers la première frame
+	t_frame		*current;  // Frame actuellement affichée
+	int			frame_count;   // Nombre total de frames
+	int			current_index; // Index de la frame actuelle
+}				t_animation;
 
-typedef struct s_data
+typedef struct s_move
+{
+	// Structure pour l'image du personnage
+	t_animation	*walk_up;
+	t_animation	*walk_down;
+	t_animation	*walk_right;
+	t_animation	*walk_left;
+	// Structure pour l'animation de l'épée
+	t_animation	*atack_up;
+	t_animation *atack_down;
+	t_animation *atack_right;
+	t_animation *atack_left;
+	// Structure pour la roulade legendaire
+	t_animation *roll_up;
+	t_animation	*roll_down;
+	t_animation	*roll_right;
+	t_animation	*roll_left;
+	
+}				t_move;
+
+typedef struct s_garbage_collector
+{
+	char						*name;
+	void						*alloc;
+	void						**allocs;
+	t_frame						**animations;
+	struct s_garbage_collector	*next;
+}								t_garbage;
+
+typedef struct s_game
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_img		bg_img;   // Structure pour l'image de fond
-	t_img		char_img; // Structure pour l'image du personnage
-	t_animation char_anim[10]; // Structure pour l'animation du personnage
-	t_animation char_attack[5]; // Structure pour l'animation de l'attaque du personnage
+	t_img		char_img; 
+	t_move		animations;
 	t_img		heart_img; // Structure pour l'image du coeur
 	t_img		enemy_img; // Structure pour l'image de l'ennemi
-	t_animation enemy_anim; // Structure pour l'animation de l'ennemi
-	t_img		sword_img; // Structure pour l'image de l'épée
-	t_animation sword_anim; // Structure pour l'animation de l'épée
 	int			direction;
 	int			pos_char_x;
 	int			pos_char_y;
 	int			pos_enemy_x;
 	int			pos_enemy_y;
-}				t_data;
+	t_garbage	*memory_manager;
+}				t_game;
 
 
 void	load_image(t_img *img, void *mlx_ptr, const char *file)
@@ -110,7 +198,7 @@ void	load_image(t_img *img, void *mlx_ptr, const char *file)
 			&img->endian);
 }
 
-void	draw_image_with_transparency(t_data *data, t_img *img, int pos_x,
+void	draw_image_with_transparency(t_game *data, t_img *img, int pos_x,
 		int pos_y)
 {
 	int	y;
@@ -136,13 +224,14 @@ void	draw_image_with_transparency(t_data *data, t_img *img, int pos_x,
 	}
 }
 
-void draw_animation_frame(t_data *data, t_animation *anim, int x, int y)
+void draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 {
     if (anim->current)
 	{
-        draw_image_with_transparency(data, &anim->current->img, x, y);
+        draw_image_with_transparency(data, data->animations.atack_down->frames->img, x, y);
     }
 }
+
 void	advance_animation(t_animation *anim)
 {
     if (anim->current && anim->current->next)
@@ -154,13 +243,15 @@ void	advance_animation(t_animation *anim)
     }
 }
 
+
+void	ft_init(t_game *data);
+
 int	main(void)
 {
-	t_data data;
+	t_game data;
 
 	data.mlx_ptr = mlx_init();
 	data.win_ptr = NULL;
-
 	// Charger l'image de fond et celle du personnage
 	load_image(&data.bg_img, data.mlx_ptr, "src/Mandatory/img/zelda.xpm");
 	load_image(&data.char_img, data.mlx_ptr, "src/Mandatory/img/teste3.xpm");
@@ -173,6 +264,7 @@ int	main(void)
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.bg_img.img_ptr, 0,
 		0);
 
+	// ft_init(&data);
 	// Calculer la position centrale pour le personnage
 	int char_x = (data.bg_img.width - data.char_img.width) / 2;
 	int char_y = (data.bg_img.height - data.char_img.height) / 2;
@@ -182,3 +274,24 @@ int	main(void)
 
 	mlx_loop(data.mlx_ptr);
 }
+
+// void	ft_init(t_game *data)
+// {
+// 	int	i;
+// 	t_frame	up;
+// 	t_frame	right;
+// 	t_frame	left;
+// 	t_frame	down;
+
+// 	if (!data)
+// 	{
+// 		printf("Error init \n");
+// 		exit(1);
+// 	}
+// 	i = 0;
+// 	data->pos_char_x = (data->bg_img.width - data->char_img.width) / 2;
+// 	data->pos_char_y = (data->bg_img.height - data->char_img.height) / 2;
+// 	while (i < 10)
+// 		ft_lstadd_back(data->char_anim->)
+	
+// }

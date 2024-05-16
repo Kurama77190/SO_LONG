@@ -23,14 +23,14 @@
 // 	mlx_loop(mlx);
 // }
 
-void testing(t_game_data *data);
+void testing(t_game *data);
 
 int main(void)
 {
-	t_game_data data;
+	t_game data;
 
-	data.memory_data = NULL;
-	char **test = ft_split("Salut je suis un roi\n", ' ', &data.memory_data, "ROI");
+	data.memory_manager = NULL;
+	char **test = ft_split("Salut je suis un roi\n", ' ', &data.memory_manager, "ROI");
 	while (*test)
 	{
 		printf("%s ", *test);
@@ -39,12 +39,12 @@ int main(void)
 
 	printf("\n");
 	testing(&data);
-	ft_free_all(&data.memory_data);
+	ft_free_all(&data.memory_manager);
 }
 
-void testing(t_game_data *data)
+void testing(t_game *data)
 {
-	char *teste = ft_calloc(10, sizeof(char), data->memory_data, "REINE");
+	char *teste = ft_calloc(10, sizeof(char), data->memory_manager, "REINE");
 	teste = "42_PARIS";
 
 	printf("%s\n", teste);
