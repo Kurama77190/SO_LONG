@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:09:56 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/16 18:09:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:31:50 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_frame	*ft_lstnew(const char *content, t_game *data)
 	new = malloc(sizeof(t_frame));
 	if (!new)
 		return (NULL);
+	new->img->img_ptr = mlx_new_image(data->mlx_ptr, 66, 72);
     load_image(new->img, data->mlx_ptr, content);
 	new->next = NULL;
 	return (new);

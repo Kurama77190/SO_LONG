@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/16 18:22:49 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:14:15 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,28 @@
 # include <X11/Xlib.h>
 # include <X11/Xutil.h>
 
-#define DIRECTION_UP 99
-#define DIRECTION_DOWN 98
-#define DIRECTION_LEFT 97
-#define DIRECTION_RIGHT 96
-#define DIRECTION_UP_LEFT 95
-#define DIRECTION_UP_RIGHT 94
-#define DIRECTION_DOWN_LEFT 93
-#define DIRECTION_DOWN_RIGHT 92
+# define DIRECTION_UP 99
+# define DIRECTION_DOWN 98
+# define DIRECTION_LEFT 97
+# define DIRECTION_RIGHT 96
+# define DIRECTION_UP_LEFT 95
+# define DIRECTION_UP_RIGHT 94
+# define DIRECTION_DOWN_LEFT 93
+# define DIRECTION_DOWN_RIGHT 92
 
 
-#define KEY_ESC 91
-#define KEY_W 90
-#define KEY_A 89
-#define KEY_S 88
-#define KEY_D 87
-#define KEY_SPACE 86
-#define KEY_LEFT 85
-#define KEY_RIGHT 84
-#define KEY_DOWN 83
-#define KEY_UP 82
-#define KEY_Q 81
-#define KEY_E 80
+# define KEY_ESC 91
+# define KEY_W 90
+# define KEY_A 89
+# define KEY_S 88
+# define KEY_D 87
+# define KEY_SPACE 86
+# define KEY_LEFT 85
+# define KEY_RIGHT 84
+# define KEY_DOWN 83
+# define KEY_UP 82
+# define KEY_Q 81
+# define KEY_E 80
 
 typedef enum
 {
@@ -110,6 +110,7 @@ typedef struct s_game
 	t_img						heart_img; // Structure pour l'image du coeur
 	t_img						enemy_img;
 	t_animation					*animations[10]; //  // Structure pour l'animations du jeu
+	const char						**xpm[10];
 	int							direction;
 	int							pos_char_x;
 	int							pos_char_y;
