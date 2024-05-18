@@ -6,15 +6,56 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/17 18:16:25 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/18 03:37:00 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
+static const char	*g_x_move_down[10] = {
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_1.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_2.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_3.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_4.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_5.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_6.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_7.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_8.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_9.xpm",
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_10.xpm"};
+
+// static void	load_image(t_game *data, t_img *img, void *mlx_ptr, const char *file);
+
+// int main(void)
+// {
+// 	t_game data;
+
+// 	data.mlx_ptr = mlx_init();
+// 	data.win_ptr = mlx_new_window(data.mlx_ptr, 800, 600, "so_long");
+// 	data.animations[MOVE_DOWN] = ft_malloc(data.memory_manager, sizeof(t_animation));
+// 	load_image(&data, &data.animations[MOVE_DOWN]->frames.img, data.mlx_ptr, g_x_move_down[0]);
+// 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.animations[MOVE_DOWN]->frames.img.img_ptr, 0, 0);
+// 	mlx_loop(data.mlx_ptr);
+// }
+
+// static void	load_image(t_game *data, t_img *img, void *mlx_ptr, const char *file)
+// {
+// 	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, (char *)file, &img->width,
+// 			&img->height);
+// 	if (!img->img_ptr)
+// 	{
+// 		fprintf(stderr, "Failed to load image: %s\n", file);
+// 		ft_free_all(&data->memory_manager);
+// 		exit(2);
+// 	}
+// 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_length,
+// 			&img->endian);
+// }
+
+
+
 void	ft_init_animation(t_game *data);
-void initialize_xpm_paths(t_game *data);
 
 int	main(void)
 {
@@ -33,39 +74,36 @@ void	ft_init_animation(t_game *data)
 		printf("Error init \n");
 		exit(1);
 	}
-	initialize_xpm_paths(data);
-	// data->animations[MOVE_UP]->frames = NULL;
-	// data->animations[MOVE_DOWN]->frames = NULL;
-	// data->animations[MOVE_LEFT]->frames = NULL;
-	// data->animations[MOVE_RIGHT]->frames = NULL;
-	i = 1;
-	while (i++ <= 10)
-		ft_lstadd_back(&data->animations[MOVE_UP]->frames, ft_lstnew(data->xpm[MOVE_DOWN][i], data));
+	data->mlx_ptr = mlx_init();
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 800, "so_long");
 	i = 0;
-	while(i <= 10)
-	{
-		printf("%d xpm: %s", i, data->xpm[MOVE_DOWN][i]);
-		i++;
-	}	
+	data->animations[MOVE_DOWN] = ft_malloc(data->memory_manager, sizeof(t_animation));
+	data->animations[MOVE_DOWN]->frames = ft_lstnew(g_x_move_down[i], data);
+	i++;
+		while (i++ < 10)
+		{
+			ft_lstadd_back(&(data->animations[MOVE_DOWN]->frames), ft_lstnew(g_x_move_down[i], data));
+			i++;
+		}
+	i = 0;
+	return ;
 }
 
 
 
-void initialize_xpm_paths(t_game *data) {
-    static const char *move_down[] = {
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_1.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_2.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_3.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_4.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_5.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_6.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_7.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_8.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_9.xpm",
-        "src/Mandatory/img/sheetsprite/down/XPM/link_move_down_10.xpm"
-    };
-    data->xpm[MOVE_DOWN] = move_down;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -86,7 +124,8 @@ void initialize_xpm_paths(t_game *data) {
 // 	t_game data;
 
 // 	data.memory_manager = NULL;
-// 	char **test = ft_split("Salut je suis un roi\n", ' ', &data.memory_manager, "ROI");
+// 	char **test = ft_split("Salut je suis un roi\n", ' ', &data.memory_manager,
+			// "ROI");
 // 	while (*test)
 // 	{
 // 		printf("%s ", *test);
