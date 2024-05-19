@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 03:18:34 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:53:12 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_init_game(t_game *data)
 {
 	ft_calloc(1, sizeof(t_game), data->memory_manager, "GAME");
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 800, "so_long");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 80, 80, "so_long");
 	ft_init_animation(data, MOVE_DOWN, g_x_move_down);
 	ft_init_animation(data, MOVE_UP, g_x_move_up);
 	ft_init_animation(data, MOVE_LEFT, g_x_move_left);

@@ -6,20 +6,57 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 03:29:19 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/19 15:57:10 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
 
+void	loop_animation(t_game *data);
+
 int	main(void)
 {
 	t_game	data;
 
 	ft_init_game(&data);
+	loop_animation(&data);
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }
+
+void	loop_animation(t_game *data)
+{
+	t_frame 	*current;
+	int			i;
+
+	current = data->animations[MOVE_DOWN]->frames;
+	printf("ptr_mlx = %p\n", data->mlx_ptr);
+	while (1)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, current->img->img_ptr, 0, 0);
+		usleep(100000);
+		if (i == 50)
+			current = data->animations[MOVE_LEFT]->frames;
+		if (i == 100)
+			current = data->animations[MOVE_RIGHT]->frames;
+		if (i == 150)
+			current = data->animations[MOVE_UP]->frames;
+		if (!current->next && i < 50)
+			current = data->animations[MOVE_DOWN]->frames;
+		if (!current->next && i > 50 && i < 100)
+			current = data->animations[MOVE_LEFT]->frames;
+		current = current->next;
+		if (!current->next && i > 100 && i < 150)
+			current = data->animations[MOVE_RIGHT]->frames; 
+		if (!current->next && i > 150 && i < 200)
+			current = data->animations[MOVE_UP]->frames;
+		if (i == 200)
+			i = 0;
+		i++;
+	}
+}
+
 
 // void	ft_init_animation(t_game *data)
 // {
