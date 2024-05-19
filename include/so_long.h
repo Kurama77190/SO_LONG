@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/18 03:41:13 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/19 03:24:40 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,23 @@
 # define KEY_Q 81
 # define KEY_E 80
 
-typedef enum
+typedef enum s_animation_type
 {
-    MOVE_UP = 1,
-    MOVE_DOWN = 2,
-    MOVE_LEFT= 3,
-    MOVE_RIGHT = 4,
+	MOVE_UP,
+	MOVE_DOWN,
+	MOVE_LEFT,
+	MOVE_RIGHT,
 
-    ATTACK_UP,
-    ATTACK_DOWN,
-    ATTACK_LEFT,
-    ATTACK_RIGHT,
+	ATTACK_UP,
+	ATTACK_DOWN,
+	ATTACK_LEFT,
+	ATTACK_RIGHT,
 
-    ROLL_UP,
-    ROLL_DOWN,
-    ROLL_LEFT,
-    ROLL_RIGHT
-} AnimationType;
+	ROLL_UP,
+	ROLL_DOWN,
+	ROLL_LEFT,
+	ROLL_RIGHT
+}	e_AnimationType;
 
 typedef struct s_img
 {
@@ -109,7 +109,7 @@ typedef struct s_game
 	t_img						char_img; 
 	t_img						heart_img; // Structure pour l'image du coeur
 	t_img						enemy_img;
-	t_animation					*animations[10]; //  // Structure pour l'animations du jeu
+	t_animation					*animations[10]; // Structure pour l'animations du jeu
 	const char					**xpm[10];
 	int							direction;
 	int							pos_char_x;
@@ -133,6 +133,10 @@ t_garbage						*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split,
 t_frame							*ft_lstnew(const char *content, t_game *data);
 void							ft_lstadd_back(t_frame **alst, t_frame *new);
 void							*ft_malloc(t_garbage *memory, size_t size);
+void							ft_init_animation(t_game *data, e_AnimationType action, const char *paths[]);
+void							ft_init_game(t_game *data);
+void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x,
+								int pos_y)
 
 
 

@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   load_image.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 15:09:56 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/18 19:48:26 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/05/18 21:11:12 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/05/18 21:18:35 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_image(t_game *data, t_img *img, const char *file);
-
-
-t_frame	*ft_lstnew(const char *content, t_game *data)
-{
-	t_frame	*new;
-
-	new = ft_calloc(1, sizeof(t_frame),data->memory_manager, "MOVE_DOWN");
-	new->img = ft_calloc(1, sizeof(t_img), data->memory_manager, "IMG_MOVE_DOWN");
-	fprintf(stderr, "load image: %s\n", content);
-    load_image(data, new->img, content);
-	new->next = NULL;
-	return (new);
-}
+/*
+	this function loads an image from a file and stores it in the structure(t_img), 
+	and has all the parameters needed to manipulate the image.
+*/
 
 void	load_image(t_game *data, t_img *img, const char *file)
 {

@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/05/17 22:55:35 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/05/19 01:26:20 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ LIB = src/Mandatory/lib/
 SOLONG = src/Mandatory/so_long/
 SECURITY = src/Mandatory/security/
 GARBAGE = $(SECURITY)garbage_collector/
+INIT = $(SECURITY)initializing/
 
 #LIB_B = src/Bonus/lib/
 #PIPEX_B = src/Bonus/so_long/
@@ -41,6 +42,7 @@ BUILD = builder/
 SRC = src/Mandatory/main.c \
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c $(LIB)ft_strlen.c $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
 	$(LIB)ft_malloc.c \
+	$(INIT)init_game.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c 
 SRC_BNS = src/Mandatory/main_test.c
 # Crée le dossier BUILD si nécessaire
