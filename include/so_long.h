@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 03:24:40 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/19 03:30:15 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,8 +135,8 @@ void							ft_lstadd_back(t_frame **alst, t_frame *new);
 void							*ft_malloc(t_garbage *memory, size_t size);
 void							ft_init_animation(t_game *data, e_AnimationType action, const char *paths[]);
 void							ft_init_game(t_game *data);
-void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x,
-								int pos_y)
+void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
+								int pos_y);
 
 
 

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:14:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 03:24:00 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/19 03:27:34 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //	this function draws an image with transparency on the window.
 //	0x489848 is the color that will be transparent.
 
-void	draw_image_with_transparency(t_game *data, t_img *img, int pos_x,
+void	draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 		int pos_y)
 {
 	int	y;

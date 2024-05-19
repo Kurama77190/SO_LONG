@@ -6,14 +6,12 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 03:04:50 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/19 03:29:19 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 #include <mlx.h>
-
-// void	ft_init_animation(t_game *data);
 
 int	main(void)
 {
