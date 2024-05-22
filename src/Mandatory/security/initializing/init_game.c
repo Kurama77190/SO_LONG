@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 15:53:12 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/22 01:05:28 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ static const char	*g_x_move_right[10] = {
 
 void	ft_init_game(t_game *data)
 {
+	data->memory_manager = NULL;
 	ft_calloc(1, sizeof(t_game), data->memory_manager, "GAME");
 	data->mlx_ptr = mlx_init();
 	data->win_ptr = mlx_new_window(data->mlx_ptr, 80, 80, "so_long");

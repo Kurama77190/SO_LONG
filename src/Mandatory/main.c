@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 15:57:10 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/05/22 06:03:55 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	loop_animation(t_game *data)
 	t_frame 	*current;
 	int			i;
 
+	i = 0;
 	current = data->animations[MOVE_DOWN]->frames;
 	printf("ptr_mlx = %p\n", data->mlx_ptr);
 	while (1)

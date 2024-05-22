@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/05/19 01:26:20 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/05/22 00:59:28 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME = so_long
 #PRINTF = ./external/DPRINTF
 MLX = ./mlx_linux
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror 
+CFLAGS = -g3 -Wall -Wextra -Werror 
 CPPFLAGS = -I./include -I/usr/include -I$(MLX) -c
 #MLXFLAG = -lmlx -lXext -lX11
 # Définitions de chemin
