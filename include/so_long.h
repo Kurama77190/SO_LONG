@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/19 03:30:15 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:37:08 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,18 @@
 # include <X11/Xlib.h>
 # include <X11/Xutil.h>
 
-# define DIRECTION_UP 99
-# define DIRECTION_DOWN 98
-# define DIRECTION_LEFT 97
-# define DIRECTION_RIGHT 96
-# define DIRECTION_UP_LEFT 95
-# define DIRECTION_UP_RIGHT 94
-# define DIRECTION_DOWN_LEFT 93
-# define DIRECTION_DOWN_RIGHT 92
-
-
-# define KEY_ESC 91
-# define KEY_W 90
-# define KEY_A 89
-# define KEY_S 88
-# define KEY_D 87
-# define KEY_SPACE 86
-# define KEY_LEFT 85
-# define KEY_RIGHT 84
-# define KEY_DOWN 83
-# define KEY_UP 82
-# define KEY_Q 81
-# define KEY_E 80
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_SPACE 32
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
+# define KEY_DOWN 65364
+# define KEY_UP 65362
+# define KEY_Q 113
+# define KEY_E 101
 
 typedef enum s_animation_type
 {
