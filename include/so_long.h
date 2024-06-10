@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/06 18:37:08 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/10 18:16:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_game
 	t_img						enemy_img;
 	t_animation					*animations[10]; // Structure pour l'animations du jeu
 	const char					**xpm[10];
+	int							anim_actived;
 	int							direction;
 	int							pos_char_x;
 	int							pos_char_y;
