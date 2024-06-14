@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/10 18:16:21 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:12:54 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@
 # define KEY_UP 65362
 # define KEY_Q 113
 # define KEY_E 101
+
+# define S_UP 1
+# define S_LEFT 2
+# define S_RIGHT 3
+# define S_DOWN 4
 
 typedef enum s_animation_type
 {
@@ -100,9 +105,7 @@ typedef struct s_game
 	t_img						heart_img; // Structure pour l'image du coeur
 	t_img						enemy_img;
 	t_animation					*animations[10]; // Structure pour l'animations du jeu
-	const char					**xpm[10];
 	int							anim_actived;
-	int							direction;
 	int							pos_char_x;
 	int							pos_char_y;
 	int							pos_enemy_x;

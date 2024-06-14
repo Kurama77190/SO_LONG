@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/06 18:27:15 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/14 18:46:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ static const char	*g_x_move_right[10] = {
 void	ft_init_game(t_game *data)
 {
 	data->memory_manager = NULL;
+	data->anim_actived = -1;
+	data->pos_char_x = 400;
+	data->pos_char_y = 300;
 	ft_calloc(1, sizeof(t_game), data->memory_manager, "GAME");
 	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 180, 180, "so_long");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 600, "so_long");
 	ft_init_animation(data, MOVE_DOWN, g_x_move_down);
 	ft_init_animation(data, MOVE_UP, g_x_move_up);
 	ft_init_animation(data, MOVE_LEFT, g_x_move_left);
@@ -93,6 +96,12 @@ void	ft_init_animation(t_game *data, e_AnimationType action, \
 	{
 		ft_lstadd_back(&(data->animations[action]->frames),
 			ft_lstnew(paths[i], data));
+		printf ("numero FRAMES = %i\n", i);
+		if (i == 0)
+		{
+			data->animations[action]->current = data->animations[action]->frames;
+			data->animations[action]->frame_count = 0;
+		}
 	}
 	return ;
 }
