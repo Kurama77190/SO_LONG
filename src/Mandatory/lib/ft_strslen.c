@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   ft_strslen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/15 21:13:33 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/06/15 21:06:30 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/06/15 21:06:41 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_init_game(t_game *data)
+size_t	ft_strslen(const char **strs)
 {
-	data->memory_manager = NULL;
-	ft_calloc(1, sizeof(t_game), data->memory_manager, "GAME");
-	data->anim_actived = -1;
-	data->pos_char_x = 400;
-	data->pos_char_y = 300;
-	data->mlx_ptr = mlx_init();
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 800, 600, "so_long");
-	ft_init_animation(data);
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
+		i++;
+	return (i);
 }
