@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/18 19:47:08 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/19 00:25:19 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_game
 {
 	void						*mlx_ptr;
 	void						*win_ptr;
-	t_img						bg_img;   // Structure pour l'image de fond
+	t_img						*bg_img;   // Structure pour l'image de fond
 	t_img						char_img; 
 	t_img						heart_img; // Structure pour l'image du coeur
 	t_img						enemy_img;
@@ -138,6 +138,8 @@ void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 int								keyrelease_hook(int keycode, t_game *data);
 int								keypress_hook(int keycode, t_game *data);
 int								update_animation(t_game *data);
+void							load_image(t_game *data, t_img *img, const char *file);
+
 
 
 

@@ -6,11 +6,23 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:59:19 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/18 19:41:32 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/19 01:05:34 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void    draw_background(t_game *data)
+{
+    if (data->bg_img == NULL)
+    {
+        fprintf(stderr, "Failed to load background image\n");
+        ft_free_all(&data->memory_manager);
+        exit(2);
+    }
+    else
+        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->bg_img->img_ptr, 0, 0);
+}
 
 
 void draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
@@ -18,6 +30,7 @@ void draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
     t_frame *index;
 
 	index = anim->current;
+    draw_background(data);
 	if (index)
 		draw_image_with_transparency(data, index->img, x, y);
 }
@@ -35,7 +48,7 @@ int update_animation(t_game *data)
     {
         // mlx_clear_window(data->mlx_ptr, data->win_ptr);
         draw_animation_frame(data, animation, data->pos_char_x, data->pos_char_y);
-        if (animation->frame_count % 110 == 0)
+        if (animation->frame_count % 10 == 0)
             animation->current = current->next;
         
         if (animation->current == NULL)
