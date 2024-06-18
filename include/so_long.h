@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/17 05:56:19 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:12:54 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ typedef struct s_animation
 	t_frame						*current;  // Frame actuellement affichée
 	int							frame_count;   // Nombre total de frames
 	int							current_index; // Index de la frame actuelle
-	t_img						*Static; // Structure pour l'image de la frame
 }								t_animation;
 
 typedef struct s_garbage_collector
@@ -126,19 +125,12 @@ bool							ft_only_space(char *str);
 void							ft_lstclear(t_frame **lst, t_game *data);
 t_garbage						*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name);
 t_frame							*ft_lstnew(const char *content, t_game *data);
-size_t							ft_strlen(const char *s);
-size_t							ft_strslen(const char **strs);
-
 void							ft_lstadd_back(t_frame **alst, t_frame *new);
 void							*ft_malloc(t_garbage *memory, size_t size);
-void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
-void							load_image(t_game *data, t_img *img, const char *file);
+void							ft_init_animation(t_game *data, e_AnimationType action, const char *paths[]);
 void							ft_init_game(t_game *data);
-void							ft_init_animation(t_game *data);
-
 void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 								int pos_y);
-
 
 
 

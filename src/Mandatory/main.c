@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/17 05:44:51 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/14 19:18:28 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,14 @@ int update_animation(void *param)
     {
         // mlx_clear_window(data->mlx_ptr, data->win_ptr);
         draw_animation_frame(data, animation, data->pos_char_x, data->pos_char_y);
-        if (animation->frame_count % 10 == 0)
+        if (animation->frame_count % 50 == 0)
             animation->current = current->next;
         
         if (animation->current == NULL)
             animation->current = animation->frames;
         animation->frame_count++;
     }
-    else
-    {
-        // mlx_clear_window(data->mlx_ptr, data->win_ptr);        
-        draw_image_with_transparency(data, animation->Static, data->pos_char_x, data->pos_char_y);
-    }
-    usleep(9000); // 8000000 // a tester si le reste du jeu ne bug pas avec % 50.
+    ft_usleep(8000000); // 8000000 // a tester si le reste du jeu ne bug pas.
     return (0);
 }
 
