@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/14 19:18:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/18 14:29:29 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int update_animation(void *param)
             animation->current = animation->frames;
         animation->frame_count++;
     }
-    ft_usleep(8000000); // 8000000 // a tester si le reste du jeu ne bug pas.
+    usleep(3000); // 8000000 // a tester si le reste du jeu ne bug pas.
     return (0);
 }
 
