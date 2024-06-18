@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/06/18 15:01:50 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/06/18 19:47:27 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ BUILD = builder/
 #=================================================__SRC__OF__PROJECT__=============================================================================
 SRC = src/Mandatory/main.c \
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c $(LIB)ft_strlen.c $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
-	$(LIB)ft_malloc.c $(LIB)img_with_transparency.c \
+	$(LIB)ft_malloc.c $(LIB)img_with_transparency.c $(LIB)ft_tab_len.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c 
 SRC_BNS = src/Mandatory/main_test.c

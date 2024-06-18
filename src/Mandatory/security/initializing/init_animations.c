@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:33:31 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/18 14:40:42 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:58:05 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	load_animation(t_game *data, e_AnimationType action, \
 			const char *paths[])
 {
 	int		i;
-
 	if (!data)
 	{
 		printf("Error init \n");
@@ -90,7 +89,7 @@ void	load_animation(t_game *data, e_AnimationType action, \
 	i = -1;
 	data->animations[action] = ft_calloc(1, sizeof(t_animation),
 			data->memory_manager, NULL);
-	while (i++ < 9)
+	while (++i < 10)
 	{
 		ft_lstadd_back(&(data->animations[action]->frames),
 			ft_lstnew(paths[i], data));
@@ -100,6 +99,6 @@ void	load_animation(t_game *data, e_AnimationType action, \
 			data->animations[action]->current = data->animations[action]->frames;
 			data->animations[action]->frame_count = 0;
 		}
-	}
+	}	
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/18 19:41:16 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:47:08 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ typedef struct s_game
 
 
 
+int								ft_tab_len(const char **strs);
 void							ft_free(void *ptr);
 void							free_split(char **strs);
 void							ft_free_all(t_garbage **lst);
