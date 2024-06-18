@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/18 14:40:32 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:41:16 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_game
 	t_img						enemy_img;
 	t_animation					*animations[10]; // Structure pour l'animations du jeu
 	int							anim_actived;
-	int							keys[7];
+	int							last_direction;
 	int							pos_char_x;
 	int							pos_char_y;
 	int							pos_enemy_x;
@@ -134,6 +134,9 @@ void							init_animations(t_game *data);
 void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 								int pos_y);
 
+int								keyrelease_hook(int keycode, t_game *data);
+int								keypress_hook(int keycode, t_game *data);
+int								update_animation(t_game *data);
 
 
 
