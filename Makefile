@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/06/18 19:47:27 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/06/19 01:20:33 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,15 +67,6 @@ BLANC = \033[0;37m
 
 all:	$(NAME)
 
-test:
-	echo src $(SRC)
-	echo 
-	echo 
-	echo obj $(OBJ)
-	echo
-	echo
-	echo dep $(DEP)
-
 $(NAME): $(OBJ)
 
 
@@ -115,10 +106,8 @@ $(NAME): $(OBJ)
 		echo -n "#"; \
 	done
 	@echo "] 100 %"
-	@echo "Checking include directory:"
-	@ls -la ./include
 
-	@echo "$(CYAN)Starting external projects $(MAGENTA)PRINTF$(CYAN) and $(MAGENTA)MLX42$(CYAN) compilations..."
+	@echo "$(CYAN)Starting $(MAGENTA)MLX$(CYAN) compilations..."
 	@sleep 2
 	@$(MAKE) $(MAKEFLAGS) -C $(MLX)
 	@echo "Starting project $(MAGENTA)ZELDA_LTM$(CYAN)..."
@@ -131,7 +120,6 @@ $(NAME): $(OBJ)
 
 
 %.o:%.c
-	echo toto
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(BUILD)%.o: %.c

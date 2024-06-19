@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/19 00:25:19 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/19 02:20:32 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ typedef struct s_game
 	t_img						char_img; 
 	t_img						heart_img; // Structure pour l'image du coeur
 	t_img						enemy_img;
+	t_img						*pos_static[4];
 	t_animation					*animations[10]; // Structure pour l'animations du jeu
 	int							anim_actived;
 	int							last_direction;

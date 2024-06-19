@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:33:31 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/19 00:50:00 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/19 02:33:47 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,17 @@ void	init_animations(t_game *data)
 	load_animation(data, MOVE_UP, g_x_move_up);
 	load_animation(data, MOVE_LEFT, g_x_move_left);
 	load_animation(data, MOVE_RIGHT, g_x_move_right);
-	data->bg_img = ft_calloc(1, sizeof(t_game), data->memory_manager, "GAME");
+	data->bg_img = ft_calloc(1, sizeof(t_game), data->memory_manager, "IMG_BG");
+	data->pos_static[MOVE_UP] = ft_calloc(1, sizeof(t_game), data->memory_manager, "STATIC_IMG_UP");
+	data->pos_static[MOVE_DOWN] = ft_calloc(1, sizeof(t_game), data->memory_manager, "STATIC_IMG_DOWN");
+	data->pos_static[MOVE_LEFT] = ft_calloc(1, sizeof(t_game), data->memory_manager, "STATIC_IMG_LEFT");
+	data->pos_static[MOVE_RIGHT] = ft_calloc(1, sizeof(t_game), data->memory_manager, "STATIC_IMG_RIGHT");
 	load_image(data, data->bg_img, "src/Mandatory/img/maps/maps_test.xpm");
+	load_image(data, data->pos_static[MOVE_UP], "src/Mandatory/img/sheetsprite/static/XPM/link_static_up.xpm");
+	load_image(data, data->pos_static[MOVE_DOWN], "src/Mandatory/img/sheetsprite/static/XPM/link_static_down.xpm");
+	load_image(data, data->pos_static[MOVE_LEFT], "src/Mandatory/img/sheetsprite/static/XPM/link_static_left.xpm");
+	load_image(data, data->pos_static[MOVE_RIGHT], "src/Mandatory/img/sheetsprite/static/XPM/link_static_right.xpm");
+	
 	return ;
 }
 
