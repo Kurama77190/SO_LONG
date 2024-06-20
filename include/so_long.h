@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/19 02:20:32 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/20 02:12:24 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <X11/X.h>
 # include <X11/Xlib.h>
 # include <X11/Xutil.h>
+# include "../external/GNL/include/get_next_line.h"
 
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -101,7 +102,9 @@ typedef struct s_game
 	void						*mlx_ptr;
 	void						*win_ptr;
 	t_img						*bg_img;   // Structure pour l'image de fond
-	t_img						char_img; 
+	char						**map;
+	int							map_width;
+	int							map_height;
 	t_img						heart_img; // Structure pour l'image du coeur
 	t_img						enemy_img;
 	t_img						*pos_static[4];
@@ -115,33 +118,41 @@ typedef struct s_game
 	t_garbage					*memory_manager;
 }								t_game;
 
+//	UTILS AND FUNCTIONS GARBAGE
+void							ft_lstadd_back_garbage(t_garbage **alst, t_garbage *new);
+t_garbage						*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name);
+void							ft_free_all(t_garbage **lst);
+void							*ft_calloc(size_t count, size_t size, t_garbage *data, char *name);
 
-
+// LIB
 int								ft_tab_len(const char **strs);
 void							ft_free(void *ptr);
 void							free_split(char **strs);
-void							ft_free_all(t_garbage **lst);
-void							*ft_calloc(size_t count, size_t size, t_garbage *data, char *name);
-void							ft_lstadd_back_garbage(t_garbage **alst, t_garbage *new);
 char							**ft_split(char const *s, char c, t_garbage **data, char *name);
 bool							ft_only_space(char *str);
 void							ft_lstclear(t_frame **lst, t_game *data);
-t_garbage						*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name);
 t_frame							*ft_lstnew(const char *content, t_game *data);
 void							ft_lstadd_back(t_frame **alst, t_frame *new);
 void							*ft_malloc(t_garbage *memory, size_t size);
-void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
+
+// MLX ANIMATIONS AND INITIALIZING
 void							ft_init_game(t_game *data);
 void							init_animations(t_game *data);
-void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
-								int pos_y);
-
+char							**read_map(t_game *data, const char *filename, int *width, int *height);
 int								keyrelease_hook(int keycode, t_game *data);
 int								keypress_hook(int keycode, t_game *data);
 int								update_animation(t_game *data);
 void							load_image(t_game *data, t_img *img, const char *file);
+void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
 
 
+// FUNCTIONS DRAW
+void							draw_background_region(t_game *data, int x, int y, int width, int height);
+void							draw_background(t_game *data);
+void							draw_animation_frame(t_game *data, t_animation *anim, int x, int y);
+void							draw_static_frame(t_game *data, t_img *static_img);
+void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
+								int pos_y);
 
 
 #endif

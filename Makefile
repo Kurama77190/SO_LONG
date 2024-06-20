@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/06/19 01:20:33 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/06/19 15:38:53 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NAME = so_long
 MLX = ./mlx_linux
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror 
-CPPFLAGS = -I./include -I/usr/include -I$(MLX) -c
+CPPFLAGS = -I./include -I./external/GNL/include -I/usr/include -I$(MLX) -c
 #MLXFLAG = -lmlx -lXext -lX11
 # Définitions de chemin
 
@@ -29,6 +29,7 @@ SOLONG = src/Mandatory/so_long/
 SECURITY = src/Mandatory/security/
 GARBAGE = $(SECURITY)garbage_collector/
 INIT = $(SECURITY)initializing/
+GNL = external/GNL/src/
 
 #LIB_B = src/Bonus/lib/
 #PIPEX_B = src/Bonus/so_long/
@@ -39,11 +40,12 @@ BUILD = builder/
 # Définitions des fichiers sources et objets
 
 #=================================================__SRC__OF__PROJECT__=============================================================================
-SRC = src/Mandatory/main.c \
-	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c $(LIB)ft_strlen.c $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
-	$(LIB)ft_malloc.c $(LIB)img_with_transparency.c $(LIB)ft_tab_len.c \
+SRC = src/Mandatory/main.c src/Mandatory/draw.c src/Mandatory/update.c src/Mandatory/maps.c \
+	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c	 $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
+	$(LIB)ft_malloc.c $(LIB)img_with_transparency.c $(LIB)ft_tab_len.c $(LIB)load_animation.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c \
-	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c 
+	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c \
+	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 SRC_BNS = src/Mandatory/main_test.c
 # Crée le dossier BUILD si nécessaire
 $(shell mkdir -p $(BUILD))

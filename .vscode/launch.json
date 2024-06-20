@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "/sgoinfre/goinfre/Perso/sben-tay/Cursus/KURAMA77190_GIT/SO_LONG/so_long",
+            "program": "/home/samy/42projet/SO_LONG/so_long",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
