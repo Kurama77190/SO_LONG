@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:33:31 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/20 02:23:17 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:00:58 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	init_animations(t_game *data)
 			data->memory_manager, "STATIC_IMG_LEFT");
 	data->pos_static[MOVE_RIGHT] = ft_calloc(1, sizeof(t_game), \
 			data->memory_manager, "STATIC_IMG_RIGHT");
-	load_image(data, data->bg_img, "src/Mandatory/img/maps/maps_test.xpm");
+	// load_image(data, data->bg_img, "src/Mandatory/img/maps/maps_test.xpm");
 	load_image(data, data->pos_static[MOVE_UP], \
 		"src/Mandatory/img/sheetsprite/static/XPM/link_static_up.xpm");
 	load_image(data, data->pos_static[MOVE_DOWN], \

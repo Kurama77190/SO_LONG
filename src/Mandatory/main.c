@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/20 02:31:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:32:30 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,16 @@
 //		© 2024 - sben-tay - 42 PARIS
 
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+	(void)argc;
 	t_game	data;
 
+	data.n_map = argv[1];
 	ft_init_game(&data);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.bg_img->img_ptr, 0,
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.bg_img->img_ptr, 0, \
 		0);
-	draw_image_with_transparency(&data, data.pos_static[MOVE_DOWN],
+	draw_image_with_transparency(&data, data.pos_static[MOVE_DOWN], \
 		data.pos_char_x, data.pos_char_y);
 	// Utiliser mlx_hook pour capturer les événements de touche enfoncée et relâchée
 	mlx_hook(data.win_ptr, 2, 1L << 0, keypress_hook, &data);

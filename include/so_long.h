@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/20 02:12:24 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/25 20:39:36 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_game
 	void						*win_ptr;
 	t_img						*bg_img;   // Structure pour l'image de fond
 	char						**map;
+	char						*n_map;
 	int							map_width;
 	int							map_height;
 	t_img						heart_img; // Structure pour l'image du coeur
@@ -116,6 +117,8 @@ typedef struct s_game
 	int							pos_enemy_x;
 	int							pos_enemy_y;
 	t_garbage					*memory_manager;
+	//				TEST		//
+	t_img						*wall_img;
 }								t_game;
 
 //	UTILS AND FUNCTIONS GARBAGE
@@ -147,12 +150,25 @@ void							load_animation(t_game *data, e_AnimationType action, const char *path
 
 
 // FUNCTIONS DRAW
+void							init_map(t_game *data);
 void							draw_background_region(t_game *data, int x, int y, int width, int height);
 void							draw_background(t_game *data);
 void							draw_animation_frame(t_game *data, t_animation *anim, int x, int y);
 void							draw_static_frame(t_game *data, t_img *static_img);
 void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 								int pos_y);
+
+// FUNCTIONS MAPS
+
+char	**read_map(t_game *data, const char *filename, int *width, int *height);
+int		get_map_width(const char *filename);
+int		count_lines(const char *filename);
+void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
+void	put_pixel_to_image(t_img *img, int x, int y, int color);
+void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
+void	draw_element(t_game *data, t_img *element_img, int x, int y);
+
+
 
 
 #endif
