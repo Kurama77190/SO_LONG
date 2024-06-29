@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/25 20:39:36 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/29 23:55:08 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@
 # define S_LEFT 2
 # define S_RIGHT 3
 # define S_DOWN 4
+
+typedef enum s_assets
+{
+	WALL,
+	FLOOR,
+	COLLECTIBLE,
+	EXIT,
+	PLAYER,
+	ENEMY
+}	e_Assets;
 
 typedef enum s_animation_type
 {
@@ -103,6 +113,7 @@ typedef struct s_game
 	void						*win_ptr;
 	t_img						*bg_img;   // Structure pour l'image de fond
 	char						**map;
+	t_img						*assets[10];
 	char						*n_map;
 	int							map_width;
 	int							map_height;

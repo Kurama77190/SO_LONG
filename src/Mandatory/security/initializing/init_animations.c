@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:33:31 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/25 19:00:58 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/29 23:46:40 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void				load_animation(t_game *data, e_AnimationType action,
 						const char *paths[]);
 
-static const char	*g_x_move_down[10] = {
+static const char	*g_x_move_down[11] = {
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_1.xpm",
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_2.xpm",
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_3.xpm",
@@ -25,9 +25,11 @@ static const char	*g_x_move_down[10] = {
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_7.xpm",
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_8.xpm",
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_9.xpm",
-	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_10.xpm"};
+	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_10.xpm",
+	NULL
+	};
 
-static const char	*g_x_move_up[10] = {
+static const char	*g_x_move_up[11] = {
 	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_1.xpm",
 	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_2.xpm",
 	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_3.xpm",
@@ -37,9 +39,11 @@ static const char	*g_x_move_up[10] = {
 	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_7.xpm",
 	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_8.xpm",
 	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_9.xpm",
-	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_10.xpm"};
+	"src/Mandatory/img/sheetsprite/up/XPM/link_move_up_10.xpm",
+	NULL
+	};
 
-static const char	*g_x_move_left[10] = {
+static const char	*g_x_move_left[11] = {
 	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_1.xpm",
 	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_2.xpm",
 	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_3.xpm",
@@ -49,9 +53,11 @@ static const char	*g_x_move_left[10] = {
 	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_7.xpm",
 	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_8.xpm",
 	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_9.xpm",
-	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_10.xpm"};
+	"src/Mandatory/img/sheetsprite/left/XPM/link_move_left_10.xpm",
+	NULL
+	};
 
-static const char	*g_x_move_right[10] = {
+static const char	*g_x_move_right[11] = {
 	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_1.xpm",
 	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_2.xpm",
 	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_3.xpm",
@@ -61,7 +67,16 @@ static const char	*g_x_move_right[10] = {
 	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_7.xpm",
 	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_8.xpm",
 	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_9.xpm",
-	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_10.xpm"};
+	"src/Mandatory/img/sheetsprite/right/XPM/link_move_right_10.xpm",
+	NULL
+	};
+
+static const char	*g_x_assets[4] = {
+	"src/Mandatory/img/maps/exiit.xpm",
+	"src/Mandatory/img/maps/floor1.xpm",
+	"src/Mandatory/img/maps/floor2.xpm",
+	NULL
+};
 
 void	init_animations(t_game *data)
 {
@@ -87,6 +102,12 @@ void	init_animations(t_game *data)
 		"src/Mandatory/img/sheetsprite/static/XPM/link_static_left.xpm");
 	load_image(data, data->pos_static[MOVE_RIGHT], \
 		"src/Mandatory/img/sheetsprite/static/XPM/link_static_right.xpm");
+	data->assets[EXIT] = ft_calloc(1, sizeof(t_game), data->memory_manager, "EXIT");
+	data->assets[FLOOR] = ft_calloc(1, sizeof(t_game), data->memory_manager, "FLOOR");
+	data->assets[WALL] = ft_calloc(1, sizeof(t_game), data->memory_manager, "WALL");
+	load_image(data, data->assets[EXIT], g_x_assets[0]);
+	load_image(data, data->assets[FLOOR], g_x_assets[1]);
+	load_image(data, data->assets[WALL], g_x_assets[2]);
 	return ;
 }
 

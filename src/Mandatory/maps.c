@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:21 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/25 20:50:09 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:25:57 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	**read_map(t_game *data, const char *filename, int *width, int *height)
 	char	*line;
 	int		i;
 
-	*width = get_map_width(filename);
+	*width = get_map_width(filename) - 1;
 	*height = count_lines(filename);
 	int largeur = *height;
 	map = (char **)ft_calloc(largeur + 1, sizeof(char *), data->memory_manager, \
@@ -71,14 +71,6 @@ char	**read_map(t_game *data, const char *filename, int *width, int *height)
 	{
 		perror("Failed to allocate memory for map");
 		exit(EXIT_FAILURE);
-	}
-	int z = 0;
-	while(data->map[z] != NULL)
-	{
-		printf("%s\n", data->map[z]);
-		dprintf(2, "%s\n", data->map[z]);
-
-		z++;
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -91,11 +83,13 @@ char	**read_map(t_game *data, const char *filename, int *width, int *height)
 	while (line != NULL)
 	{
 		map[i] = line;
-		i++;
 		line = get_next_line(fd);
+		i++;
 	}
 	map[i] = NULL;
 	close(fd);
+	printf("width = %d\n", *width);
+	printf("height = %d\n", *height);
 	return (map);
 }
 

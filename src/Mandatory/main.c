@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/25 20:32:30 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/06/30 00:22:29 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 //		© 2024 - sben-tay - 42 PARIS
 
+int	update_background(t_game *data);
 
 int	main(int argc, char **argv)
 {
@@ -38,6 +39,11 @@ int	main(int argc, char **argv)
 
 	data.n_map = argv[1];
 	ft_init_game(&data);
+	// Créer une fenêtre MLX
+	printf("creation de la fenetre :\n");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map_width * 32, \
+			data.map_height * 32, "The Legend of Zelda : A link to MLX");
+	printf("win_ptr = %p\n", data.win_ptr);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.bg_img->img_ptr, 0, \
 		0);
 	draw_image_with_transparency(&data, data.pos_static[MOVE_DOWN], \
@@ -51,4 +57,5 @@ int	main(int argc, char **argv)
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
+
 
