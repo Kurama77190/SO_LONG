@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/20 02:22:57 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/01 22:40:33 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 void draw_background_region(t_game *data, int x, int y, int width, int height)
 {
+    t_img *buffer = NULL;
+
+    buffer = malloc(sizeof(t_img));
+    buffer->img_ptr = mlx_new_image(data->mlx_ptr, width, height);
+    buffer->addr = mlx_get_data_addr(buffer->img_ptr, &buffer->bpp, &buffer->line_length, &buffer->endian);
     if (data->bg_img->img_ptr)
     {
         int j = 0;
@@ -24,13 +29,16 @@ void draw_background_region(t_game *data, int x, int y, int width, int height)
             while (i < width)
             {
                 int pixel = *(int *)(data->bg_img->addr + (y + j) * data->bg_img->line_length + (x + i) * (data->bg_img->bpp / 8));
-                mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, pixel);
+                put_pixel_to_image(buffer, i, j, pixel);
                 i++;
             }
             j++;
         }
     }
+    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, buffer->img_ptr, x, y);
+    free(buffer);
 }
+
 
 void    draw_background(t_game *data)
 {
