@@ -157,3 +157,111 @@ re: fclean all # Règle pour recompiler
 .PHONY: all clean fclean re bonus teste # Pour éviter les conflits avec des fichiers du même nom
 
 -include $(DEP)
+
+
+
+
+# ------------------------------------------------------------------------------------------------------------- >
+# 
+# 				████████╗███████╗░██████╗████████╗███████╗██╗░░░██╗██████╗░
+# 				╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██╔════╝██║░░░██║██╔══██╗
+# 				░░░██║░░░█████╗░░╚█████╗░░░░██║░░░█████╗░░██║░░░██║██████╔╝
+# 				░░░██║░░░██╔══╝░░░╚═══██╗░░░██║░░░██╔══╝░░██║░░░██║██╔══██╗
+# 				░░░██║░░░███████╗██████╔╝░░░██║░░░███████╗╚██████╔╝██║░░██║
+# 				░░░╚═╝░░░╚══════╝╚═════╝░░░░╚═╝░░░╚══════╝░╚═════╝░╚═╝░░╚═╝
+
+# 	COPY PASTE ALL OF THIS SOMEWHERE IN YOUR MAKEFILE
+
+#	COPY THE 'map' FOLDER AT THE ROOT OF YOUR PROJECT
+
+# 	MAKE SURE THE NAME OF THE PROJECT IS: so_long
+# 	IF YOUR BONUS ISNT: so_long_bonus, change that below
+#
+
+# 	AVAILABLE: (see desccription below)
+# 	make m
+
+NAMEE = so_long
+NAMEE_BONUS = so_long_bonus
+
+IMG_SPRITE = img/player.xpm
+# 	TESTING lots of BAD maps, and others break tests, with valgrind
+# 		
+# 		replace the first dependency $(NAMEE) with your $(NAME_BONUS) to test bonus
+# 			<!>	give 'IMG_SPRITE' the path of one of YOUR sprite file	<!>
+m: $(NAMEE)
+	@for map in $(BAD_MAPS); do \
+	$(call random_shmol_cat, teshting lots of bad miaps:, $$map shouldt run..., $(CLS), ); \
+	$(VALGRIND) ./$(word 1, $^) map/map_bad/$$map; \
+	echo "\t\033[5m~ Press Enter to continue...\033[0m"; \
+	read -p "" key; \
+	done
+#
+	@$(call shmol_cat_color, $(COLOR_5R_0G_5B), $(COLOR_5R_2G_3B), teshing with bad map name!, map_multiplayer.be, $(CLS), );
+	-$(VALGRIND) ./$(word 1, $^) map/map_multiplayer.be
+	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
+	@read -p "" key
+	@$(call shmol_cat_color, $(COLOR_5R_0G_5B), $(COLOR_5R_2G_3B), teshing with bad map name!, mapzzzzz.ber, $(CLS), );
+	-$(VALGRIND) ./$(word 1, $^) map/mapzzzzz.ber
+	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
+	@read -p "" key
+#
+	@$(call random_shmol_cat, teshing too much args, "$(MAP1) $(MAP1)", $(CLS), );
+	-$(VALGRIND) ./$(word 1, $^) map/$(MAP1) map/$(MAP1)
+	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
+	@read -p "" key
+#
+	@$(call shmol_cat_color, $(COLOR_5R_0G_5B), $(COLOR_5R_2G_3B), teshing with empty file, map_blank.ber, $(CLS), );
+	@echo "$(RED)"
+	@rm -f ./map/map_blank.ber
+	touch ./map/map_blank.ber
+	@echo "$(COLOR_5R_0G_5B)"
+	-$(VALGRIND) ./$(word 1, $^) map/map_blank.ber
+	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
+	@read -p "" key
+#
+	@$(call shmol_cat_color, $(COLOR_5R_4G_0B), $(COLOR_5R_2G_3B), teshing with a sprite file renamed!!!, , $(CLS), );
+	@echo "$(RED)"
+	mv ./$(IMG_SPRITE) ./player_007.xpm
+	@echo "$(COLOR_5R_4G_0B)"
+	-$(VALGRIND) ./$(word 1, $^) map/$(MAP1)
+	@echo "$(RED)"
+	mv ./player_007.xpm ./$(IMG_SPRITE)
+	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
+	@read -p "" key
+#
+	@$(call random_shmol_cat, "\'tis big biig biiig correct map", "try n break it.. にゃ?", $(CLS), );
+	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
+	@read -p "" key
+	-$(VALGRIND) ./$(word 1, $^) map/$(MAPG)
+
+# ---------------------------------------------------------------------- >
+# 	big map
+MAPG = good_grand.ber
+# 	medium map
+MAP1 = map1.ber
+
+BAD_MAPS = map_bad_not_rect1.ber map_bad_not_rect2.ber \
+			map_no_collec.ber map_no_player.ber \
+			map_no_exit.ber map_many_exit.ber \
+			map_many_player.ber map_bad_wall.ber \
+			map_bad_enclosed_e.ber map_bad_enclosed_c.ber \
+			map_bad_tile.ber
+# ---------------------------------------------------------------------- >
+# ------------------------------------------------------------------------------------------------------------- >
+# @$(call random_shmol_cat, text 1, text 2, $(CLS), $(RESET));
+# $(1)= $(CLEAR); $(2)= text1; $(3)= text2; $(4)= $(RESET)
+define random_shmol_cat
+	COLOR=$$(printf "\033[38;5;%dm" $$(shuf -i 1-255 -n 1)); \
+	COLOR2=$$(printf "\033[38;5;%dm" $$(shuf -i 0-255 -n 1)); \
+	echo "$(3)$${COLOR2}\
+	\tにゃ~$${COLOR}\t⠀╱|、\n\
+	\t\t(˚ˎ。7⠀⠀⠀$${COLOR2}~ $(1) ~$${COLOR}\n\
+	\t\t⠀|、˜\\\\\t\t$${COLOR2}~ $(2)$${COLOR}\n\
+	\t\t⠀じしˍ)ノ\n$(4)"
+endef
+
+CLS = \033[2J\033[H
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - -  - VALGRIIND
+VALGRIIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s --track-fds=yes
+# ------------------------------------------------------------------------------------------------------------- >

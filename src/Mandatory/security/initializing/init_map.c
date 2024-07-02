@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:22:02 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/02 08:35:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:28:01 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ void	draw_map(t_game *data);
 void	init_map(t_game *data)
 {
 	data->map = read_map(data, data->n_map, &data->map_width, &data->map_height);
-	printf("width = %d\n", data->map_width);
-	printf("height = %d\n", data->map_height);
 	draw_map(data);
-	// load all xpm for the map
-	// afficher les img par apport a la map : 0 || 1 || c || 2 
 }
 
 void draw_element(t_game *data, t_img *element_img, int x, int y)
