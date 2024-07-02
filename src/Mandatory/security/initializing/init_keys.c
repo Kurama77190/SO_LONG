@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:59:19 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/02 18:43:44 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/02 22:56:58 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@ int	keypress_hook(int keycode, t_game *data)
 
 	if (keycode == KEY_W)
 	{
-		if (!is_walkable(data, data->pos_char_x - 15, data->pos_char_y + 15)) // y OK !
+		if (!is_walkable(data, data->pos_char_x + 32, data->pos_char_y + 15)) // ALL OK ! !
 			return (0);
 		data->pos_char_y -= 5;
 		data->anim_actived = MOVE_UP;
 	}
-	else if (keycode == KEY_S) //
+	else if (keycode == KEY_S)
 	{
-		if (!is_walkable(data, data->pos_char_x - 15, data->pos_char_y + 60)) // y OK
+		if (!is_walkable(data, data->pos_char_x + 31, data->pos_char_y + 60)) // y OK
 			return (0);
 		data->pos_char_y += 5;
 		data->anim_actived = MOVE_DOWN;
 	}
 	else if (keycode == KEY_A) 
 	{
-		if (!is_walkable(data, data->pos_char_x + 15, data->pos_char_y - 30)) // x OK !
+		if (!is_walkable(data, data->pos_char_x + 15, data->pos_char_y + 40)) // ALL OK ! !
 			return (0);
 		data->pos_char_x -= 5;
 		data->anim_actived = MOVE_LEFT;
@@ -97,7 +97,7 @@ bool is_walkable(t_game *data, int x, int y)
     // Vérifier les limites de la carte
     if (map_x < 0 || map_y < 0 || map_x >= data->map_width || map_y >= data->map_height)
 	{
-		draw_rectangle(data, x, y, map_x, map_y, 0xFF0000);
+		// draw_rectangle(data, x, y, map_x, map_y, 0xFF0000);
         return false; // Hors de la carte, non franchissable
 	}
 
@@ -105,7 +105,7 @@ bool is_walkable(t_game *data, int x, int y)
     //if (data->map[map_y][map_x] == '1')
     if (data->map[map_y][map_x] == '1')
 	{
-		draw_rectangle(data, x, y, map_x, map_y, 0xFF0000);
+		// draw_rectangle(data, x, y, map_x, map_y, 0xFF0000);
         return false; // Zone non franchissable
 	}
 
