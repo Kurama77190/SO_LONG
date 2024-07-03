@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/06/29 23:55:08 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:41:24 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ typedef struct s_garbage_collector
 
 typedef struct s_game
 {
+	t_img						*buffer;	
 	void						*mlx_ptr;
 	void						*win_ptr;
 	t_img						*bg_img;   // Structure pour l'image de fond

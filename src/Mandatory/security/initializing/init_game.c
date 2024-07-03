@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/02 12:29:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 00:53:03 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_init_game(t_game *data)
 {
+	data->buffer = ft_calloc(1, sizeof(t_img), data->memory_manager, "MLX");
 	data->memory_manager = NULL;
 	data->anim_actived = -1;
 	data->mlx_ptr = mlx_init();
