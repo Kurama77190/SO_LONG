@@ -6,21 +6,38 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 13:03:50 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:07:28 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	init_data(t_game *data);
+void	init_win(t_game *data);
+
 void	ft_init_game(t_game *data)
 {
-	data->buffer = ft_calloc(1, sizeof(t_img), data->memory_manager, "MLX");
-	data->memory_manager = NULL;
-	data->anim_actived = -1;
-	data->mlx_ptr = mlx_init();
+	init_data(data);
 	init_animations(data);
 	init_img(data);
 	init_map(data);
+	init_win(data);
+	
+	return ;
+}
+
+void	init_data(t_game *data)
+{
+	data->memory_manager = NULL;
+	data->buffer = NULL;
+	data->buffer = ft_calloc(1, sizeof(t_img), data->memory_manager, "MLX");
+	data->anim_actived = -1;
+	data->mlx_ptr = mlx_init();
+	
+}
+
+void	init_win(t_game *data)
+{
 	printf("creation de la fenetre :\n");
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map_width * 64, \
 			data->map_height * 64, "The Legend of Zelda : A link to MLX");
@@ -31,7 +48,6 @@ void	ft_init_game(t_game *data)
 		data->pos_char_x, data->pos_char_y);
 	printf("pos_char_x = %d\n", data->pos_char_x);
 	printf("pos_char_y = %d\n", data->pos_char_y);
-	return ;
 }
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

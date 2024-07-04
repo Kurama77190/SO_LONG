@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:33:31 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 04:13:36 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:16:18 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	init_animations(t_game *data)
 	load_animation(data, MOVE_UP, g_x_move_up);
 	load_animation(data, MOVE_LEFT, g_x_move_left);
 	load_animation(data, MOVE_RIGHT, g_x_move_right);
+	load_animation(data, MOVE_DOWN_M, g_x_move_down_m);
 	return ;
 }
 
