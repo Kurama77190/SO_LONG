@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:05:05 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 04:10:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 04:43:17 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static const char	*g_x_static_player[5] = {
 	"src/Mandatory/img/sheetsprite/static/XPM/link_static_right.xpm",
 	NULL
 };
-
 
 void	init_img(t_game *data)
 {
@@ -81,4 +80,3 @@ void	alloc_and_secure_2(t_game *data)
 	if (!data->assets[WALL])
 		secure_exit(data);
 }
-
