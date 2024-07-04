@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 04:12:07 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:02:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define S_RIGHT 3
 # define S_DOWN 4
 
+
+
 typedef enum s_assets
 {
 	WALL,
@@ -61,6 +63,11 @@ typedef enum s_animation_type
 	MOVE_DOWN,
 	MOVE_LEFT,
 	MOVE_RIGHT,
+
+	MOVE_UP_M,
+	MOVE_DOWN_M,
+	MOVE_LEFT_M,
+	MOVE_RIGHT_M,
 
 	ATTACK_UP,
 	ATTACK_DOWN,
@@ -86,16 +93,16 @@ typedef struct s_img
 
 typedef struct s_frame
 {
-	t_img						*img;            // Structure pour stocker l'image de la frame
-	struct s_frame 				*next; 			// Pointeur vers la prochaine frame
+	t_img						*img;
+	struct s_frame 				*next;
 }								t_frame;
 
 typedef struct s_animation
 {
-	t_frame						*frames;   // Pointeur vers la première frame
-	t_frame						*current;  // Frame actuellement affichée
-	int							frame_count;   // Nombre total de frames
-	int							current_index; // Index de la frame actuelle
+	t_frame						*frames;
+	t_frame						*current;
+	int							frame_count;
+	int							current_index;
 }								t_animation;
 
 typedef struct s_garbage_collector
@@ -107,21 +114,30 @@ typedef struct s_garbage_collector
 	struct s_garbage_collector	*next;
 }								t_garbage;
 
+/*
+	** Name for the garbage collector
+
+	- LINK
+	- MAP
+	- ANIMATION
+	
+*/
+
 typedef struct s_game
 {
 	t_img						*buffer;	
 	void						*mlx_ptr;
 	void						*win_ptr;
-	t_img						*bg_img;   // Structure pour l'image de fond
+	t_img						*bg_img;
 	char						**map;
 	t_img						*assets[10];
 	char						*n_map;
 	int							map_width;
 	int							map_height;
-	t_img						heart_img; // Structure pour l'image du coeur
+	t_img						heart_img;
 	t_img						enemy_img;
 	t_img						*pos_static[4];
-	t_animation					*animations[10]; // Structure pour l'animations du jeu
+	t_animation					*animations[10];
 	int							anim_actived;
 	int							last_direction;
 	int							pos_char_x;
@@ -129,8 +145,6 @@ typedef struct s_game
 	int							pos_enemy_x;
 	int							pos_enemy_y;
 	t_garbage					*memory_manager;
-	//				TEST		//
-	t_img						*wall_img;
 }								t_game;
 
 //	UTILS AND FUNCTIONS GARBAGE
