@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 00:58:33 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 03:21:37 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void draw_background_region(t_game *data, int x, int y, int width, int height)
     }
 }
 
-
 void    draw_background(t_game *data)
 {
     if (data->bg_img == NULL)
@@ -41,17 +40,19 @@ void    draw_background(t_game *data)
         mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->bg_img->img_ptr, 0, 0);
 }
 
-void draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
+
+void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 {
     t_frame *index;
 
-    index = anim->current;
+	index = anim->current;
     draw_background_region(data, x, y, index->img->width, index->img->height);
-    if (index)
-        draw_image_with_transparency(data, index->img, x, y);
+	if (index)
+		draw_image_with_transparency(data, index->img, x, y);
 }
 
-void draw_static_frame(t_game *data, t_img *static_img)
+
+void    draw_static_frame(t_game *data, t_img *static_img)
 {
     draw_background_region(data, data->pos_char_x, data->pos_char_y, static_img->width, static_img->height);
     if (static_img)
@@ -60,25 +61,28 @@ void draw_static_frame(t_game *data, t_img *static_img)
     }
 }
 
-// void draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
-// {
-//     t_frame *index;
+void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y)
+{
+	int	color;
 
-// 	index = anim->current;
-//     draw_background_region(data, x, y, index->img->width, index->img->height);
-// 	if (index)
-// 		draw_image_with_transparency(data, index->img, x, y);
-// }
-
-
-// void draw_static_frame(t_game *data, t_img *static_img)
-// {
-//     draw_background_region(data, data->pos_char_x, data->pos_char_y, static_img->width, static_img->height);
-//     if (static_img)
-//     {
-//         draw_image_with_transparency(data, static_img, data->pos_char_x, data->pos_char_y);
-//     }
-// }
+	int src_x, src_y;
+	src_y = 0;
+	while (src_y < src_img->height)
+	{
+		src_x = 0;
+		while (src_x < src_img->width)
+		{
+			color = *(unsigned int *)(src_img->addr + src_y
+					* src_img->line_length + src_x * (src_img->bpp / 8));
+			if (color != 0x000000)
+			{
+				put_pixel_to_image(dest_img, x + src_x, y + src_y, color);
+			}
+			src_x++;
+		}
+		src_y++;
+	}
+}
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠈⣹⣷⣀⣴⠀⢠⣤⣶⡦⠀⠀⠀⠀⠀⠀

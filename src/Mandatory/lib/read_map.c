@@ -1,62 +1,114 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 03:43:54 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/07/04 03:14:01 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/07/04 03:17:30 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include <mlx.h>
 
-int	update_background(t_game *data);
+void	init_sizescreen(int *width, int *height, const char *filename);
+int		get_map_width(const char *filename);
+int		count_lines(const char *filename);
+char	**allocate_secure(t_game *data, size_t height);
 
-int	main(int argc, char **argv)
+char	**read_map(t_game *data, const char *filename, int *width, int *height)
 {
-	(void)argc;
-	t_game	data;
+	char	**map;
+	int		fd;
+	char	*line;
+	int		i;
 
-	data.n_map = argv[1];
-	ft_init_game(&data);
-	// Créer une fenêtre MLX
-	printf("creation de la fenetre :\n");
-	data.win_ptr = mlx_new_window(data.mlx_ptr, data.map_width * 64, \
-			data.map_height * 64, "The Legend of Zelda : A link to MLX");
-	printf("win_ptr = %p\n", data.win_ptr);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.bg_img->img_ptr, 0, \
-		0);
-	printf("pos_char_x = %d\n", data.pos_char_x);
-	printf("pos_char_y = %d\n", data.pos_char_y);
-	draw_image_with_transparency(&data, data.pos_static[MOVE_DOWN], \
-		data.pos_char_x, data.pos_char_y);
-	// Utiliser mlx_hook pour capturer les événements de touche enfoncée et relâchée
-	mlx_hook(data.win_ptr, 2, 1L << 0, keypress_hook, &data);
-	mlx_hook(data.win_ptr, 3, 1L << 1, keyrelease_hook, &data);
-	// Utiliser mlx_loop_hook pour mettre à jour l'animation
-	mlx_loop_hook(data.mlx_ptr, update_animation, &data);
-	// Démarrer la boucle principale de MLX
-	mlx_loop(data.mlx_ptr);
-	return (0);
+	init_sizescreen(width, height, filename);
+	init_sizescreen(width, height, filename);
+	map = allocate_secure(data, *height);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_free_all(&data->memory_manager);
+		exit(EXIT_FAILURE);
+	}
+	line = get_next_line(fd);
+	i = 0;
+	while (line != NULL)
+	{
+		map[i] = line;
+		line = get_next_line(fd);
+		i++;
+	}
+	map[i] = NULL;
+	close(fd);
+	return (map);
 }
 
-/*
-	TODO: RANGER INIT_KEYS ET LE MAIN
-	FIXME:
+int	count_lines(const char *filename)
+{
+	int		fd;
+	int		lines;
+	char	*line;
 
-	TODO: NORMALISER TOUS LES FICHIERS DU PROJETS... GOOD LUCK ☺
-	FIXME:
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Failed to open file");
+		exit(EXIT_FAILURE);
+	}
+	lines = 0;
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		lines++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (lines);
+}
 
-	TODO: FAIRE UN MONSTRE EN RAPIDUS RAPIDUS !
-	FIXME:
+int	get_map_width(const char *filename)
+{
+	int		fd;
+	char	*line;
+	int		width;
 
-	TODO: PUSH CE PROJET ET EVITEZ LE BLAKCHOLE ZEBI !
-	FIXME:
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Failed to open file");
+		exit(EXIT_FAILURE);
+	}
+	line = get_next_line(fd);
+	width = strlen(line);
+	free(line);
+	close(fd);
+	return (width);
+}
 
-*/
+void	init_sizescreen(int *width, int *height, const char *filename)
+{
+	*width = get_map_width(filename) - 1;
+	*height = count_lines(filename);
+}
+
+char	**allocate_secure(t_game *data, size_t height)
+{
+	char	**map;
+
+	map = (char **)ft_calloc((size_t)height + 1, sizeof(char *),
+			data->memory_manager, NULL);
+	if (!map)
+	{
+		perror("Failed to allocate memory for map");
+		ft_free_all(&data->memory_manager);
+		exit(EXIT_FAILURE);
+	}
+	return (map);
+}
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠈⣹⣷⣀⣴⠀⢠⣤⣶⡦⠀⠀⠀⠀⠀⠀
