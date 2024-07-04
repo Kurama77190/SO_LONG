@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 03:22:34 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 04:12:07 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ typedef struct s_game
 void							ft_lstadd_back_garbage(t_garbage **alst, t_garbage *new);
 t_garbage						*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name);
 void							ft_free_all(t_garbage **lst);
+void							secure_exit(t_game *data);
+
 void							*ft_calloc(size_t count, size_t size, t_garbage *data, char *name);
 
 // LIB
@@ -159,6 +161,8 @@ int								keypress_hook(int keycode, t_game *data);
 int								update_animation(t_game *data);
 void							load_image(t_game *data, t_img *img, const char *file);
 void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
+void							init_img(t_game *data);
+
 
 
 // FUNCTIONS DRAW
@@ -179,7 +183,6 @@ int		count_lines(const char *filename);
 void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
 void	put_pixel_to_image(t_img *img, int x, int y, int color);
 void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
-void	draw_element(t_game *data, t_img *element_img, int x, int y);
 
 
 

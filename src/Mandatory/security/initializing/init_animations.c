@@ -6,14 +6,11 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:33:31 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/03 12:54:43 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/04 04:13:36 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void				load_animation(t_game *data, e_AnimationType action,
-						const char *paths[]);
 
 static const char	*g_x_move_down[11] = {
 	"src/Mandatory/img/sheetsprite/down/XPM/link_move_down_1.xpm",
@@ -71,48 +68,12 @@ static const char	*g_x_move_right[11] = {
 	NULL
 	};
 
-static const char	*g_x_assets[5] = {
-	"src/Mandatory/img/maps/maison.xpm",
-	"src/Mandatory/img/maps/floor1.xpm",
-	"src/Mandatory/img/maps/tree.xpm",
-	"src/Mandatory/img/maps/floor2.xpm",
-	NULL
-};
-
-static const char	*g_x_static_player[5] = {
-	"src/Mandatory/img/sheetsprite/static/XPM/link_static_up.xpm",
-	"src/Mandatory/img/sheetsprite/static/XPM/link_static_down.xpm",
-	"src/Mandatory/img/sheetsprite/static/XPM/link_static_left.xpm",
-	"src/Mandatory/img/sheetsprite/static/XPM/link_static_right.xpm",
-	NULL
-};
-
 void	init_animations(t_game *data)
 {
 	load_animation(data, MOVE_DOWN, g_x_move_down);
 	load_animation(data, MOVE_UP, g_x_move_up);
 	load_animation(data, MOVE_LEFT, g_x_move_left);
 	load_animation(data, MOVE_RIGHT, g_x_move_right);
-	data->bg_img = ft_calloc(1, sizeof(t_game), data->memory_manager, "IMG_BG");
-	data->pos_static[MOVE_UP] = ft_calloc(1, sizeof(t_game), \
-			data->memory_manager, "STATIC_IMG_UP");
-	data->pos_static[MOVE_DOWN] = ft_calloc(1, sizeof(t_game), \
-			data->memory_manager, "STATIC_IMG_DOWN");
-	data->pos_static[MOVE_LEFT] = ft_calloc(1, sizeof(t_game), \
-			data->memory_manager, "STATIC_IMG_LEFT");
-	data->pos_static[MOVE_RIGHT] = ft_calloc(1, sizeof(t_game), \
-			data->memory_manager, "STATIC_IMG_RIGHT");
-	load_image(data, data->pos_static[MOVE_UP], g_x_static_player[0]);
-	load_image(data, data->pos_static[MOVE_DOWN], g_x_static_player[1]);
-	load_image(data, data->pos_static[MOVE_LEFT], g_x_static_player[2]);
-	load_image(data, data->pos_static[MOVE_RIGHT], g_x_static_player[3]);
-	data->assets[EXIT] = ft_calloc(1, sizeof(t_game), data->memory_manager, "EXIT");
-	data->assets[FLOOR] = ft_calloc(1, sizeof(t_game), data->memory_manager, "FLOOR");
-	data->assets[WALL] = ft_calloc(1, sizeof(t_game), data->memory_manager, "WALL");
-	data->assets[PLAYER] = data->pos_static[MOVE_DOWN];
-	load_image(data, data->assets[EXIT], g_x_assets[0]);
-	load_image(data, data->assets[FLOOR], g_x_assets[1]); // or 3
-	load_image(data, data->assets[WALL], g_x_assets[2]);
 	return ;
 }
 
