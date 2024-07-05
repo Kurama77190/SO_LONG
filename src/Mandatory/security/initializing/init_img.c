@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:05:05 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 00:36:37 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:21:33 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,19 @@ void	alloc_and_secure_1(t_game *data)
 	data->bg_img = ft_calloc(1, sizeof(t_game), data->memory_manager, "MAP");
 	if (!data->bg_img)
 		secure_exit(data);
-	data->pos_static[MOVE_UP] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_UP] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "LINK");
 	if (!data->pos_static[MOVE_UP])
 		secure_exit(data);
-	data->pos_static[MOVE_DOWN] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_DOWN] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "LINK");
 	if (!data->pos_static[MOVE_DOWN])
 		secure_exit(data);
-	data->pos_static[MOVE_LEFT] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_LEFT] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "LINK");
 	if (!data->pos_static[MOVE_LEFT])
 		secure_exit(data);
-	data->pos_static[MOVE_RIGHT] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_RIGHT] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "LINK");
 	if (!data->pos_static[MOVE_RIGHT])
 		secure_exit(data);
@@ -90,19 +90,19 @@ void	alloc_and_secure_1(t_game *data)
 
 void	alloc_and_secure_2(t_game *data)
 {
-	data->pos_static[MOVE_UP_M] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_UP_M] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "MONSTER");
 	if (!data->pos_static[MOVE_UP_M])
 		secure_exit(data);
-	data->pos_static[MOVE_DOWN_M] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_DOWN_M] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "MONSTER");
 	if (!data->pos_static[MOVE_DOWN_M])
 		secure_exit(data);
-	data->pos_static[MOVE_LEFT_M] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_LEFT_M] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "MONSTER");
 	if (!data->pos_static[MOVE_LEFT_M])
 		secure_exit(data);
-	data->pos_static[MOVE_RIGHT_M] = ft_calloc(1, sizeof(t_game),
+	data->pos_static[MOVE_RIGHT_M] = ft_calloc(1, sizeof(t_img),
 			data->memory_manager, "MONSTER");
 	if (!data->pos_static[MOVE_RIGHT_M])
 		secure_exit(data);
@@ -112,13 +112,13 @@ void	alloc_and_secure_2(t_game *data)
 
 void	alloc_and_secure_3(t_game *data)
 {
-	data->assets[EXIT] = ft_calloc(1, sizeof(t_game), data->memory_manager, "MAP");
+	data->assets[EXIT] = ft_calloc(1, sizeof(t_img), data->memory_manager, "MAP");
 	if (!data->assets[EXIT])
 		secure_exit(data);
-	data->assets[FLOOR] = ft_calloc(1, sizeof(t_game), data->memory_manager, "MAP");
+	data->assets[FLOOR] = ft_calloc(1, sizeof(t_img), data->memory_manager, "MAP");
 	if (!data->assets[FLOOR])
 		secure_exit(data);
-	data->assets[WALL] = ft_calloc(1, sizeof(t_game), data->memory_manager, "MAP");
+	data->assets[WALL] = ft_calloc(1, sizeof(t_img), data->memory_manager, "MAP");
 	if (!data->assets[WALL])
 		secure_exit(data);
 }

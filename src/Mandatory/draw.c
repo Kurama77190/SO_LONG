@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 03:59:51 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/05 19:46:09 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void draw_background_region(t_game *data, int x, int y, int width, int height)
         int i = 0;
         while (i < width)
         {
-            int pixel = *(int *)(data->buffer->addr + (y + j) * data->buffer->line_length + (x + i) * (data->buffer->bpp / 8));
+            int pixel = *(int *)(data->bg_img->addr + (y + j) * data->bg_img->line_length + (x + i) * (data->bg_img->bpp / 8));
             put_pixel_to_image(data->buffer, x + i, y + j, pixel);
             // mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, pixel);
             i++;
@@ -47,9 +47,12 @@ void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
     t_frame *index;
 
 	index = anim->current;
-    draw_background_region(data, x, y, index->img->width, index->img->height);
 	if (index)
+    {
+        draw_background_region(data, x, y, index->img->width, index->img->height);
 		draw_image_with_transparency(data, index->img, x, y);
+        
+    }
 }
 
 
@@ -65,18 +68,24 @@ void    draw_static_frame(t_game *data, t_img *static_img, e_AnimationType n_pla
     }
 }
 
+
+
+
 void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y)
 {
 	int	color;
 
 	int src_x, src_y;
 	src_y = 0;
+    printf("src_img->height = %d\n", src_img->height);
+    printf("src_img->width = %d\n", src_img->width);
+
 	while (src_y < src_img->height)
 	{
 		src_x = 0;
 		while (src_x < src_img->width)
 		{
-			color = *(unsigned int *)(src_img->addr + src_y
+			color = *(unsigned int *)(src_img->addr + src_y \
 					* src_img->line_length + src_x * (src_img->bpp / 8));
 			if (color != 0x489848)
 			{

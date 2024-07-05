@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 04:03:20 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/05 18:23:13 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,7 +151,7 @@ typedef struct s_game
 	int							map_width;
 	int							map_height;
 	t_player					*player[2];
-	t_img						*pos_static[8];
+	t_img						*pos_static[10];
 	t_animation					*animations[10];
 	// int							anim_actived;
 	// int							anim_actived_m;
