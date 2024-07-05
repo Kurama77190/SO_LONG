@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 13:02:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/05 04:03:20 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ typedef enum s_assets
 
 typedef enum s_animation_type
 {
+	LINK,
+	MONSTER,
+	
 	MOVE_UP,
 	MOVE_DOWN,
 	MOVE_LEFT,
@@ -79,6 +82,18 @@ typedef enum s_animation_type
 	ROLL_LEFT,
 	ROLL_RIGHT
 }	e_AnimationType;
+
+typedef struct s_player
+{
+	int							last_direction;
+	int							anime_actived;
+	int							pos_x;
+	int							pos_y;
+	bool						move_up;
+	bool						move_down;
+	bool						move_left;
+	bool						move_right;
+}								t_player;
 
 typedef struct s_img
 {
@@ -120,6 +135,7 @@ typedef struct s_garbage_collector
 	- LINK
 	- MAP
 	- ANIMATION
+	- MONSTER
 	
 */
 
@@ -134,16 +150,16 @@ typedef struct s_game
 	char						*n_map;
 	int							map_width;
 	int							map_height;
-	t_img						heart_img;
-	t_img						enemy_img;
-	t_img						*pos_static[4];
+	t_player					*player[2];
+	t_img						*pos_static[8];
 	t_animation					*animations[10];
-	int							anim_actived;
-	int							last_direction;
-	int							pos_char_x;
-	int							pos_char_y;
-	int							pos_enemy_x;
-	int							pos_enemy_y;
+	// int							anim_actived;
+	// int							anim_actived_m;
+	// int							last_direction;
+	// int							pos_char_x;
+	// int							pos_char_y;
+	// int							pos_enemy_x;
+	// int							pos_enemy_y;
 	t_garbage					*memory_manager;
 }								t_game;
 
@@ -172,7 +188,8 @@ void							init_animations(t_game *data);
 char							**read_map(t_game *data, const char *filename, int *width, int *height);
 int								keyrelease_hook(int keycode, t_game *data);
 int								keypress_hook(int keycode, t_game *data);
-int								update_animation(t_game *data);
+int								update_animation(t_game *data, t_player *player);
+int								update_game(t_game *data);
 void							load_image(t_game *data, t_img *img, const char *file);
 void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
 void							init_img(t_game *data);
@@ -185,18 +202,29 @@ void							init_map(t_game *data);
 void							draw_background_region(t_game *data, int x, int y, int width, int height);
 void							draw_background(t_game *data);
 void							draw_animation_frame(t_game *data, t_animation *anim, int x, int y);
-void							draw_static_frame(t_game *data, t_img *static_img);
+void							draw_static_frame(t_game *data, t_img *static_img, e_AnimationType n_player);
 void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 								int pos_y);
 
 // FUNCTIONS MAPS
 
-char	**read_map(t_game *data, const char *filename, int *width, int *height);
-int		get_map_width(const char *filename);
-int		count_lines(const char *filename);
-void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
-void	put_pixel_to_image(t_img *img, int x, int y, int color);
-void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
+char							**read_map(t_game *data, const char *filename, int *width, int *height);
+int								get_map_width(const char *filename);
+int								count_lines(const char *filename);
+void							draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
+void							put_pixel_to_image(t_img *img, int x, int y, int color);
+void							draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
+
+// FUNCTIONS KEYS_EVENEMENT
+
+bool							is_walkable(t_game *data, int x, int y);
+
+// FUNCTIONS KEYS_EVENEMENT MONSTER
+
+int								keypress_hook_m(int keycode, t_game *data);
+int								keyrelease_hook_m(int keycode, t_game *data);
+int								update_animation_m(t_game *data);
+
 
 
 

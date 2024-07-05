@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/04 04:43:48 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/05 03:59:51 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ void draw_background_region(t_game *data, int x, int y, int width, int height)
         int i = 0;
         while (i < width)
         {
-            int pixel = *(int *)(data->bg_img->addr + (y + j) * data->bg_img->line_length + (x + i) * (data->bg_img->bpp / 8));
-            mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, pixel);
+            int pixel = *(int *)(data->buffer->addr + (y + j) * data->buffer->line_length + (x + i) * (data->buffer->bpp / 8));
+            put_pixel_to_image(data->buffer, x + i, y + j, pixel);
+            // mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, pixel);
             i++;
         }
         j++;
@@ -52,12 +53,15 @@ void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 }
 
 
-void    draw_static_frame(t_game *data, t_img *static_img)
+void    draw_static_frame(t_game *data, t_img *static_img, e_AnimationType n_player)
 {
-    draw_background_region(data, data->pos_char_x, data->pos_char_y, static_img->width, static_img->height);
+    t_player *player;
+
+    player = data->player[n_player];
+    draw_background_region(data, player->pos_x, player->pos_y, static_img->width, static_img->height);
     if (static_img)
     {
-        draw_image_with_transparency(data, static_img, data->pos_char_x, data->pos_char_y);
+        draw_image_with_transparency(data, static_img, player->pos_x, player->pos_y);
     }
 }
 
@@ -74,7 +78,7 @@ void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y)
 		{
 			color = *(unsigned int *)(src_img->addr + src_y
 					* src_img->line_length + src_x * (src_img->bpp / 8));
-			if (color != 0x000000)
+			if (color != 0x489848)
 			{
 				put_pixel_to_image(dest_img, x + src_x, y + src_y, color);
 			}

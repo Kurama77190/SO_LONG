@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:14:40 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/03 22:45:26 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/05 03:27:13 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ void	draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 			pixel = *(int *)(img->addr + y * img->line_length + x * (img->bpp
 						/ 8));
 			if (pixel != trans_color)
-				mlx_pixel_put(data->mlx_ptr, data->win_ptr, pos_x + x, pos_y + y,
-						pixel);
+				put_pixel_to_image(data->buffer, pos_x + x, pos_y + y, pixel);
 			x++;
 		}
 		y++;
