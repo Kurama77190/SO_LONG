@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 18:23:13 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 03:22:38 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,6 @@ void							init_animations(t_game *data);
 char							**read_map(t_game *data, const char *filename, int *width, int *height);
 int								keyrelease_hook(int keycode, t_game *data);
 int								keypress_hook(int keycode, t_game *data);
-int								update_animation(t_game *data, t_player *player);
 int								update_game(t_game *data);
 void							load_image(t_game *data, t_img *img, const char *file);
 void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
