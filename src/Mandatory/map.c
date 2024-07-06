@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:34:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 19:50:23 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 22:32:30 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ void	draw_map(t_game *data)
 				draw_image_to_image(data->bg_img, data->assets[FLOOR], x * 64, y * 64);
 				data->player[MONSTER]->pos_x = x * 64;
 				data->player[MONSTER]->pos_y = y * 64;
+			}
+			else if (data->map[i][j] == 'C')
+			{
+				draw_image_to_image(data->bg_img, data->assets[FLOOR], x * 64, y * 64);
+				draw_image_to_image(data->bg_img, data->assets[RUBIS], x * 64, y * 64);
 			}
 			x++;
 			j++;

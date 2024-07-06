@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 18:14:32 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 22:48:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void draw_background_region(t_game *data, int x, int y, int width, int height)
         int i = 0;
         while (i < width)
         {
-            int pixel = *(int *)(data->bg_img->addr + (y + j) * data->bg_img->line_length + (x + i) * (data->bg_img->bpp / 8));
+            int pixel = *(int *)(data->buffer->addr + (y + j) * data->buffer->line_length + (x + i) * (data->buffer->bpp / 8));
             put_pixel_to_image(data->buffer, x + i, y + j, pixel);
             // mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, pixel);
             i++;
@@ -49,7 +49,6 @@ void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 	index = anim->current;
 	if (index)
     {
-        // draw_image_to_image(data->buffer, data->bg_img, 0, 0);
         draw_background_region(data, x, y, index->img->width, index->img->height);
 		draw_image_with_transparency(data, index->img, x, y);
     }

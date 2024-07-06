@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 02:28:35 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 22:18:52 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_win(t_game *data);
 void	init_player(t_game *data, e_AnimationType n_player);
+void	init_rubis(t_game *data);
 
 void	ft_init_game(t_game *data)
 {
@@ -24,11 +25,35 @@ void	ft_init_game(t_game *data)
 	init_animations(data);
 	init_img(data);
 	init_map(data);
+	// init_rubis(data);
 	init_win(data);
 	
 	return ;
 }
 
+
+void	init_rubis(t_game *data)
+{
+	// t_img	*rubis;
+	int		x;
+	int		y;
+
+	// rubis = data->assets[RUBIS];
+	while(data->map[y])
+	{
+		x = 0;
+		while(data->map[y][x])
+		{
+			if (data->map[y][x] == 'C')
+			{
+				draw_image_with_transparency(data, data->assets[FLOOR], x * 64, y * 64);
+				// draw_image_with_transparency(data, rubis, x * 64, y * 64);
+			}
+			x++;
+		}
+		y++;
+	}
+}
 
 
 void	init_player(t_game *data, e_AnimationType n_player)

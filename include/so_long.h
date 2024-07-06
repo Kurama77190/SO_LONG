@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 03:22:38 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:53:07 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef enum s_assets
 {
 	WALL,
 	FLOOR,
-	COLLECTIBLE,
+	RUBIS,
 	EXIT,
 	PLAYER,
 	ENEMY

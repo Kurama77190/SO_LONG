@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:05:05 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 18:21:33 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 21:59:46 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ void	alloc_and_secure_2(t_game *data);
 void	alloc_and_secure_3(t_game *data);
 void	secure_exit(t_game *data);
 
-static const char	*g_x_assets[5] = {
+static const char	*g_x_assets[6] = {
 	"src/Mandatory/img/maps/maison.xpm",
 	"src/Mandatory/img/maps/floor1.xpm",
 	"src/Mandatory/img/maps/tree.xpm",
 	"src/Mandatory/img/maps/floor2.xpm",
+	"src/Mandatory/img/maps/rubis.xpm",
 	NULL
 };
 
@@ -51,9 +52,11 @@ void	init_img(t_game *data)
 	load_image(data, data->pos_static[MOVE_DOWN], g_x_static_player[1]);
 	load_image(data, data->pos_static[MOVE_LEFT], g_x_static_player[2]);
 	load_image(data, data->pos_static[MOVE_RIGHT], g_x_static_player[3]);
+	
 	load_image(data, data->assets[EXIT], g_x_assets[0]);
 	load_image(data, data->assets[FLOOR], g_x_assets[1]);
 	load_image(data, data->assets[WALL], g_x_assets[2]);
+	load_image(data, data->assets[RUBIS], g_x_assets[4]);
 
 	load_image(data, data->pos_static[MOVE_UP_M], g_x_static_monster[0]);
 	load_image(data, data->pos_static[MOVE_DOWN_M], g_x_static_monster[1]);
@@ -120,5 +123,8 @@ void	alloc_and_secure_3(t_game *data)
 		secure_exit(data);
 	data->assets[WALL] = ft_calloc(1, sizeof(t_img), data->memory_manager, "MAP");
 	if (!data->assets[WALL])
+		secure_exit(data);
+	data->assets[RUBIS] = ft_calloc(1, sizeof(t_img), data->memory_manager, "MAP");
+	if (!data->assets[RUBIS])
 		secure_exit(data);
 }
