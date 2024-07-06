@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:59:19 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 18:59:48 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 19:04:00 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ bool	is_walkable(t_game *data, int x, int y)
 		draw_rectangle(data, x, y, map_x, map_y, 0xFF0000);
 		return (false); // Zone non franchissable
 	}
-	return (true); // Zone franchissable
+	return (true); // Zone franchissable...
 }
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠈⣹⣷⣀⣴⠀⢠⣤⣶⡦⠀⠀⠀⠀⠀⠀
