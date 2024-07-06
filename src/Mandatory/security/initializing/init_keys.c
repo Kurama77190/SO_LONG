@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:59:19 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/05 04:14:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/06 01:50:49 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ int keypress_hook(int keycode, t_game *data)
         monster->move_left = true;
     else if (keycode == KEY_RIGHT)
         monster->move_right = true;
+    if (link->move_up || link->move_down || link->move_left || link->move_right)
+        link->anime_actived = 1;
+    if (monster->move_up || monster->move_down || monster->move_left || monster->move_right)
+        monster->anime_actived = 1;
     return (0);
 }
 
