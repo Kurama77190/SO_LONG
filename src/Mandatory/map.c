@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:34:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 07:03:49 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:26:00 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_map(t_game *data)
 	if (data->bg_img->img_ptr == NULL)
 	{
 		perror("Failed to load background image\n");
-		ft_free_all(&data->memory_manager);
+		ft_free_all(&data->memory_manager, data);
 		exit(EXIT_FAILURE);
 	}
 	data->bg_img->addr = mlx_get_data_addr(data->bg_img->img_ptr,

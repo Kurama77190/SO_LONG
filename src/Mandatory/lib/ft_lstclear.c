@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:13:18 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/18 03:40:04 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:14:43 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_lstdelone(t_frame *lst, t_game *data)
 {
 	if (!lst || !data)
 		return ;
-	mlx_destroy_image(data->mlx_ptr, lst->img->img_ptr);
+	if (lst->img->img_ptr)
+		mlx_destroy_image(data->mlx_ptr, lst->img->img_ptr);
 	ft_free(lst);
 }

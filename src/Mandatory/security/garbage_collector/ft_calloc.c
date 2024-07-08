@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 04:17:03 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/06 19:02:49 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 19:49:22 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@ void	*ft_calloc(size_t count, size_t size, t_garbage *data, char *name)
 {
 	unsigned char	*tab;
 	t_garbage		*current;
+	t_garbage		*new;
 
+	new = ft_lstnew_garbage(&data, NULL, NULL, name);
+	if (!new)
+		return (NULL);
 	current = data;
 	tab = malloc(ft_securite(count, size));
 	if (!tab)
 		return (NULL);
 	else
-		ft_lstadd_back_garbage(&current, ft_lstnew_garbage(&data, tab, NULL, name));
+		ft_lstadd_back_garbage(&current, new);
 	ft_memset(tab, 0, ft_securite(count, size));
 	return (tab);
 }

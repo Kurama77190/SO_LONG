@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc.c                                        :+:      :+:    :+:   */
+/*   ft_free_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/17 22:44:41 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/17 23:05:35 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/07/08 19:21:01 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/07/08 20:19:33 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	*ft_malloc(t_garbage *memory, size_t size)
+void	ft_free_img(t_img *img, void *mlx_ptr)
 {
-	void	*ptr;
-	
-	ptr = malloc(size);
-	if (!ptr)
+	if (img->img_ptr)
 	{
-		perror("malloc");
-		ft_free_all(&memory);
-		exit(1);
+		mlx_destroy_image(mlx_ptr, img->img_ptr);
+		img->img_ptr = NULL;
 	}
-	ft_lstadd_back_garbage(&memory, ft_lstnew_garbage(&memory, ptr, NULL, NULL));
-	return (ptr);
+	if (img)
+	{
+		ft_free(img);
+		img = NULL;
+	}
+	else
+		return ;
 }

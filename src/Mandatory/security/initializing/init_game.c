@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 06:50:04 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 18:00:05 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_win(t_game *data);
 void	init_player(t_game *data, e_AnimationType n_player);
+float get_normalization_factor(int map_width, int map_height);
 
 void	ft_init_game(t_game *data)
 {
@@ -22,11 +23,12 @@ void	ft_init_game(t_game *data)
 	data->a_life = true;
 	data->step_counter = 0;
 	data->ruby_counter = 0;
+	data->hitbox_size = 16;
 	data->mlx_ptr = mlx_init();
-	init_player(data, LINK);
-	init_player(data, MONSTER);
 	init_animations(data);
 	init_img(data);
+	init_player(data, LINK);
+	init_player(data, MONSTER);
 	init_map(data);
 	init_win(data);
 	return ;
@@ -74,6 +76,7 @@ void	init_win(t_game *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, buffer->img_ptr, 0, \
 		0);
 }
+
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠈⣹⣷⣀⣴⠀⢠⣤⣶⡦⠀⠀⠀⠀⠀⠀

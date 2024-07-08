@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 06:53:17 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 15:47:57 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ int	update_background(t_game *data);
 int	main(int argc, char **argv)
 {
 	(void)argc;
-	t_game	data;
+	(void)argv;
 
+	t_game	data;
+	
 	data.n_map = argv[1];
 	ft_init_game(&data);
 
@@ -28,12 +30,12 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win_ptr, 2, 1L << 0, keypress_hook, &data);
 	mlx_hook(data.win_ptr, 3, 1L << 1, keyrelease_hook, &data);
 
-	// mlx_hook(data.win_ptr, 2, 1L << 0, keyrelease_hook_m, &data);
-	// mlx_hook(data.win_ptr, 3, 1L << 1, keyrelease_hook_m, &data);
 	// Utiliser mlx_loop_hook pour mettre à jour l'animation
+	
 	mlx_loop_hook(data.mlx_ptr, update_game, &data); // a décommenter pour activer l'animation fluide
 
 	// Démarrer la boucle principale de MLX
+
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.bg_img->img_ptr);
 	ft_free(data.bg_img);

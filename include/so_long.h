@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 06:56:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:25:23 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ typedef struct s_player
 	int							anime_actived;
 	int							pos_x;
 	int							pos_y;
+	int							hitbox_up;
+	int							hitbox_down;
+	int							hitbox_left;
+	int							hitbox_right;
 	bool						move_up;
 	bool						move_down;
 	bool						move_left;
@@ -125,7 +129,6 @@ typedef struct s_garbage_collector
 	char						*name;
 	void						*alloc;
 	void						**allocs;
-	t_frame						**animations;
 	struct s_garbage_collector	*next;
 }								t_garbage;
 
@@ -141,32 +144,35 @@ typedef struct s_garbage_collector
 
 typedef struct s_game
 {
-	t_img						*buffer;	
+	t_img						*buffer;
+	t_img						*bg_img;
+	t_img						*assets[10];
+	t_img						*pos_static[10];
+	t_player					*player[2];
+	t_animation					*animations[10];
+	t_garbage					*memory_manager;
 	void						*mlx_ptr;
 	void						*win_ptr;
-	t_img						*bg_img;
 	char						**map;
+	char						*n_map;
 	bool						a_life;
+	int							hitbox_size;
 	int							all_ruby;
 	int							ruby_counter;
 	int							step_counter;
 	int							exit_x;
 	int							exit_y;
-	t_img						*assets[10];
-	char						*n_map;
 	int							map_width;
 	int							map_height;
-	t_player					*player[2];
-	t_img						*pos_static[10];
-	t_animation					*animations[10];
-	t_garbage					*memory_manager;
 }								t_game;
 
 //	UTILS AND FUNCTIONS GARBAGE
 void							ft_lstadd_back_garbage(t_garbage **alst, t_garbage *new);
 t_garbage						*ft_lstnew_garbage(t_garbage **aslt, void *content, void **split, char *name);
-void							ft_free_all(t_garbage **lst);
+void							ft_free_all(t_garbage **lst, t_game *data);
 void							secure_exit(t_game *data);
+void							ft_free_img(t_img *img, void *mlx_ptr);
+
 
 void							*ft_calloc(size_t count, size_t size, t_garbage *data, char *name);
 
@@ -191,6 +197,8 @@ int								update_game(t_game *data);
 void							load_image(t_game *data, t_img *img, const char *file);
 void							load_animation(t_game *data, e_AnimationType action, const char *paths[]);
 void							init_img(t_game *data);
+void							init_start_over(t_game *data);
+
 
 
 
@@ -214,8 +222,5 @@ void							draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
 bool							is_walkable(t_game *data, int x, int y);
 bool							is_walkable_m(t_game *data, int x, int y);
 void							open_exit(t_game *data);	
-
-
-
 
 #endif
