@@ -6,51 +6,53 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 03:26:01 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 06:58:07 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void draw_background_region(t_game *data, int x, int y, int width, int height)
+void	draw_background_region(t_game *data, int x, int y)
 {
-    int j = 0;
-    while (j < height)
-    {
-        int i = 0;
-        while (i < width)
-        {
-            int pixel = *(int *)(data->buffer->addr + (y + j) * data->buffer->line_length + (x + i) * (data->buffer->bpp / 8));
-            put_pixel_to_image(data->buffer, x + i, y + j, pixel);
-            // mlx_pixel_put(data->mlx_ptr, data->win_ptr, x + i, y + j, pixel);
-            i++;
-        }
-        j++;
-    }
+	int	j;
+	int	i;
+	int	pixel;
+
+	j = 0;
+	while (j < data->map_height)
+	{
+		i = 0;
+		while (i < data->map_width)
+		{
+			pixel = *(int *)(data->buffer->addr + (y + j) \
+					* data->buffer->line_length + (x + i) * (data->buffer->bpp \
+						/ 8));
+			put_pixel_to_image(data->buffer, x + i, y + j, pixel);
+			i++;
+		}
+		j++;
+	}
 }
 
-void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
+void	draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 {
-    t_frame *index;
+	t_frame	*index;
 
 	index = anim->current;
 	if (index)
-    {
-        draw_background_region(data, x, y, index->img->width, index->img->height);
+	{
+		draw_background_region(data, x, y);
 		draw_image_to_image(data->buffer, index->img, x, y);
-    }
+	}
 }
-
 
 void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y)
 {
 	int	color;
+	int	src_x;
+	int	src_y;
 
-	int src_x, src_y;
 	src_y = 0;
-    printf("src_img->height = %d\n", src_img->height);
-    printf("src_img->width = %d\n", src_img->width);
-
 	while (src_y < src_img->height)
 	{
 		src_x = 0;

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 03:10:36 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 06:53:17 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 
 	data.n_map = argv[1];
 	ft_init_game(&data);
-	printf("ptr_buffer = %p\n", data.buffer->img_ptr);
+
 	// Utiliser mlx_hook pour capturer les événements de touche enfoncée et relâchée
 	
 	mlx_hook(data.win_ptr, 2, 1L << 0, keypress_hook, &data);
@@ -39,18 +39,29 @@ int	main(int argc, char **argv)
 	ft_free(data.bg_img);
 	mlx_destroy_image(data.mlx_ptr, data.buffer->img_ptr);
     ft_free(data.buffer);
+
 	return (0);
 }
 
+// 8.158
 
 /*
 	TODO: RANGER INIT_KEYS ET LE MAIN
+	FIXME: OK
+
+	TODO: FAIRE UN MONSTRE EN RAPIDUS RAPIDUS !
+	FIXME: ok
+
+	TODO: TUER LINK
+	FIXME: 
+
+	TODO: FAIRE LE PARSING
 	FIXME:
 
 	TODO: NORMALISER TOUS LES FICHIERS DU PROJETS... GOOD LUCK ☺
 	FIXME:
 
-	TODO: FAIRE UN MONSTRE EN RAPIDUS RAPIDUS !
+	TODO: TROP DE FONCTION DANS UPDATE.C
 	FIXME:
 
 	TODO: PUSH CE PROJET ET EVITEZ LE BLAKCHOLE ZEBI !
