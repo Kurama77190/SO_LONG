@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:35 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 19:01:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 02:01:41 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,16 @@
 int     get_last_direction(t_player *player1, t_player *player2);
 void    update_player(t_game *data);
 int     update_animation(t_game *data, t_player *player);
+int     link_action(t_game *data, t_player *link);
+int     monster_action(t_game *data, t_player *monster);
 
 int update_game(t_game *data)
 {
     t_player *link = data->player[LINK];
     t_player *monster = data->player[MONSTER];
 
-    if (link->move_up && is_walkable(data, link->pos_x, link->pos_y - 5) && is_walkable(data, link->pos_x + 44, link->pos_y - 5))
-        link->pos_y -= 5;
-    else if (link->move_down && is_walkable(data, link->pos_x, link->pos_y + 48 + 5) && is_walkable(data, link->pos_x + 44, link->pos_y + 48 + 5))
-        link->pos_y += 5;
-    else if (link->move_left && is_walkable(data, link->pos_x - 5, link->pos_y) && is_walkable(data, link->pos_x - 5, link->pos_y + 48))
-        link->pos_x -= 5;
-    else if (link->move_right && is_walkable(data, link->pos_x + 44 + 5, link->pos_y) && is_walkable(data, link->pos_x + 44 + 5, link->pos_y + 48))
-        link->pos_x += 5;
-
-    if (monster->move_up && is_walkable(data, monster->pos_x, monster->pos_y - 5) && is_walkable(data, monster->pos_x + 44, monster->pos_y - 5))
-        monster->pos_y -= 5;
-    else if (monster->move_down && is_walkable(data, monster->pos_x, monster->pos_y + 48 + 5) && is_walkable(data, monster->pos_x + 44, monster->pos_y + 48 + 5))
-        monster->pos_y += 5;
-    else if (monster->move_left && is_walkable(data, monster->pos_x - 5, monster->pos_y) && is_walkable(data, monster->pos_x - 5, monster->pos_y + 48))
-        monster->pos_x -= 5;
-    else if (monster->move_right && is_walkable(data, monster->pos_x + 44 + 5, monster->pos_y) && is_walkable(data, monster->pos_x + 44 + 5, monster->pos_y + 48))
-        monster->pos_x += 5;
+    link_action(data, link);
+    monster_action(data, monster);
 
     link->last_direction = get_last_direction(link, NULL);
     monster->last_direction = get_last_direction(NULL, monster);
@@ -46,35 +33,58 @@ int update_game(t_game *data)
     return (0);
 }
 
-// int update_game(t_game *data)
-// {
-//     t_player *link;
-//     t_player *monster;
+int link_action(t_game *data, t_player *link)
+{
+    if (link->move_up)
+    {
+        if (is_walkable(data, link->pos_x + 32, link->pos_y + 15))
+            link->pos_y -= 5;
+        
+    }
+    else if (link->move_down)
+    {
+        if (is_walkable(data, link->pos_x + 30, link->pos_y + 60))
+            link->pos_y += 5;
+    }
+    else if (link->move_left)
+    {
+        if (is_walkable(data, link->pos_x + 15, link->pos_y + 40))
+            link->pos_x -= 5;   
+    }
+    else if (link->move_right)
+    {
+        if (is_walkable(data, link->pos_x + 52, link->pos_y + 52))
+            link->pos_x += 5;       
+    }
+    return (0);
+}
 
-//     link = data->player[LINK];
-//     monster = data->player[MONSTER];
-//     if (link->move_up)
-//         link->pos_y -= 5;
-//     else if (link->move_down)
-//         link->pos_y += 5;
-//     else if (link->move_left)
-//         link->pos_x -= 5;
-//     else if (link->move_right)
-//         link->pos_x += 5;
-//     if (monster->move_up)
-//         monster->pos_y -= 5;
-//     else if (monster->move_down)
-//         monster->pos_y += 5;
-//     else if (monster->move_left)
-//         monster->pos_x -= 5;
-//     else if (monster->move_right)
-//         monster->pos_x += 5;
-//     link->last_direction = get_last_direction(link, NULL);
-//     monster->last_direction = get_last_direction(NULL, monster);
-//     draw_image_to_image(data->buffer, data->bg_img, 0, 0);
-//     update_player(data);
-//     return (0);
-// }
+int monster_action(t_game *data, t_player *monster)
+{
+    if (monster->move_up)
+    {
+        if (is_walkable(data, monster->pos_x + 32, monster->pos_y + 15))
+            monster->pos_y -= 5;
+    }
+    else if (monster->move_down)
+    {
+        if (is_walkable(data, monster->pos_x + 30, monster->pos_y + 60))
+            monster->pos_y += 5;
+    }
+    else if (monster->move_left)
+    {
+        if (is_walkable(data, monster->pos_x + 15, monster->pos_y + 40))
+            monster->pos_x -= 5;
+    }
+    else if (monster->move_right)
+    {
+        if (is_walkable(data, monster->pos_x + 52, monster->pos_y + 52))
+            monster->pos_x += 5;
+    }
+    return (0);
+}
+
+
 
 int get_last_direction(t_player *player1, t_player *player2)
 {
@@ -136,9 +146,7 @@ int update_animation(t_game *data, t_player *player)
         usleep = 4;
     else
         usleep = 10;
-    // if (player->anime_actived == -1)
-    //     return 0;
-    
+
     t_animation *animation = data->animations[player->last_direction];
     t_frame *current = animation->current;
 
