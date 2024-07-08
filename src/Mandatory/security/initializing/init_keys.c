@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 14:59:19 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 02:28:52 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 03:12:12 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,6 @@ bool	is_walkable(t_game *data, int x, int y)
 
 	map_x = x / 64;
 	map_y = y / 64;
-	if (map_x < 0 || map_y < 0 || map_x >= data->map_width
-		|| map_y >= data->map_height)
-	{
-		return (false);
-	}
 	if (data->map[map_y][map_x] == '1')
 	{
 		return (false);

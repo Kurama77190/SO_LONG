@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:30 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 22:48:42 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 03:26:01 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,6 @@ void draw_background_region(t_game *data, int x, int y, int width, int height)
     }
 }
 
-void    draw_background(t_game *data)
-{
-    if (data->bg_img == NULL)
-    {
-        fprintf(stderr, "Failed to load background image\n");
-        ft_free_all(&data->memory_manager);
-        exit(EXIT_FAILURE);
-    }
-    else
-        mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->bg_img->img_ptr, 0, 0);
-}
-
-
 void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 {
     t_frame *index;
@@ -50,24 +37,9 @@ void    draw_animation_frame(t_game *data, t_animation *anim, int x, int y)
 	if (index)
     {
         draw_background_region(data, x, y, index->img->width, index->img->height);
-		draw_image_with_transparency(data, index->img, x, y);
+		draw_image_to_image(data->buffer, index->img, x, y);
     }
 }
-
-
-void    draw_static_frame(t_game *data, t_img *static_img, e_AnimationType n_player)
-{
-    t_player *player;
-
-    player = data->player[n_player];
-    draw_background_region(data, player->pos_x, player->pos_y, static_img->width, static_img->height);
-    if (static_img)
-    {
-        draw_image_with_transparency(data, static_img, player->pos_x, player->pos_y);
-    }
-}
-
-
 
 
 void	draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y)

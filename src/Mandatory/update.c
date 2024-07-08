@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:35 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 02:01:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 03:21:51 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,11 @@ int get_last_direction(t_player *player1, t_player *player2)
     {
     if (player1->move_up)
         return (MOVE_UP);
-    if (player1->move_down)
+    else if (player1->move_down)
         return (MOVE_DOWN);
-    if (player1->move_left)
+    else if (player1->move_left)
         return (MOVE_LEFT);
-    if (player1->move_right)
+    else if (player1->move_right)
         return (MOVE_RIGHT);
     return (player1->last_direction);    
     }
@@ -104,15 +104,15 @@ int get_last_direction(t_player *player1, t_player *player2)
     {
     if (player2->move_up)
         return (MOVE_UP_M);
-    if (player2->move_down)
+    else if (player2->move_down)
         return (MOVE_DOWN_M);
-    if (player2->move_left)
+    else if (player2->move_left)
         return (MOVE_LEFT_M);
-    if (player2->move_right)
+    else if (player2->move_right)
         return (MOVE_RIGHT_M);
-    return (player2->last_direction);    
+    return (player2->last_direction);
     }
-    return (MOVE_DOWN);
+    return (player2->last_direction);
 }
 
 void    update_player(t_game *data)
@@ -127,12 +127,12 @@ void    update_player(t_game *data)
     if (link->anime_actived != -1)
         update_animation(data, link);
     else
-        draw_image_with_transparency(data, data->pos_static[link->last_direction], link->pos_x, link->pos_y);
+        draw_image_to_image(data->buffer, data->pos_static[link->last_direction], link->pos_x, link->pos_y);
 
     if (monster->anime_actived != -1)
         update_animation(data, monster);
     else
-        draw_image_with_transparency(data, data->pos_static[monster->last_direction], monster->pos_x, monster->pos_y);
+        draw_image_to_image(data->buffer, data->pos_static[monster->last_direction], monster->pos_x, monster->pos_y);
 
     // Afficher le buffer
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->buffer->img_ptr, 0, 0);

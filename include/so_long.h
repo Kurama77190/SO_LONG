@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 21:53:07 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 03:26:58 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,13 +153,6 @@ typedef struct s_game
 	t_player					*player[2];
 	t_img						*pos_static[10];
 	t_animation					*animations[10];
-	// int							anim_actived;
-	// int							anim_actived_m;
-	// int							last_direction;
-	// int							pos_char_x;
-	// int							pos_char_y;
-	// int							pos_enemy_x;
-	// int							pos_enemy_y;
 	t_garbage					*memory_manager;
 }								t_game;
 
@@ -199,9 +192,7 @@ void							init_img(t_game *data);
 void							put_pixel_to_image(t_img *img, int x, int y, int color);
 void							init_map(t_game *data);
 void							draw_background_region(t_game *data, int x, int y, int width, int height);
-void							draw_background(t_game *data);
 void							draw_animation_frame(t_game *data, t_animation *anim, int x, int y);
-void							draw_static_frame(t_game *data, t_img *static_img, e_AnimationType n_player);
 void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
 								int pos_y);
 
@@ -217,13 +208,6 @@ void							draw_image_to_image(t_img *dest_img, t_img *src_img, int x, int y);
 // FUNCTIONS KEYS_EVENEMENT
 
 bool							is_walkable(t_game *data, int x, int y);
-
-// FUNCTIONS KEYS_EVENEMENT MONSTER
-
-int								keypress_hook_m(int keycode, t_game *data);
-int								keyrelease_hook_m(int keycode, t_game *data);
-int								update_animation_m(t_game *data);
-
 
 
 
