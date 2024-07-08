@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/06 22:18:52 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 03:32:39 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_rubis(t_game *data)
 		{
 			if (data->map[y][x] == 'C')
 			{
-				draw_image_with_transparency(data, data->assets[FLOOR], x * 64, y * 64);
+				draw_image_to_image(data->buffer, data->assets[FLOOR], x * 64, y * 64);
 				// draw_image_with_transparency(data, rubis, x * 64, y * 64);
 			}
 			x++;
@@ -92,9 +92,8 @@ void	init_win(t_game *data)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map_width * 64, \
 		data->map_height * 64, "The Legend of Zelda : A link to MLX");
 	draw_image_to_image(buffer, bg_img, 0, 0);
-	draw_image_with_transparency(data, pos_static[MOVE_DOWN], link->pos_x, link->pos_y);
-	draw_image_with_transparency(data, pos_static[MOVE_DOWN_M], monster->pos_x, monster->pos_y);
-	// mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, buffer->img_ptr, 0, 0);
+	draw_image_to_image(data->buffer, pos_static[MOVE_DOWN], link->pos_x, link->pos_y);
+	draw_image_to_image(data->buffer, pos_static[MOVE_DOWN_M], monster->pos_x, monster->pos_y);
 }
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

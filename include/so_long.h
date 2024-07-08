@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 03:26:58 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/08 03:32:47 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,8 +193,6 @@ void							put_pixel_to_image(t_img *img, int x, int y, int color);
 void							init_map(t_game *data);
 void							draw_background_region(t_game *data, int x, int y, int width, int height);
 void							draw_animation_frame(t_game *data, t_animation *anim, int x, int y);
-void							draw_image_with_transparency(t_game *data, t_img *img, int pos_x, \
-								int pos_y);
 
 // FUNCTIONS MAPS
 

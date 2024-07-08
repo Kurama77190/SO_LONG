@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/05 01:39:51 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/08 03:33:48 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,9 @@ BUILD = builder/
 #=================================================__SRC__OF__PROJECT__=============================================================================
 SRC = src/Mandatory/main.c src/Mandatory/draw.c src/Mandatory/update.c src/Mandatory/map.c \
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c	 $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
-	$(LIB)ft_malloc.c $(LIB)img_with_transparency.c $(LIB)ft_tab_len.c $(LIB)load_animation.c $(LIB)read_map.c $(LIB)put_pixel_to_image.c \
+	$(LIB)ft_malloc.c $(LIB)ft_tab_len.c $(LIB)load_animation.c $(LIB)read_map.c $(LIB)put_pixel_to_image.c \
 	$(LIB)secure_exit.c \
-	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c $(INIT)init_key_monster.c \
+	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c \
 	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 SRC_BNS = src/Mandatory/main_test.c
