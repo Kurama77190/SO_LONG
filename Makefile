@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/08 19:28:30 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/09 20:07:10 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC = src/Mandatory/main.c src/Mandatory/draw.c src/Mandatory/update.c src/Manda
 	$(LIB)secure_exit.c $(LIB)update_animation.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c $(GARBAGE)ft_free_img.c \
+	$(GARBAGE)ft_lstclear_garbage.c \
 	$(GNL)get_next_line.c $(GNL)get_next_line_utils.c
 SRC_BNS = src/Mandatory/main_test.c
 # Crée le dossier BUILD si nécessaire

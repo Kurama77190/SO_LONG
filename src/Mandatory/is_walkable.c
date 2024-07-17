@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_walkable.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gbazart <gbazart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 05:18:37 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 19:25:27 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:14:17 by gbazart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ bool	is_walkable(t_game *data, int x, int y)
 	{
 		if (data->ruby_counter == 0)
 		{
+			printf("pointeur memory manager : %p\n", data->memory_manager);
 			ft_free_all(&data->memory_manager, data);
 			exit(EXIT_SUCCESS);
 		}
 		else
-			return true;
+			return (true);
 	}
 	return (true);
 }
@@ -89,7 +90,6 @@ void	set_hitbox(t_game *data, t_player *link, t_player *monster)
 	link->hitbox_right = link->pos_x + hitbox_s / 2;
 	link->hitbox_up = link->pos_y - hitbox_s / 2;
 	link->hitbox_down = link->pos_y + hitbox_s / 2;
-
 }
 
 void	get_pos_exit(t_game *data)

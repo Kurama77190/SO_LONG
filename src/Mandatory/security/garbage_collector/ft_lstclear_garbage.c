@@ -1,29 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_split.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear_garbage.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 06:49:26 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/17 17:18:14 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/07/09 20:05:07 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/07/17 17:32:35 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_split(char **strs)
+void	ft_lstdelone_garbage(t_garbage *lst)
 {
-	int	i;
-
-	if (!strs)
+	if (!lst)
 		return ;
-	i = 0;
-	while (strs[i])
+	if (lst->alloc != NULL)
 	{
-		ft_free((void **)&strs[i]);
-		i++;
+		ft_free((void **)&lst->alloc);
 	}
-	ft_free((void **)&strs);
-	strs = NULL;
+	if (lst->allocs != NULL)
+	{
+		free_split((char **)&lst->allocs);
+	}
+	ft_free((void **)&lst);
+}
+
+void	ft_lstclear_garbage(t_garbage **lst)
+{
+	t_garbage	*current;
+
+	if (!lst || !*lst)
+		return ;
+	while (lst != NULL && *lst != NULL)
+	{
+		current = (*lst)->next;
+		ft_lstdelone_garbage(*lst);
+		*lst = current;
+	}
 }

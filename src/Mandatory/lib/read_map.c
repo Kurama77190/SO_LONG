@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gbazart <gbazart@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:14:01 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 19:44:57 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/09 18:22:02 by gbazart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	**allocate_secure(t_game *data, size_t height)
 	char	**map;
 
 	map = (char **)ft_calloc((size_t)height + 1, sizeof(char *),
-			data->memory_manager, NULL);
+			&data->memory_manager, NULL);
 	if (!map)
 	{
 		perror("Failed to allocate memory for map");

@@ -6,32 +6,37 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 04:17:03 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/09 16:24:25 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:05:12 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void			*ft_memset(void *b, int c, size_t len);
-static size_t		ft_securite(size_t count, size_t size);
+static void		*ft_memset(void *b, int c, size_t len);
+static size_t	ft_securite(size_t count, size_t size);
 
-
-
-void	*ft_calloc(size_t count, size_t size, t_garbage *data, char *name)
+void	*ft_calloc(size_t count, size_t size, t_garbage **data, char *name)
 {
 	unsigned char	*tab;
-	t_garbage		*current;
 	t_garbage		*new;
+	t_garbage		*current;
 
-	new = ft_lstnew_garbage(&data, NULL, NULL, name);
-	if (!new)
-		return (NULL);
-	current = data;
-	tab = malloc(ft_securite(count, size));
+	current = *data;
+	tab = ft_malloc(ft_securite(count, size));
 	if (!tab)
 		return (NULL);
-	else
-		ft_lstadd_back_garbage(&current, new);
+	new = ft_lstnew_garbage(data, tab, NULL, name);
+	if (!new)
+	{
+		free(tab);
+		return (NULL);
+	}
+	ft_lstadd_back_garbage(&current, new);
+	if (!*data)
+	{
+		printf("initialize data : %p", current);
+		*data = current;
+	}
 	ft_memset(tab, 0, ft_securite(count, size));
 	return (tab);
 }
