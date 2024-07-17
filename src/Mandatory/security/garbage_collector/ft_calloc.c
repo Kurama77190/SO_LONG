@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 04:17:03 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/17 21:05:12 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/17 21:07:55 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_calloc(size_t count, size_t size, t_garbage **data, char *name)
 	t_garbage		*current;
 
 	current = *data;
-	tab = ft_malloc(ft_securite(count, size));
+	tab = malloc(ft_securite(count, size));
 	if (!tab)
 		return (NULL);
 	new = ft_lstnew_garbage(data, tab, NULL, name);
