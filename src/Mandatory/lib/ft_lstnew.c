@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbazart <gbazart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:09:56 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/09 18:21:50 by gbazart          ###   ########.fr       */
+/*   Updated: 2024/07/18 17:48:28 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,15 @@ t_frame	*ft_lstnew(const char *content, t_game *data)
 {
 	t_frame	*new;
 
-	new = ft_calloc(1, sizeof(t_frame), &data->memory_manager, "MOVE_DOWN");
+	new = malloc(sizeof(t_frame));
 	if (!new)
 	{
-		ft_free_all(&data->memory_manager, data);
-		exit(2);
+		return (NULL);
 	}
-	new->img = ft_calloc(1, sizeof(t_img), &data->memory_manager,
-			"IMG_MOVE_DOWN");
+	new->img = malloc(sizeof(t_img));
 	if (!new->img)
 	{
-		ft_free_all(&data->memory_manager, data);
-		exit(2);
+		return (NULL);
 	}
 	fprintf(stderr, "load image: %s\n", content);
 	load_image(data, new->img, content);

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 06:43:25 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/06 19:02:29 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:48:22 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ char	**ft_split(char const *s, char c, t_garbage **data, char *name)
 		ft_malloc_error(tab);
 		return (NULL);
 	}
-	ft_lstadd_back_garbage(data, ft_lstnew_garbage(data, NULL, (void **)tab, name));
+	ft_lstadd_back_garbage(data, ft_lstnew_garbage(NULL, (void **)tab, name));
+	// (void)data, (void)name;
 	return (tab);
 }
 

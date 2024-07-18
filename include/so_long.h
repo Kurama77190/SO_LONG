@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/17 17:21:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/18 18:44:30 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,7 @@ typedef struct s_game
 //	UTILS AND FUNCTIONS GARBAGE
 void							ft_lstadd_back_garbage(t_garbage **alst,
 									t_garbage *new);
-t_garbage						*ft_lstnew_garbage(t_garbage **aslt,
-									void *content, void **split, char *name);
+t_garbage						*ft_lstnew_garbage(void *content, void **split, char *name);
 void							ft_free_all(t_garbage **lst, t_game *data);
 void							secure_exit(t_game *data);
 void							ft_free_img(t_img **img, void *mlx_ptr);
