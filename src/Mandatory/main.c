@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/17 17:17:46 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/22 01:20:41 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ int	main(int argc, char **argv)
 	// Démarrer la boucle principale de MLX
 
 	mlx_loop(data.mlx_ptr);
-	mlx_destroy_image(data.mlx_ptr, data.bg_img->img_ptr);
-	ft_free((void **)&data.bg_img);
-	mlx_destroy_image(data.mlx_ptr, data.buffer->img_ptr);
-    ft_free((void **)&data.buffer);
-
 	return (0);
 }
 

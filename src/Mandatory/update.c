@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:35 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 16:00:09 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/21 22:06:59 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,6 @@ void	update_player(t_game *data);
 int		update_animation(t_game *data, t_player *player);
 int		link_action(t_game *data, t_player *link);
 int		monster_action(t_game *data, t_player *monster);
-
-//     void    delay_based_on_map_size(int map_width, int map_height)
-// {
-//     int delay = (map_width + map_height) * 250; // Ajustez ce facteur en fonction de vos besoins
-//     usleep(delay);
-// }
 
 int	update_game(t_game *data)
 {
@@ -49,22 +43,22 @@ int	link_action(t_game *data, t_player *link)
 	if (link->move_up)
 	{
 		if (is_walkable(data, link->pos_x + 32, link->pos_y + 15))
-			link->pos_y -= 5;
+			link->pos_y -= 1;
 	}
 	else if (link->move_down)
 	{
 		if (is_walkable(data, link->pos_x + 30, link->pos_y + 60))
-			link->pos_y += 5;
+			link->pos_y += 1;
 	}
 	else if (link->move_left)
 	{
 		if (is_walkable(data, link->pos_x + 15, link->pos_y + 40))
-			link->pos_x -= 5;
+			link->pos_x -= 1;
 	}
 	else if (link->move_right)
 	{
 		if (is_walkable(data, link->pos_x + 52, link->pos_y + 52))
-			link->pos_x += 5;
+			link->pos_x += 1;
 	}
 	return (0);
 }
@@ -74,22 +68,22 @@ int	monster_action(t_game *data, t_player *monster)
 	if (monster->move_up)
 	{
 		if (is_walkable_m(data, monster->pos_x + 32, monster->pos_y + 15))
-			monster->pos_y -= 5;
+			monster->pos_y -= 1;
 	}
 	else if (monster->move_down)
 	{
 		if (is_walkable_m(data, monster->pos_x + 30, monster->pos_y + 60))
-			monster->pos_y += 5;
+			monster->pos_y += 1;
 	}
 	else if (monster->move_left)
 	{
 		if (is_walkable_m(data, monster->pos_x + 15, monster->pos_y + 40))
-			monster->pos_x -= 5;
+			monster->pos_x -= 1;
 	}
 	else if (monster->move_right)
 	{
 		if (is_walkable_m(data, monster->pos_x + 52, monster->pos_y + 52))
-			monster->pos_x += 5;
+			monster->pos_x += 1;
 	}
 	return (0);
 }

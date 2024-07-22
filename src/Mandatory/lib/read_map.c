@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbazart <gbazart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:14:01 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/09 18:22:02 by gbazart          ###   ########.fr       */
+/*   Updated: 2024/07/22 01:47:54 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,17 @@ char	**read_map(t_game *data, const char *filename, int *width, int *height)
 
 	if (init_sizescreen(width, height, filename) == -1)
 		ft_free_all(&data->memory_manager, data);
-	if (init_sizescreen(width, height, filename) == -1)
-		ft_free_all(&data->memory_manager, data);
 	map = allocate_secure(data, *height);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 		ft_free_all(&data->memory_manager, data);
-	line = get_next_line(fd);
 	i = 0;
-	while (line != NULL)
+	while (1)
 	{
-		map[i] = line;
 		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		map[i] = line;
 		i++;
 	}
 	map[i] = NULL;
@@ -104,8 +103,7 @@ char	**allocate_secure(t_game *data, size_t height)
 {
 	char	**map;
 
-	map = (char **)ft_calloc((size_t)height + 1, sizeof(char *),
-			&data->memory_manager, NULL);
+	map = (char **)malloc(sizeof(char *) * (size_t)height + 1);
 	if (!map)
 	{
 		perror("Failed to allocate memory for map");
@@ -113,6 +111,7 @@ char	**allocate_secure(t_game *data, size_t height)
 	}
 	return (map);
 }
+
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠈⣹⣷⣀⣴⠀⢠⣤⣶⡦⠀⠀⠀⠀⠀⠀

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:11:12 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/05/18 21:18:35 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/21 21:27:46 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	load_image(t_game *data, t_img *img, const char *file)
 	if (img->img_ptr == NULL)
 	{
 		fprintf(stderr, "Failed to load image: %s\n", file);
-		ft_free_all(&data->memory_manager);
+		ft_free_all(&data->memory_manager, data);
 		exit(2);
 	}
 	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->line_length,
