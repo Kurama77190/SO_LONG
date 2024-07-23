@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/18 18:44:30 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:02:33 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@
 # define S_LEFT 2
 # define S_RIGHT 3
 # define S_DOWN 4
+
+# define M_S_LINK 1
+# define M_S_MONSTER 1
+
+# define ANIM_SPEED_L 20
+# define ANIM_SPEED_M 50
+
+# define ERROR 1
+# define SUCCESS 0
 
 typedef enum s_assets
 {
@@ -164,6 +173,15 @@ typedef struct s_game
 	int							map_height;
 }								t_game;
 
+
+// PARSING
+void							parsing(t_game *data);
+int								is_double(char **map);
+int								is_rectangle(char **map);
+int								is_valid_char(char **map);
+
+
+
 //	UTILS AND FUNCTIONS GARBAGE
 void							ft_lstadd_back_garbage(t_garbage **alst,
 									t_garbage *new);
@@ -172,8 +190,6 @@ void							ft_free_all(t_garbage **lst, t_game *data);
 void							secure_exit(t_game *data);
 void							ft_free_img(t_img **img, void *mlx_ptr);
 void							ft_lstclear_garbage(t_garbage **lst);
-
-
 void							*ft_calloc(size_t count, size_t size,
 									t_garbage **data, char *name);
 
@@ -187,6 +203,11 @@ bool							ft_only_space(char *str);
 void							ft_lstclear(t_frame **lst, t_game *data);
 t_frame							*ft_lstnew(const char *content, t_game *data);
 void							ft_lstadd_back(t_frame **alst, t_frame *new);
+void							ft_putstr_fd(char *s, int fd);
+int								ft_strlen_gnl(char *str);
+
+
+
 
 // MLX ANIMATIONS AND INITIALIZING
 void							ft_init_game(t_game *data);
@@ -202,7 +223,6 @@ void							load_animation(t_game *data,
 									e_AnimationType action,
 									const char *paths[]);
 void							init_img(t_game *data);
-void							init_start_over(t_game *data);
 
 // FUNCTIONS DRAW
 void							put_pixel_to_image(t_img *img, int x, int y,

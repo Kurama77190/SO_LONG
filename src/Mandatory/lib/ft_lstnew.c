@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:09:56 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/18 17:48:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:19:16 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_frame	*ft_lstnew(const char *content, t_game *data)
 	{
 		return (NULL);
 	}
-	fprintf(stderr, "load image: %s\n", content);
 	load_image(data, new->img, content);
 	new->next = NULL;
 	return (new);

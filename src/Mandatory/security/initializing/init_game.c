@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 01:19:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:28:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ float	get_normalization_factor(int map_width, int map_height);
 
 void	ft_init_game(t_game *data)
 {
+	parsing(data);
 	data->memory_manager = NULL;
 	data->all_ruby = 0;
 	data->a_life = true;

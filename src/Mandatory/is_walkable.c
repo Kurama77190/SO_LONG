@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_walkable.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gbazart <gbazart@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 05:18:37 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/09 18:14:17 by gbazart          ###   ########.fr       */
+/*   Updated: 2024/07/22 15:10:12 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ bool	is_walkable(t_game *data, int x, int y)
 	{
 		if (data->ruby_counter == 0)
 		{
-			printf("pointeur memory manager : %p\n", data->memory_manager);
 			ft_free_all(&data->memory_manager, data);
 			exit(EXIT_SUCCESS);
 		}

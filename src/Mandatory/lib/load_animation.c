@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:00:33 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/18 17:53:42 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/23 01:18:11 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,12 @@ void	load_animation(t_game *data, e_AnimationType action,
 	}
 	i = -1;
 	j = count_paths(paths);
-	printf("nombre de ligne dans le paths : %i\n", j);
 	data->animations[action] = ft_calloc(1, sizeof(t_animation),
 			&data->memory_manager, "ANIMATION");
 	while (++i < j)
 	{
 		ft_lstadd_back(&(data->animations[action]->frames), ft_lstnew(paths[i],
 				data));
-		printf("numero FRAMES = %i\n", i);
 		if (i == 0)
 		{
 			data->animations[action]->current = data->animations[action]->frames;

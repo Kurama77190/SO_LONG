@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:14:01 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 01:47:54 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/23 02:01:59 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	**allocate_secure(t_game *data, size_t height)
 {
 	char	**map;
 
-	map = (char **)malloc(sizeof(char *) * (size_t)height + 1);
+	map = (char **)malloc(sizeof(char *) * ((size_t)height + 1));
 	if (!map)
 	{
 		perror("Failed to allocate memory for map");

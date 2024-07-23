@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:22:02 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 01:19:49 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/22 23:46:25 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	draw_map(t_game *data);
 
 void	init_map(t_game *data)
 {
-	data->map = read_map(data, data->n_map, &data->map_width,
-		&data->map_height);
 	draw_map(data);
 	data->buffer = ft_calloc(1, sizeof(t_img), &data->memory_manager, "IMG");
 	data->buffer->img_ptr = mlx_new_image(data->mlx_ptr, data->map_width * 64, \

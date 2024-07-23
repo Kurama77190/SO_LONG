@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/09 20:07:10 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/23 02:02:38 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SOLONG = src/Mandatory/so_long/
 SECURITY = src/Mandatory/security/
 GARBAGE = $(SECURITY)garbage_collector/
 INIT = $(SECURITY)initializing/
+PARS = $(SECURITY)parsing/
 GNL = external/GNL/src/
 
 #LIB_B = src/Bonus/lib/
@@ -43,7 +44,8 @@ BUILD = builder/
 SRC = src/Mandatory/main.c src/Mandatory/draw.c src/Mandatory/update.c src/Mandatory/map.c src/Mandatory/is_walkable.c \
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c	 $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
 	$(LIB)ft_tab_len.c $(LIB)load_animation.c $(LIB)read_map.c $(LIB)put_pixel_to_image.c \
-	$(LIB)secure_exit.c $(LIB)update_animation.c \
+	$(LIB)secure_exit.c $(LIB)update_animation.c $(LIB)putstr_fd.c $(LIB)ft_strlen_gnl.c \
+	$(PARS)parsing.c $(PARS)is_double.c $(PARS)is_rectangle.c $(PARS)is_valid_char.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c $(GARBAGE)ft_free_img.c \
 	$(GARBAGE)ft_lstclear_garbage.c \

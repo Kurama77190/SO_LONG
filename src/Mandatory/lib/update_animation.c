@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 07:00:02 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 18:55:44 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:02:50 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	update_animation(t_game *data, t_player *player)
 	t_frame		*current;
 
 	if (player == data->player[LINK])
-		usleep = 4;
+		usleep = ANIM_SPEED_L;
 	else
-		usleep = 10;
+		usleep = ANIM_SPEED_M;
 	animation = data->animations[player->last_direction];
 	current = animation->current;
 	if (current != NULL)
