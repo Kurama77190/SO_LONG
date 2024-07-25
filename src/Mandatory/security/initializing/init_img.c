@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/21 12:05:05 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 17:24:06 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 19:00:17 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void				alloc_and_secure_1(t_game *data);
 void				alloc_and_secure_2(t_game *data);
 void				alloc_and_secure_3(t_game *data);
 void				secure_exit(t_game *data);
+void				load_img_and_secure(bool error, t_game *data);
 
 static const char	*g_x_assets[6] = {
 	"src/Mandatory/img/maps/exit.xpm",
@@ -44,29 +45,39 @@ static const char	*g_x_static_monster[5] = {
 
 void	init_img(t_game *data)
 {
-	bool error;
+	bool	error;
 
 	error = false;
 	alloc_and_secure_1(data);
 	alloc_and_secure_2(data);
 	alloc_and_secure_3(data);
+	load_img_and_secure(error, data);
+}
+
+void	load_img_and_secure(bool error, t_game *data)
+{
 	error |= load_image(data, data->pos_static[MOVE_UP], g_x_static_player[0]);
-	error |= load_image(data, data->pos_static[MOVE_DOWN], g_x_static_player[1]);
-	error |= load_image(data, data->pos_static[MOVE_LEFT], g_x_static_player[2]);
-	error |= load_image(data, data->pos_static[MOVE_RIGHT], g_x_static_player[3]);
+	error |= load_image(data, data->pos_static[MOVE_DOWN], \
+			g_x_static_player[1]);
+	error |= load_image(data, data->pos_static[MOVE_LEFT], \
+			g_x_static_player[2]);
+	error |= load_image(data, data->pos_static[MOVE_RIGHT], \
+			g_x_static_player[3]);
 	error |= load_image(data, data->assets[EXIT], g_x_assets[0]);
 	error |= load_image(data, data->assets[FLOOR], g_x_assets[1]);
 	error |= load_image(data, data->assets[WALL], g_x_assets[2]);
 	error |= load_image(data, data->assets[RUBIS], g_x_assets[4]);
-	error |= load_image(data, data->pos_static[MOVE_UP_M], g_x_static_monster[0]);
-	error |= load_image(data, data->pos_static[MOVE_DOWN_M], g_x_static_monster[1]);
-	error |= load_image(data, data->pos_static[MOVE_LEFT_M], g_x_static_monster[2]);
-	error |= load_image(data, data->pos_static[MOVE_RIGHT_M], g_x_static_monster[3]);
+	error |= load_image(data, data->pos_static[MOVE_UP_M], \
+			g_x_static_monster[0]);
+	error |= load_image(data, data->pos_static[MOVE_DOWN_M], \
+			g_x_static_monster[1]);
+	error |= load_image(data, data->pos_static[MOVE_LEFT_M], \
+			g_x_static_monster[2]);
+	error |= load_image(data, data->pos_static[MOVE_RIGHT_M], \
+			g_x_static_monster[3]);
 	if (error)
 		ft_free_all(&data->memory_manager, data);
 }
-
-// alloc for LINK
 
 void	alloc_and_secure_1(t_game *data)
 {

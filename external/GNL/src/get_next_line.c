@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 02:34:55 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/21 22:44:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:45:37 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	lire_et_addlist(int fd, t_list **inventaire, int *compteur)
 	while (!found_newline(*inventaire) && *compteur != 0)
 	{
 		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-		if (buf == NULL)
+		if (!buf)
 			return ;
 		*compteur = (int)read(fd, buf, BUFFER_SIZE);
 		if ((*inventaire == NULL && *compteur == 0) || *compteur == -1)
