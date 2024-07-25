@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 18:22:02 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:03:00 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:15:31 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	init_map(t_game *data)
 	data->buffer->addr = mlx_get_data_addr(data->buffer->img_ptr, \
 			&data->buffer->bpp, &data->buffer->line_length, \
 			&data->buffer->endian);
+	if (!data->buffer->addr)
+		ft_free_all(&data->memory_manager, data);
 	data->buffer->height = data->map_height * 64;
 	data->buffer->width = data->map_width * 64;
 	data->bg_img->height = data->map_height * 64;
 	data->bg_img->width = data->map_width * 64;
 	draw_image_to_image(data->buffer, data->bg_img, 0, 0);
 }
-
-
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢆⠀⠀⠀⠈⣹⣷⣀⣴⠀⢠⣤⣶⡦⠀⠀⠀⠀⠀⠀

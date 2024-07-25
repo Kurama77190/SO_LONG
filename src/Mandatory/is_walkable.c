@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 05:18:37 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 15:10:12 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:32:50 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ bool	is_walkable(t_game *data, int x, int y)
 	{
 		if (data->ruby_counter == 0)
 		{
+			ft_putstr_fd("YOU WIN !!!\n", 1);
 			ft_free_all(&data->memory_manager, data);
-			exit(EXIT_SUCCESS);
 		}
-		else
-			return (true);
 	}
 	return (true);
 }

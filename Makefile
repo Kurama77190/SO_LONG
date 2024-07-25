@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/25 01:39:01 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/25 06:58:51 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,11 @@ BUILD = builder/
 
 #=================================================__SRC__OF__PROJECT__=============================================================================
 SRC = $(SRC_)main.c $(SRC_)draw.c $(SRC_)update.c $(SRC_)map.c $(SRC_)is_walkable.c $(SRC_)press_link.c $(SRC_)press_monster.c $(SRC_)press_release.c \
+	$(SRC_)close_win.c $(SRC_)press_esc.c \
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c	 $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
 	$(LIB)ft_tab_len.c $(LIB)load_animation.c $(LIB)read_map.c $(LIB)put_pixel_to_image.c \
 	$(LIB)secure_exit.c $(LIB)update_animation.c $(LIB)putstr_fd.c $(LIB)ft_strlen_gnl.c $(LIB)ft_strdub.c $(LIB)ft_count_char.c \
+	$(LIB)ft_itoa.c $(LIB)update_step_count.c \
 	$(PARS)parsing.c $(PARS)is_double.c $(PARS)is_rectangle.c $(PARS)is_valid_char.c $(PARS)is_map_close.c $(PARS)flood_fill.c \
 	$(PARS)is_a_valid_ber.c $(PARS)is_a_good_size.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c \

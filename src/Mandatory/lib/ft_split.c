@@ -6,12 +6,11 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 06:43:25 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/18 18:48:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 05:51:00 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 static int	ft_nombremot(char *str, char c);
 static int	ft_lenmot(char *str, char c);
@@ -39,7 +38,6 @@ char	**ft_split(char const *s, char c, t_garbage **data, char *name)
 		return (NULL);
 	}
 	ft_lstadd_back_garbage(data, ft_lstnew_garbage(NULL, (void **)tab, name));
-	// (void)data, (void)name;
 	return (tab);
 }
 
@@ -79,7 +77,7 @@ static char	**ft_malloc_error(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		free (tab[i]);
+		free(tab[i]);
 		i++;
 	}
 	free(tab);

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 07:00:02 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/23 15:04:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 04:28:39 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	update_animation(t_game *data, t_player *player)
 		{
 			animation->current = current->next;
 			data->step_counter++;
+			printf("%i\n", data->step_counter);
 		}
 		if (animation->current == NULL)
 			animation->current = animation->frames;

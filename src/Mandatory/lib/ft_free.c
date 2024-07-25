@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 04:13:10 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/17 17:45:11 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 05:52:47 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_free(void **ptr)
 	if (ptr && *ptr)
 	{
 		free(*ptr);
-		*ptr = NULL;		
+		*ptr = NULL;
 	}
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 04:17:03 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/18 18:46:03 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 07:59:51 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	*ft_calloc(size_t count, size_t size, t_garbage **data, char *name)
 	ft_lstadd_back_garbage(&current, new);
 	if (!*data)
 	{
-		printf("initialize data : %p", current);
 		*data = current;
 	}
 	ft_memset(tab, 0, ft_securite(count, size));

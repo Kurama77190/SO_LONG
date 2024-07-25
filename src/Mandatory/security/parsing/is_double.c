@@ -6,14 +6,13 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:42:20 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 18:42:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:17:38 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
-bool find_double(int player, int monster, int exit_, char **map);
+bool	find_double(int player, int monster, int exit_, char **map);
 
 int	is_double(char **map)
 {
@@ -34,7 +33,7 @@ int	is_double(char **map)
 	return (SUCCESS);
 }
 
-bool find_double(int player, int monster, int exit_, char **map)
+bool	find_double(int player, int monster, int exit_, char **map)
 {
 	int	i;
 	int	j;
@@ -43,7 +42,7 @@ bool find_double(int player, int monster, int exit_, char **map)
 	while (map[i])
 	{
 		j = 0;
-		while(map[i][j])
+		while (map[i][j])
 		{
 			if (map[i][j] == 'P')
 				player++;

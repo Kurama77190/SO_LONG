@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tab_len.c                                       :+:      :+:    :+:   */
+/*   close_win.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/18 19:45:07 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 05:51:25 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/07/25 06:51:11 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/07/25 06:57:29 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_tab_len(const char **strs)
+int	close_window(t_game *data)
 {
-	int	i;
-
-	i = 0;
-	while (strs[i])
-		i++;
-	return (i);
+	ft_free_all(&data->memory_manager, data);
+	return (SUCCESS);
 }

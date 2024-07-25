@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:00:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:59:57 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@
 # define ANIM_SPEED_L 10
 # define ANIM_SPEED_M 10
 
-
 # define ERROR 1
 # define SUCCESS 0
 
@@ -63,33 +62,29 @@ typedef enum s_assets
 	EXIT,
 	PLAYER,
 	ENEMY
-}								e_Assets;
+}	t_Assets;
 
 typedef enum s_animation_type
 {
 	LINK,
 	MONSTER,
-
 	MOVE_UP,
 	MOVE_DOWN,
 	MOVE_LEFT,
 	MOVE_RIGHT,
-
 	MOVE_UP_M,
 	MOVE_DOWN_M,
 	MOVE_LEFT_M,
 	MOVE_RIGHT_M,
-
 	ATTACK_UP,
 	ATTACK_DOWN,
 	ATTACK_LEFT,
 	ATTACK_RIGHT,
-
 	ROLL_UP,
 	ROLL_DOWN,
 	ROLL_LEFT,
 	ROLL_RIGHT
-}	e_AnimationType;
+}	t_AnimationType;
 
 typedef struct s_flood_fill
 {
@@ -181,7 +176,6 @@ typedef struct s_game
 	int							map_height;
 }								t_game;
 
-
 // PARSING
 void							parsing(t_game *data);
 int								is_double(char **map);
@@ -192,15 +186,11 @@ int								flood_fill(char **map);
 int								is_a_valid_ber(char *n_map);
 int								is_a_good_size(t_game *data);
 
-
-
-
-
-
 //	UTILS AND FUNCTIONS GARBAGE
 void							ft_lstadd_back_garbage(t_garbage **alst,
 									t_garbage *new);
-t_garbage						*ft_lstnew_garbage(void *content, void **split, char *name);
+t_garbage						*ft_lstnew_garbage(void *content, void **split,
+									char *name);
 void							ft_free_all(t_garbage **lst, t_game *data);
 void							secure_exit(t_game *data);
 void							ft_free_img(t_img **img, void *mlx_ptr);
@@ -222,10 +212,10 @@ void							ft_putstr_fd(char *s, int fd);
 int								ft_strlen_gnl(char *str);
 char							*ft_strdup(const char *s1);
 int								count_char(char **strs, char c);
-
-
-
-
+char							*ft_itoa(int nb);
+int								update_step_count(t_game *data);
+int								update_animation(t_game *data,
+									t_player *player);
 
 // MLX ANIMATIONS AND INITIALIZING
 void							ft_init_game(t_game *data);
@@ -237,7 +227,7 @@ int								update_game(t_game *data);
 void							load_image(t_game *data, t_img *img,
 									const char *file);
 void							load_animation(t_game *data,
-									e_AnimationType action,
+									t_AnimationType action,
 									const char *paths[]);
 void							init_img(t_game *data);
 
@@ -267,11 +257,13 @@ void							draw_image_to_image(t_img *dest_img,
 
 bool							is_walkable(t_game *data, int x, int y);
 bool							is_walkable_m(t_game *data, int x, int y);
-void							link_press(t_game *data, t_player *link, int keycode);
-void							monster_press(t_game *data, t_player *monster, int keycode);
+void							link_press(t_game *data, t_player *link,
+									int keycode);
+void							monster_press(t_game *data, t_player *monster,
+									int keycode);
 int								keyrelease_hook(int keycode, t_game *data);
+int								close_window(t_game *data);
+void							press_esc(t_game *data, int keycode);
 
-
-void							open_exit(t_game *data);
 
 #endif

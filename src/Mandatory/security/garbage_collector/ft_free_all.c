@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 05:28:32 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/24 23:20:39 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:10:59 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	clear_all_lst(t_game *data);
 void	clear_all_img(t_game *data);
 void	clear_all_mlx(t_game *data);
+
 void	ft_free_all(t_garbage **lst, t_game *data)
 {
 	if (!lst)

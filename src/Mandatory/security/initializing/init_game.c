@@ -6,14 +6,14 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:09:14 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 07:53:16 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 void	init_win(t_game *data);
-void	init_player(t_game *data, e_AnimationType n_player);
+void	init_player(t_game *data, t_AnimationType n_player);
 
 void	ft_init_game(t_game *data)
 {
@@ -34,14 +34,12 @@ void	ft_init_game(t_game *data)
 	return ;
 }
 
-void	init_player(t_game *data, e_AnimationType n_player)
+void	init_player(t_game *data, t_AnimationType n_player)
 {
 	data->player[n_player] = ft_calloc(1, sizeof(t_player),
 			&data->memory_manager, "PLAYER");
 	if (!data->player[n_player])
 		ft_free_all(&data->memory_manager, data);
-	data->player[n_player]->pos_x = -1;
-	data->player[n_player]->pos_y = -1;
 	data->player[n_player]->anime_actived = -1;
 	if (n_player == LINK)
 		data->player[n_player]->last_direction = MOVE_DOWN;

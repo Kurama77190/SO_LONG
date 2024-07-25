@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:33:47 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 00:06:28 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:09:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	check_main_char(int *array, char **map, int i, int j)
 		j = 0;
 		while (map[i][j])
 		{
-			
 			if (map[i][j] == 'E' || map[i][j] == 'P' || map[i][j] == 'C')
 			{
 				array[(size_t)map[i][j]] = true;
@@ -55,30 +54,29 @@ int	check_main_char(int *array, char **map, int i, int j)
 		}
 		i++;
 	}
-	if (array[(size_t)'E'] == false)
+	if (array[('E')] == false)
 		return (ERROR);
-	if (array[(size_t)'C'] == false)
+	if (array['C'] == false)
 		return (ERROR);
-	if (array[(size_t)'P'] == false)
+	if (array['P'] == false)
 		return (ERROR);
 	return (SUCCESS);
 }
 
 int	check_valid_char(int *array, char **map, int i, int j)
 {
-	array[(size_t) 'M'] = true;
-	array[(size_t) 'P'] = true;
-	array[(size_t) 'C'] = true;
-	array[(size_t) 'E'] = true;
-	array[(size_t) '0'] = true;
-	array[(size_t) '1'] = true;
-	array[(size_t) '\n'] = true;
+	array['M'] = true;
+	array['P'] = true;
+	array['C'] = true;
+	array['E'] = true;
+	array['0'] = true;
+	array['1'] = true;
+	array['\n'] = true;
 	while (map[i])
 	{
 		j = 0;
 		while (map[i][j])
 		{
-			
 			if (!(array[(size_t)map[i][j]]))
 			{
 				return (ERROR);

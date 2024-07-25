@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:34:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:01:52 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:29:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	draw_ruby_and_exit(t_game *data);
 void	draw_floor_and_thee(t_game *data);
 void	draw_pos_players(t_game *data);
+void	draw_player(t_game *data, int *x, int *y);
 
 void	draw_map(t_game *data)
 {
@@ -96,27 +97,33 @@ void	draw_pos_players(t_game *data)
 	int	y;
 
 	y = 0;
-	while (data->map[y])
+	x = 0;
+	draw_player(data, &x, &y);
+}
+
+void	draw_player(t_game *data, int *x, int *y)
+{
+	while (data->map[*y])
 	{
-		x = 0;
-		while (data->map[y][x])
+		(*x) = 0;
+		while (data->map[*y][*x])
 		{
-			if (data->map[y][x] == 'P')
+			if (data->map[*y][*x] == 'P')
 			{
-				draw_image_to_image(data->bg_img, data->assets[FLOOR], x * 64, y
-					* 64);
-				data->player[LINK]->pos_x = x * 64;
-				data->player[LINK]->pos_y = y * 64;
+				draw_image_to_image(data->bg_img, data->assets[FLOOR], (*x)
+					* 64, (*y) * 64);
+				data->player[LINK]->pos_x = *x * 64;
+				data->player[LINK]->pos_y = *y * 64;
 			}
-			else if (data->map[y][x] == 'M')
+			if (data->map[*y][*x] == 'M')
 			{
-				draw_image_to_image(data->bg_img, data->assets[FLOOR], x * 64, y
-					* 64);
-				data->player[MONSTER]->pos_x = x * 64;
-				data->player[MONSTER]->pos_y = y * 64;
+				draw_image_to_image(data->bg_img, data->assets[FLOOR], *x * 64,
+					*y * 64);
+				data->player[MONSTER]->pos_x = *x * 64;
+				data->player[MONSTER]->pos_y = *y * 64;
 			}
-			x++;
+			(*x)++;
 		}
-		y++;
+		(*y)++;
 	}
 }

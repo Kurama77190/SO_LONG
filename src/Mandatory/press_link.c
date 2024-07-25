@@ -6,19 +6,15 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:40:51 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/23 16:27:00 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 04:13:35 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool    link_move(t_player *link);
-
 void	link_press(t_game *data, t_player *link, int keycode)
 {
-    // if (link_move(link))
-    //     return ;
-    (void)data;
+	(void)data;
 	if (keycode == KEY_W)
 	{
 		if (is_walkable(data, link->pos_x + 32, link->pos_y + 15))
@@ -39,10 +35,6 @@ void	link_press(t_game *data, t_player *link, int keycode)
 		if (is_walkable(data, link->pos_x + 52, link->pos_y + 52))
 			link->move_right = true;
 	}
-	link->anime_actived = 1;
-}
-
-bool    link_move(t_player *link)
-{
-    return (link->anime_actived == 1);
+	if (link->move_up || link->move_down || link->move_left || link->move_right)
+		link->anime_actived = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:00:33 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/23 15:04:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:24:05 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		count_paths(const char *paths[]);
 
-void	load_animation(t_game *data, e_AnimationType action,
+void	load_animation(t_game *data, t_AnimationType action,
 		const char *paths[])
 {
 	int	i;
@@ -36,7 +36,8 @@ void	load_animation(t_game *data, e_AnimationType action,
 				data));
 		if (i == 0)
 		{
-			data->animations[action]->current = data->animations[action]->frames;
+			data->animations[action]->current = data->animations[action]-> \
+			frames;
 			data->animations[action]->frame_count = 0;
 		}
 	}

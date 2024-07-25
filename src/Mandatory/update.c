@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:35 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 01:52:40 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:19:52 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int		get_last_direction(t_player *player1, t_player *player2);
 void	update_player(t_game *data);
-int		update_animation(t_game *data, t_player *player);
 int		link_action(t_game *data, t_player *link);
 int		monster_action(t_game *data, t_player *monster);
 
@@ -30,11 +29,11 @@ int	update_game(t_game *data)
 	link->last_direction = get_last_direction(link, NULL);
 	monster->last_direction = get_last_direction(NULL, monster);
 	update_player(data);
-    if (!(data->a_life))
-    {
-        ft_free_all(&data->memory_manager, data);
-		exit(EXIT_SUCCESS);
-    }
+	if (!(data->a_life))
+	{
+		ft_putstr_fd("YOU DIE...\n", 1);
+		ft_free_all(&data->memory_manager, data);
+	}
 	return (0);
 }
 
@@ -125,14 +124,14 @@ void	update_player(t_game *data)
 	link = data->player[LINK];
 	monster = data->player[MONSTER];
 	draw_image_to_image(data->buffer, data->bg_img, 0, 0);
-	if (link->anime_actived != -1)
+	if (link->anime_actived == 1)
 	{
 		update_animation(data, link);
 	}
 	else
-		draw_image_to_image(data->buffer,
+		draw_image_to_image(data->buffer, \
 			data->pos_static[link->last_direction], link->pos_x, link->pos_y);
-	if (monster->anime_actived != -1)
+	if (monster->anime_actived == 1)
 	{
 		update_animation(data, monster);
 	}
@@ -142,6 +141,7 @@ void	update_player(t_game *data)
 			monster->pos_y);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->buffer->img_ptr,
 		0, 0);
+	update_step_count(data);
 }
 
 // ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣴⡖⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

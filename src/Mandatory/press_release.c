@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:06:17 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/23 16:25:30 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 04:05:29 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	player_release_link(t_game *data, int keycode, t_player *link);
 void	player_release_monster(t_game *data, int keycode, t_player *monster);
-void    reset_frame_count(t_game *data);
 
 int	keyrelease_hook(int keycode, t_game *data)
 {
@@ -31,29 +30,28 @@ int	keyrelease_hook(int keycode, t_game *data)
 void	player_release_link(t_game *data, int keycode, t_player *link)
 {
 	(void)data;
-    if (keycode == KEY_W && link->move_up)
+	if (keycode == KEY_W)
 	{
 		link->move_up = false;
 	}
-	else if (keycode == KEY_S && link->move_down)
+	else if (keycode == KEY_S)
 	{
 		link->move_down = false;
 	}
-	else if (keycode == KEY_A && link->move_left)
+	else if (keycode == KEY_A)
 	{
 		link->move_left = false;
 	}
-	else if (keycode == KEY_D && link->move_right)
+	else if (keycode == KEY_D)
 	{
 		link->move_right = false;
 	}
 	link->anime_actived = -1;
 }
 
-
 void	player_release_monster(t_game *data, int keycode, t_player *monster)
 {
-    (void)data;
+	(void)data;
 	if (keycode == KEY_UP && monster->move_up)
 	{
 		monster->move_up = false;

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:45:16 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/24 23:48:05 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:18:03 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	is_rectangle(char **map)
 
 	i = 1;
 	len_line = ft_strlen_gnl(map[0]);
-	while(map[i])
+	while (map[i])
 	{
 		if ((ft_strlen_gnl(map[i])) != len_line)
 		{

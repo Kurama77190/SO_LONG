@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 00:37:05 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 00:37:40 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 06:12:32 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	is_a_valid_ber(char *n_map)
 	}
 	return (SUCCESS);
 }
+
 bool	check_is_ber(char *str)
 {
 	int	i;
