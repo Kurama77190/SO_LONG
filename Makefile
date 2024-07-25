@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/25 06:58:51 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/25 17:30:18 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRC = $(SRC_)main.c $(SRC_)draw.c $(SRC_)update.c $(SRC_)map.c $(SRC_)is_walkabl
 	$(LIB)free_split.c $(LIB)ft_free.c $(LIB)ft_split.c	 $(LIB)ft_only_space.c $(LIB)ft_lstadd_back.c $(LIB)ft_lstnew.c $(LIB)ft_lstclear.c \
 	$(LIB)ft_tab_len.c $(LIB)load_animation.c $(LIB)read_map.c $(LIB)put_pixel_to_image.c \
 	$(LIB)secure_exit.c $(LIB)update_animation.c $(LIB)putstr_fd.c $(LIB)ft_strlen_gnl.c $(LIB)ft_strdub.c $(LIB)ft_count_char.c \
-	$(LIB)ft_itoa.c $(LIB)update_step_count.c \
+	$(LIB)ft_itoa.c $(LIB)update_step_count.c $(LIB)load_image.c \
 	$(PARS)parsing.c $(PARS)is_double.c $(PARS)is_rectangle.c $(PARS)is_valid_char.c $(PARS)is_map_close.c $(PARS)flood_fill.c \
 	$(PARS)is_a_valid_ber.c $(PARS)is_a_good_size.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c \
@@ -189,32 +189,32 @@ re: fclean all # Règle pour recompiler
 # 	make m
 
 NAMEE = so_long
-NAMEE_BONUS = so_long_bonus
+NAMEE_BONUS = so_long
 
-IMG_SPRITE = img/player.xpm
+IMG_SPRITE = src/Mandatory/img/sheetsprite/down/XPM/link_move_down_1.xpm
 # 	TESTING lots of BAD maps, and others break tests, with valgrind
 # 		
 # 		replace the first dependency $(NAMEE) with your $(NAME_BONUS) to test bonus
 # 			<!>	give 'IMG_SPRITE' the path of one of YOUR sprite file	<!>
-m: $(NAMEE)
+m: $(NAMEE_BONUS)
 	@for map in $(BAD_MAPS); do \
 	$(call random_shmol_cat, teshting lots of bad miaps:, $$map shouldt run..., $(CLS), ); \
-	$(VALGRIND) ./$(word 1, $^) map/map_bad/$$map; \
+	$(VALGRIIND) ./$(word 1, $^) map/map_bad/$$map; \
 	echo "\t\033[5m~ Press Enter to continue...\033[0m"; \
 	read -p "" key; \
 	done
 #
 	@$(call shmol_cat_color, $(COLOR_5R_0G_5B), $(COLOR_5R_2G_3B), teshing with bad map name!, map_multiplayer.be, $(CLS), );
-	-$(VALGRIND) ./$(word 1, $^) map/map_multiplayer.be
+	-$(VALGRIIND) ./$(word 1, $^) map/map_multiplayer.be
 	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
 	@read -p "" key
 	@$(call shmol_cat_color, $(COLOR_5R_0G_5B), $(COLOR_5R_2G_3B), teshing with bad map name!, mapzzzzz.ber, $(CLS), );
-	-$(VALGRIND) ./$(word 1, $^) map/mapzzzzz.ber
+	-$(VALGRIIND) ./$(word 1, $^) map/mapzzzzz.ber
 	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
 	@read -p "" key
 #
 	@$(call random_shmol_cat, teshing too much args, "$(MAP1) $(MAP1)", $(CLS), );
-	-$(VALGRIND) ./$(word 1, $^) map/$(MAP1) map/$(MAP1)
+	-$(VALGRIIND) ./$(word 1, $^) map/$(MAP1) map/$(MAP1)
 	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
 	@read -p "" key
 #
@@ -223,7 +223,7 @@ m: $(NAMEE)
 	@rm -f ./map/map_blank.ber
 	touch ./map/map_blank.ber
 	@echo "$(COLOR_5R_0G_5B)"
-	-$(VALGRIND) ./$(word 1, $^) map/map_blank.ber
+	-$(VALGRIIND) ./$(word 1, $^) map/map_blank.ber
 	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
 	@read -p "" key
 #
@@ -231,7 +231,7 @@ m: $(NAMEE)
 	@echo "$(RED)"
 	mv ./$(IMG_SPRITE) ./player_007.xpm
 	@echo "$(COLOR_5R_4G_0B)"
-	-$(VALGRIND) ./$(word 1, $^) map/$(MAP1)
+	-$(VALGRIIND) ./$(word 1, $^) map/$(MAP1)
 	@echo "$(RED)"
 	mv ./player_007.xpm ./$(IMG_SPRITE)
 	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
@@ -240,7 +240,7 @@ m: $(NAMEE)
 	@$(call random_shmol_cat, "\'tis big biig biiig correct map", "try n break it.. にゃ?", $(CLS), );
 	@echo "\t\033[5m~ Press Enter to continue...\033[0m"
 	@read -p "" key
-	-$(VALGRIND) ./$(word 1, $^) map/$(MAPG)
+	-$(VALGRIIND) ./$(word 1, $^) map/$(MAPG)
 
 # ---------------------------------------------------------------------- >
 # 	big map

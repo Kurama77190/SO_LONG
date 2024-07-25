@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 15:09:56 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 17:19:35 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/07/25 14:28:00 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/07/25 14:28:21 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_frame	*ft_lstnew(const char *content, t_game *data)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	t_frame	*new;
+	unsigned char	*str;
+	size_t			i;
 
-	new = malloc(sizeof(t_frame));
-	if (!new)
+	i = 0;
+	str = b;
+	while (i < len)
 	{
-		return (NULL);
+		str[i] = c;
+		i++;
 	}
-	new->img = malloc(sizeof(t_img));
-	if (!new->img)
-	{
-		free(new);
-		return (NULL);
-	}
-	new->next = NULL;
-	if (load_image(data, new->img, content))
-		{
-			ft_free((void**)&new->img), ft_free((void**)&new);
-			ft_free_all(&data->memory_manager, data);
-		}
-	return (new);
+	return (b);
 }

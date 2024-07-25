@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 06:59:57 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:18:07 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,15 +75,7 @@ typedef enum s_animation_type
 	MOVE_UP_M,
 	MOVE_DOWN_M,
 	MOVE_LEFT_M,
-	MOVE_RIGHT_M,
-	ATTACK_UP,
-	ATTACK_DOWN,
-	ATTACK_LEFT,
-	ATTACK_RIGHT,
-	ROLL_UP,
-	ROLL_DOWN,
-	ROLL_LEFT,
-	ROLL_RIGHT
+	MOVE_RIGHT_M
 }	t_AnimationType;
 
 typedef struct s_flood_fill
@@ -224,7 +216,7 @@ char							**read_map(t_game *data, const char *filename,
 									int *width, int *height);
 int								keypress_hook(int keycode, t_game *data);
 int								update_game(t_game *data);
-void							load_image(t_game *data, t_img *img,
+bool							load_image(t_game *data, t_img *img,
 									const char *file);
 void							load_animation(t_game *data,
 									t_AnimationType action,

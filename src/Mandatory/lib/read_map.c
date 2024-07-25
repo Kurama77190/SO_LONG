@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:14:01 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 01:03:47 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:51:57 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ char	**read_map(t_game *data, const char *filename, int *width, int *height)
 	int		i;
 
 	if (init_sizescreen(width, height, filename) == -1)
-		ft_free_all(&data->memory_manager, data);
-	map = allocate_secure(data, *height);
+		exit(1);
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putstr_fd("permission denied: cannot read .ber\n", 2);
-		ft_free_all(&data->memory_manager, data);
+		exit(1);
 	}
+	map = allocate_secure(data, *height);
 	i = 0;
 	while (1)
 	{

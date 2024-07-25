@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 13:13:18 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/18 18:55:37 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:14:52 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_lstclear(t_frame **lst, t_game *data)
 {
 	t_frame	*current;
 
-	if (!lst || !*lst)
+	if (!lst)
 		return ;
 	while (lst != NULL && *lst != NULL)
 	{
