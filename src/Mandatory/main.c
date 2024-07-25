@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 17:00:58 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 00:33:41 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,18 @@
 #include <mlx.h>
 
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	t_game	data;
 
 	if (argc != 2)
 	{
-		perror("Bad arguments\n");
+		ft_putstr_fd("Bad arguments.\n", 2);
+		return (1);
+	}
+	if (!env[0])
+	{
+		ft_putstr_fd("environment doesn't exist.\n", 2);
 		return (1);
 	}
 	data.n_map = argv[1];

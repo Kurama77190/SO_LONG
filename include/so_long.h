@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/23 02:02:33 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:00:28 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@
 # define S_RIGHT 3
 # define S_DOWN 4
 
-# define M_S_LINK 1
-# define M_S_MONSTER 1
+# define M_S_LINK 5
+# define M_S_MONSTER 5
 
-# define ANIM_SPEED_L 20
-# define ANIM_SPEED_M 50
+# define ANIM_SPEED_L 10
+# define ANIM_SPEED_M 10
+
 
 # define ERROR 1
 # define SUCCESS 0
@@ -88,7 +89,14 @@ typedef enum s_animation_type
 	ROLL_DOWN,
 	ROLL_LEFT,
 	ROLL_RIGHT
-}								e_AnimationType;
+}	e_AnimationType;
+
+typedef struct s_flood_fill
+{
+	int							coin_max;
+	int							nb_coin;
+	bool						exit;
+}								t_flood_fill;
 
 typedef struct s_player
 {
@@ -179,6 +187,13 @@ void							parsing(t_game *data);
 int								is_double(char **map);
 int								is_rectangle(char **map);
 int								is_valid_char(char **map);
+int								is_map_close(char **map);
+int								flood_fill(char **map);
+int								is_a_valid_ber(char *n_map);
+int								is_a_good_size(t_game *data);
+
+
+
 
 
 
@@ -205,6 +220,9 @@ t_frame							*ft_lstnew(const char *content, t_game *data);
 void							ft_lstadd_back(t_frame **alst, t_frame *new);
 void							ft_putstr_fd(char *s, int fd);
 int								ft_strlen_gnl(char *str);
+char							*ft_strdup(const char *s1);
+int								count_char(char **strs, char c);
+
 
 
 
@@ -214,7 +232,6 @@ void							ft_init_game(t_game *data);
 void							init_animations(t_game *data);
 char							**read_map(t_game *data, const char *filename,
 									int *width, int *height);
-int								keyrelease_hook(int keycode, t_game *data);
 int								keypress_hook(int keycode, t_game *data);
 int								update_game(t_game *data);
 void							load_image(t_game *data, t_img *img,
@@ -250,6 +267,11 @@ void							draw_image_to_image(t_img *dest_img,
 
 bool							is_walkable(t_game *data, int x, int y);
 bool							is_walkable_m(t_game *data, int x, int y);
+void							link_press(t_game *data, t_player *link, int keycode);
+void							monster_press(t_game *data, t_player *monster, int keycode);
+int								keyrelease_hook(int keycode, t_game *data);
+
+
 void							open_exit(t_game *data);
 
 #endif

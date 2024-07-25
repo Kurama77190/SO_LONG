@@ -1,4 +1,4 @@
-builder/src/Mandatory/lib/ft_substr.o: src/Mandatory/lib/ft_substr.c \
+builder/src/Mandatory/press_release.o: src/Mandatory/press_release.c \
   include/so_long.h include/../external/GNL/include/get_next_line.h \
   mlx_linux/mlx.h
 

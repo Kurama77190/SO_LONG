@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:27:43 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/23 14:28:42 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:09:14 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_win(t_game *data);
 void	init_player(t_game *data, e_AnimationType n_player);
-float	get_normalization_factor(int map_width, int map_height);
 
 void	ft_init_game(t_game *data)
 {
@@ -40,9 +39,9 @@ void	init_player(t_game *data, e_AnimationType n_player)
 	data->player[n_player] = ft_calloc(1, sizeof(t_player),
 			&data->memory_manager, "PLAYER");
 	if (!data->player[n_player])
-		secure_exit(data);
-	data->player[n_player]->pos_x = 0;
-	data->player[n_player]->pos_y = 0;
+		ft_free_all(&data->memory_manager, data);
+	data->player[n_player]->pos_x = -1;
+	data->player[n_player]->pos_y = -1;
 	data->player[n_player]->anime_actived = -1;
 	if (n_player == LINK)
 		data->player[n_player]->last_direction = MOVE_DOWN;
@@ -67,14 +66,14 @@ void	init_win(t_game *data)
 	pos_static = data->pos_static;
 	link = data->player[LINK];
 	monster = data->player[MONSTER];
-	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map_width * 64,
+	data->win_ptr = mlx_new_window(data->mlx_ptr, data->map_width * 64, \
 			data->map_height * 64, "The Legend of Zelda : A link to MLX");
 	draw_image_to_image(buffer, bg_img, 0, 0);
-	draw_image_to_image(data->buffer, pos_static[MOVE_DOWN], link->pos_x,
+	draw_image_to_image(data->buffer, pos_static[MOVE_DOWN], link->pos_x, \
 		link->pos_y);
-	draw_image_to_image(data->buffer, pos_static[MOVE_DOWN_M], monster->pos_x,
-		monster->pos_y);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, buffer->img_ptr, 0,
+	draw_image_to_image(data->buffer, pos_static[MOVE_DOWN_M], \
+		monster->pos_x, monster->pos_y);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, buffer->img_ptr, 0, \
 		0);
 }
 

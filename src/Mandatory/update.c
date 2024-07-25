@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:35 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/22 15:12:35 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 01:52:40 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	update_game(t_game *data)
 	t_player	*link;
 	t_player	*monster;
 
-    // delay_based_on_map_size(data->map_width, data->map_height);
 	link = data->player[LINK];
 	monster = data->player[MONSTER];
 	link_action(data, link);

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:34:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/08 19:26:00 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 02:01:52 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	draw_pos_players(t_game *data)
 				data->player[LINK]->pos_x = x * 64;
 				data->player[LINK]->pos_y = y * 64;
 			}
-			if (data->map[y][x] == 'M')
+			else if (data->map[y][x] == 'M')
 			{
 				draw_image_to_image(data->bg_img, data->assets[FLOOR], x * 64, y
 					* 64);
