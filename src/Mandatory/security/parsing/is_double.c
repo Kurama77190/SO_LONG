@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:42:20 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:17:38 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:30:39 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_double(char **map)
 	if (find_double(player, monster, exit_, map))
 	{
 		free_split(map);
-		ft_putstr_fd("Your map have double. Please check your file\n", 2);
+		ft_putstr_fd("Error.\nYour map have double. Please check your file\n", 2);
 		exit(EXIT_FAILURE);
 		return (ERROR);
 	}

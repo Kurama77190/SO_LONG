@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 20:13:28 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/24 23:49:13 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:42:15 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,14 @@ int	flood_fill(char **map)
 {
 	char			**map_cpy;
 	t_flood_fill	data;
-	int				i;
 
 	init_flood_fill(&data, map);
 	map_cpy = map_duplicate(map);
 	start_on_player(map_cpy, &data);
 	if ((data.nb_coin != data.coin_max) || data.exit == false)
 	{
-		ft_putstr_fd("FLood fill invalid, please check your file.\n", 2);
-		i = 0;
-		while (map_cpy[i])
-		{
-			printf("%s", map_cpy[i]);
-			i++;
-		}
+		ft_putstr_fd("Error.\nFLood fill invalid, please check \
+		your file.\n", 2);
 		free_split(map_cpy);
 		free_split(map);
 		exit(EXIT_FAILURE);

@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/25 17:30:18 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/25 21:04:09 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ SRC = $(SRC_)main.c $(SRC_)draw.c $(SRC_)update.c $(SRC_)map.c $(SRC_)is_walkabl
 	$(LIB)secure_exit.c $(LIB)update_animation.c $(LIB)putstr_fd.c $(LIB)ft_strlen_gnl.c $(LIB)ft_strdub.c $(LIB)ft_count_char.c \
 	$(LIB)ft_itoa.c $(LIB)update_step_count.c $(LIB)load_image.c \
 	$(PARS)parsing.c $(PARS)is_double.c $(PARS)is_rectangle.c $(PARS)is_valid_char.c $(PARS)is_map_close.c $(PARS)flood_fill.c \
-	$(PARS)is_a_valid_ber.c $(PARS)is_a_good_size.c \
+	$(PARS)is_a_valid_ber.c $(PARS)is_a_good_size.c $(PARS)is_empty.c \
 	$(INIT)init_game.c $(INIT)init_animations.c $(INIT)init_keys.c $(INIT)init_map.c $(INIT)init_img.c \
 	$(GARBAGE)ft_calloc.c $(GARBAGE)ft_free_all.c $(GARBAGE)ft_lstadd_back_garbage.c $(GARBAGE)ft_lstnew_garbage.c $(GARBAGE)ft_free_img.c \
 	$(GARBAGE)ft_lstclear_garbage.c \

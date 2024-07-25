@@ -1,48 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_a_valid_ber.c                                   :+:      :+:    :+:   */
+/*   is_empty.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 00:37:05 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 21:01:07 by sben-tay         ###   ########.fr       */
+/*   Created: 2024/07/25 21:00:29 by sben-tay          #+#    #+#             */
+/*   Updated: 2024/07/25 21:03:53 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-bool	check_is_ber(char *str);
-
-int	is_a_valid_ber(char *n_map)
+int	is_empty(t_game *data)
 {
-	if (!check_is_ber(n_map))
+	int		fd;
+	char	*res;
+
+	fd = open(data->n_map, O_RDONLY);
+	if (!fd)
 	{
-		ft_putstr_fd("Error.\nYour file doesn't have the good extension(.ber)\n",
-			2);
+		perror("Error.\n");
 		exit(EXIT_FAILURE);
 	}
+	res = get_next_line(fd);
+	if (!res)
+	{
+		ft_putstr_fd("Error.\nYour map is empty.\n", 2);
+		ft_free((void **)&res);
+		close(fd);
+		exit(EXIT_FAILURE);
+	}
+	ft_free((void **)&res);
+	close(fd);
 	return (SUCCESS);
-}
-
-bool	check_is_ber(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	i--;
-	if (str[i] != 'r')
-		return (false);
-	i--;
-	if (str[i] != 'e')
-		return (false);
-	i--;
-	if (str[i] != 'b')
-		return (false);
-	i--;
-	if (str[i] != '.')
-		return (false);
-	return (true);
 }

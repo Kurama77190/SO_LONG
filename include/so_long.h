@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 17:18:07 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 21:07:36 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define S_RIGHT 3
 # define S_DOWN 4
 
-# define M_S_LINK 5
-# define M_S_MONSTER 5
+# define M_S_LINK 1
+# define M_S_MONSTER 1
 
 # define ANIM_SPEED_L 10
 # define ANIM_SPEED_M 10
@@ -134,16 +134,6 @@ typedef struct s_garbage_collector
 	struct s_garbage_collector	*next;
 }								t_garbage;
 
-/*
-	** Name for the garbage collector
-
-	- LINK
-	- MAP
-	- ANIMATION
-	- MONSTER
-
-*/
-
 typedef struct s_game
 {
 	t_img						*buffer;
@@ -177,6 +167,7 @@ int								is_map_close(char **map);
 int								flood_fill(char **map);
 int								is_a_valid_ber(char *n_map);
 int								is_a_good_size(t_game *data);
+int								is_empty(t_game *data);
 
 //	UTILS AND FUNCTIONS GARBAGE
 void							ft_lstadd_back_garbage(t_garbage **alst,
@@ -222,6 +213,7 @@ void							load_animation(t_game *data,
 									t_AnimationType action,
 									const char *paths[]);
 void							init_img(t_game *data);
+void							update_step_count_terminal(t_game *data);
 
 // FUNCTIONS DRAW
 void							put_pixel_to_image(t_img *img, int x, int y,
@@ -256,6 +248,5 @@ void							monster_press(t_game *data, t_player *monster,
 int								keyrelease_hook(int keycode, t_game *data);
 int								close_window(t_game *data);
 void							press_esc(t_game *data, int keycode);
-
 
 #endif

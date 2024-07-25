@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 18:45:16 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:18:03 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:30:46 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_rectangle(char **map)
 	{
 		if ((ft_strlen_gnl(map[i])) != len_line)
 		{
-			ft_putstr_fd("Your map is not a rectangle\n", 2);
+			ft_putstr_fd("Error.\nYour map is not a rectangle\n", 2);
 			free_split(map);
 			exit(EXIT_FAILURE);
 			return (ERROR);

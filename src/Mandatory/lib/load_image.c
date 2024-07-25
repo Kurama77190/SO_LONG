@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/18 21:11:12 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 17:17:57 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:29:19 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	load_image(t_game *data, t_img *img, const char *file)
 			&(img->width), &(img->height));
 	if (img->img_ptr == NULL)
 	{
-		ft_putstr_fd("Failed to load image : ", 2);
+		ft_putstr_fd("Error.\nFailed to load image : ", 2);
 		ft_putstr_fd((char *)file, 2);
 		return (true);
 	}
@@ -32,7 +32,8 @@ bool	load_image(t_game *data, t_img *img, const char *file)
 			&img->endian);
 	if (!img->addr)
 	{
-		ft_putstr_fd("mlx_get_data in function load_image failed\n", 2);
+		ft_putstr_fd("Error.\nmlx_get_data in function load_image \
+				failed\n", 2);
 		return (true);
 	}
 	return (false);

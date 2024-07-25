@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 01:37:36 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 01:38:41 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:30:22 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_a_good_size(t_game *data)
 	data->mlx_ptr = mlx_init();
 	if (mlx_get_screen_size(data->mlx_ptr, &width_win, &height_win) == ERROR)
 	{
-		ft_putstr_fd("ligne : 52 : MLX_GET_SCREEN ERROR.\n", 2);
+		ft_putstr_fd("Error.\nLigne : 52 : MLX_GET_SCREEN ERROR.\n", 2);
 		free_split(data->map);
 		ft_free(&data->mlx_ptr);
 		exit(EXIT_FAILURE);
@@ -43,7 +43,8 @@ int	check_map_height(t_game *data, int height, int height_win)
 {
 	if (height > height_win)
 	{
-		ft_putstr_fd("the height game is far too big, reduce it.\n", 2);
+		ft_putstr_fd("Error.\nthe height game is far too big, \
+				reduce it.\n", 2);
 		free_split(data->map);
 		mlx_destroy_display(data->mlx_ptr);
 		ft_free(&data->mlx_ptr);
@@ -56,7 +57,7 @@ int	check_map_width(t_game *data, int width, int width_win)
 {
 	if (width > width_win)
 	{
-		ft_putstr_fd("the width game is far too big, reduce it.\n", 2);
+		ft_putstr_fd("Error.\nthe width game is far too big, reduce it.\n", 2);
 		free_split(data->map);
 		mlx_destroy_display(data->mlx_ptr);
 		ft_free(&data->mlx_ptr);

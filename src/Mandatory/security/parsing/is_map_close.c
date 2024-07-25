@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 16:12:36 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/24 21:40:12 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:30:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	is_map_close(char **map)
 
 void	exit_secure(char **map)
 {
-	ft_putstr_fd("Your map is not closed. Please check your file.\n", 2);
+	ft_putstr_fd("Error.\nYour map is not closed. Please check your file.\n", 2);
 	free_split(map);
 	exit(EXIT_FAILURE);
 }

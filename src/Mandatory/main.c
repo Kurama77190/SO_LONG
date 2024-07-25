@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 18:02:30 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:28:32 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	main(int argc, char **argv, char **env)
 	memset(&data, 0, sizeof(data));
 	if (argc != 2)
 	{
-		ft_putstr_fd("Bad arguments.\n", 2);
+		ft_putstr_fd("Error.\nBad arguments.\n", 2);
 		return (1);
 	}
 	if (!env[0])
 	{
-		ft_putstr_fd("environment doesn't exist.\n", 2);
+		ft_putstr_fd("Error.\nEnvironment doesn't exist.\n", 2);
 		return (1);
 	}
 	data.n_map = argv[1];

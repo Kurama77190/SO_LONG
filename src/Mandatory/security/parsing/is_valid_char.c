@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 21:33:47 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 06:09:21 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 20:30:53 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	is_valid_char(char **map)
 	if (check_valid_char(validchar, map, i, j) == ERROR)
 	{
 		free_split(map);
-		ft_putstr_fd("Your map have invalid char.\n", 2);
+		ft_putstr_fd("Error.\nYour map have invalid char.\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	if (check_main_char(mainchar, map, i, j) == ERROR)
 	{
 		free_split(map);
-		ft_putstr_fd("Your map doesn't have all valid char.\n", 2);
+		ft_putstr_fd("Error.\nYour map doesn't have all valid char.\n", 2);
 		exit(EXIT_FAILURE);
 	}
 	return (SUCCESS);
