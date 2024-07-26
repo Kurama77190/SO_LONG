@@ -6,21 +6,16 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 15:18:55 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 21:00:45 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/26 01:06:44 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int		flood_fill(char **map);
-int		is_empty(t_game *data);
-int		is_a_good_size(t_game *data);
-
 void	parsing(t_game *data)
 {
-	is_empty(data);
 	is_a_valid_ber(data->n_map);
-	data->map = read_map(data, data->n_map, &data->map_width, \
+	data->map = read_map(data, data->n_map, &data->map_width,
 			&data->map_height);
 	is_a_good_size(data);
 	is_rectangle(data->map);

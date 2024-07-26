@@ -6,7 +6,7 @@
 #    By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/05 16:48:20 by sben-tay          #+#    #+#              #
-#    Updated: 2024/07/25 21:04:09 by sben-tay         ###   ########.fr        #
+#    Updated: 2024/07/26 04:33:35 by sben-tay         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ MAKEFLAGS += --no-print-directory
 NAME = so_long
 #NAME_BNS = so_long_bonus
 #PRINTF = ./external/DPRINTF
-MLX = ./mlx_linux
+MLX = ./minilibx-linux
 CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror 
 CPPFLAGS = -I./include -I./external/GNL/include -I/usr/include -I$(MLX) -c

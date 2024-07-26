@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 13:00:33 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 06:24:05 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 23:21:30 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	load_animation(t_game *data, t_AnimationType action,
 
 	if (!data)
 	{
-		perror("Error init \n");
+		perror("Error.\nError init \n");
 		ft_free_all(&data->memory_manager, data);
 		exit(1);
 	}

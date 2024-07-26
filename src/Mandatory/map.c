@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:34:38 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 02:29:42 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/25 23:21:27 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	draw_map(t_game *data)
 			data->map_height * 64);
 	if (data->bg_img->img_ptr == NULL)
 	{
-		perror("Failed to load background image\n");
+		perror("Error.\nFailed to load background image\n");
 		ft_free_all(&data->memory_manager, data);
 		exit(EXIT_FAILURE);
 	}

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 06:14:09 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 21:06:04 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/26 01:06:53 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int	update_step_count(t_game *data)
 
 void	update_step_count_terminal(t_game *data)
 {
-	ft_putstr_fd(ft_itoa(data->step_counter), 1);
+	char	*str;
+
+	str = ft_itoa(data->step_counter);
+	ft_putstr_fd(str, 1);
 	ft_putstr_fd("\n", 1);
+	ft_free((void **)&str);
 }

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 01:37:36 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 20:30:22 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/26 05:20:35 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ int	is_a_good_size(t_game *data)
 	width = (data->map_width * 64);
 	height = (data->map_height * 64);
 	data->mlx_ptr = mlx_init();
-	if (mlx_get_screen_size(data->mlx_ptr, &width_win, &height_win) == ERROR)
+	if (!data->mlx_ptr)
+	{
+		ft_free_all(&data->memory_manager, data);
+	}
+	if (!mlx_get_screen_size(data->mlx_ptr, &width_win, &height_win))
 	{
 		ft_putstr_fd("Error.\nLigne : 52 : MLX_GET_SCREEN ERROR.\n", 2);
-		free_split(data->map);
-		ft_free(&data->mlx_ptr);
-		exit(EXIT_FAILURE);
+		ft_free_all(&data->memory_manager, data);
 	}
 	check_map_width(data, width, width_win);
 	check_map_height(data, height, height_win);

@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 03:14:01 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 20:29:32 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/26 01:06:34 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	count_lines(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Failed to open file");
+		perror("Error.\nFailed to open file");
 		return (-1);
 	}
 	lines = 0;
@@ -79,11 +79,17 @@ int	get_map_width(const char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		perror("Failed to open file");
+		perror("Error.\nFailed to open file");
 		return (-1);
 	}
 	line = get_next_line(fd);
-	width = strlen(line);
+	if (!line)
+	{
+		close(fd);
+		ft_putstr_fd("Error.\nYour map is empty.\n", 2);
+		exit(EXIT_FAILURE);
+	}
+	width = ft_strlen(line);
 	free(line);
 	close(fd);
 	return (width);
@@ -95,7 +101,7 @@ int	init_sizescreen(int *width, int *height, const char *filename)
 	*height = count_lines(filename);
 	if (*width == -1 || *height == -1)
 	{
-		perror("Failed to get map size");
+		perror("Error.\nFailed to get map size");
 		return (-1);
 	}
 	return (0);
@@ -108,7 +114,7 @@ char	**allocate_secure(t_game *data, size_t height)
 	map = (char **)malloc(sizeof(char *) * ((size_t)height + 1));
 	if (!map)
 	{
-		perror("Failed to allocate memory for map");
+		perror("Error.\nFailed to allocate memory for map");
 		ft_free_all(&data->memory_manager, data);
 	}
 	return (map);

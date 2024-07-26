@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 17:22:57 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 20:28:32 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/26 04:38:38 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(int argc, char **argv, char **env)
 {
 	t_game	data;
 
-	memset(&data, 0, sizeof(data));
+	memset(&data, 0, sizeof(t_game));
 	if (argc != 2)
 	{
 		ft_putstr_fd("Error.\nBad arguments.\n", 2);
