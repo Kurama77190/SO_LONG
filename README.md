@@ -71,7 +71,9 @@ Un exemple de carte :
 <div align="center">
   <img height="400" src="https://raw.githubusercontent.com/Kurama77190/SO_LONG/main/img/GIF.gif"  />
 </div>
-
+<div align="center">
+  <img height="400" src="https://raw.githubusercontent.com/Kurama77190/SO_LONG/main/img/GIF2.gif"  />
+</div>
 
 Le programme doit vérifier la validité de la carte avant de commencer le jeu :
 - La carte doit être rectangulaire.
