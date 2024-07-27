@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:48:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/25 21:07:36 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:02:06 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,8 @@ char							*ft_itoa(int nb);
 int								update_step_count(t_game *data);
 int								update_animation(t_game *data,
 									t_player *player);
+bool							player_static(t_player *player);
+
 
 // MLX ANIMATIONS AND INITIALIZING
 void							ft_init_game(t_game *data);

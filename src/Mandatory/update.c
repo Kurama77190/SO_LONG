@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 12:45:35 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/26 01:21:33 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:03:42 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,14 +124,12 @@ void	update_player(t_game *data)
 	link = data->player[LINK];
 	monster = data->player[MONSTER];
 	draw_image_to_image(data->buffer, data->bg_img, 0, 0);
-	if (link->anime_actived == 1)
-	{
+	if (!player_static(link))
 		update_animation(data, link);
-	}
 	else
 		draw_image_to_image(data->buffer, \
 			data->pos_static[link->last_direction], link->pos_x, link->pos_y);
-	if (monster->anime_actived == 1)
+	if (!player_static(monster))
 	{
 		update_animation(data, monster);
 	}
