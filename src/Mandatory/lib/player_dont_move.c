@@ -6,7 +6,7 @@
 /*   By: sben-tay <sben-tay@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 09:40:54 by sben-tay          #+#    #+#             */
-/*   Updated: 2024/07/27 09:59:26 by sben-tay         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:05:57 by sben-tay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	player_static(t_player *player)
 {
-	return (!(player->anime_actived == 1 || (player->move_up == 1 || player->move_down == 1 \
-		|| player->move_left == 1 || player->move_right == 1)));
+	return (!(player->anime_actived == 1 || (player->move_up == 1 \
+				|| player->move_down == 1 || player->move_left == 1 \
+				|| player->move_right == 1)));
 }
